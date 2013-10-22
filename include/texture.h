@@ -13,7 +13,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	//Texture 1
   	tex_ground[0] = SOIL_load_OGL_texture
         (
-        "/home/deadspeller/Dokumente/ds-game/textures/ground_grass.jpg",
+        "textures/ground_grass.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -21,7 +21,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	//Texture 2
 	tex_ground[1] = SOIL_load_OGL_texture
         (
-        "/home/deadspeller/Dokumente/ds-game/textures/wall.jpg",
+        "textures/wall.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -29,7 +29,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	//Texture 3
 	tex_ground[2] = SOIL_load_OGL_texture
         (
-        "/home/deadspeller/Dokumente/ds-game/textures/roof.jpg",
+        "textures/roof.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y

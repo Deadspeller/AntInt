@@ -27,61 +27,29 @@ class Ant
 	float xdimension =3, zdimension =2;
 	bool antalive;
 	float yorigin, zorigin, xorigin;
+	int i = 0;
 	
 
 	void main()
 	{
+		antcollision();
+
+			antmove(2);		
+		if(xcollision)
+		{
+			antmove(1);
+			xcollision = false;
+		}
 
 	//antmove(2);
-		if(!xcollision && !zcollision)
+		/*if(!xcollision && !zcollision)
 			antmove(2);
 		if(xcollision)
 			antmove(3);
 		else if(zcollision)
 			antmove(1);
+		*/
 		
-		antcollision();
-/*
-	if(xcollision)	//bei kollision um 180° drehen
-	{
-			if(xspeed>0)xdif -= 0.1;
-			else xdif += 0.1;
-			xspeed *= -1;
-		
-		xcollision = false;
-	}
-
-	if(zcollision)	//bei kollision um 180° drehen
-	{
-			if(zspeed>0)zdif -= 0.1;
-			else zdif += 0.1;
-			zspeed *= -1;
-			
-		
-		zcollision = false;
-	}*/
-
-		/*if(gesTime >= 3)
-		{
-			xspeed = 0;
-			zspeed = 1;
-		}
-		if(gesTime >= 6)
-		{
-			xspeed = -1;
-			zspeed = 0;
-		}
-		if(gesTime >= 9)
-		{
-			xspeed = 0;
-			zspeed = -1;
-		}
-		if(gesTime >= 12)
-		{
-			xspeed = 1;
-			zspeed = 0;
-			gesTime = 0;
-		}*/
 
 	}
 
@@ -96,16 +64,16 @@ class Ant
 			switch(a)
 			{
 				case 1:	//vor
-						xdif += 0.4;
+						xdif += 2;
 						break;
 				case 2:	//zurück
-						xdif -= 0.4;
+						xdif -= 2;
 						break;
 				case 3:	//rechts
-						zdif += 0.4;
+						zdif += 2;
 						break;
 				case 4:	//links
-						zdif -= 0.4;
+						zdif -= 2;
 						break;
 			}
 			gesTime = 0;
@@ -202,22 +170,14 @@ zoben = abs(zorigin+zdif+1.2 - (colobjects[i][3]));
 
 
 if(zunten <0.5 || zoben <0.5)
+{
 	zcollision = true;
+}
+	
 if(xlinks <0.5 || xrechts <0.5)
+{
 	xcollision = true;
-/*
-					if(((xorigin+xdif+1.2 - colobjects[i][0]) < 0.1 ) || ((xorigin+xdif-1.2 - colobjects[i][1]) < 0.1 ))
-					{
-						xcollision = true;
-						cout<<"xcollision"<<endl;
-						//xdif -= xspeed*0.01;
-					}
-					if(((zorigin+zdif+1.2 - colobjects[i][2]) < 0.1 ) || ((zorigin+zdif-1.2 - colobjects[i][3]) < 0.1 ))
-					{
-						zcollision = true;
-						cout<<"zcollision"<<endl;
-						//zdif -= zspeed*0.01;
-					}*/
+}
 					
 				}
 			}
@@ -243,9 +203,23 @@ if(xlinks <0.5 || xrechts <0.5)
 			yspeed = 0;
 			zspeed = 0;
 
-			yorigin = 1;
-			zorigin = zpos;
-			xorigin = xpos;	
+			yorigin = 0.001;
+		
+			if(fmod(zpos,2) > 1)	
+				zorigin = ceil(zpos+1)+1;
+			else
+			if(fmod(zpos,2) > 0)	
+				zorigin = floor(zpos+1)+1;
+			
+			if(fmod(xpos,2) > 1)	
+				xorigin = ceil(xpos+1)+1;
+			else
+
+			if(fmod(xpos,2) > 0)	
+				xorigin = floor(xpos+1)+1;
+
+	
+cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 cout<<"Ant not alive. Ant created and spawned at: x="<<xorigin<<" z="<<zorigin<<endl;
 
 			//xspeed = sin(0.4*(3,14/2))*antspeed;

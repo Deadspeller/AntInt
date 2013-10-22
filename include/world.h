@@ -16,26 +16,26 @@ void world()	//Draw the world
 
     	glBegin(GL_POLYGON); //ground
     	glTexCoord2d(0,0);  glVertex3f(0, 0, 0);
-    	glTexCoord2d(50,0);  glVertex3f(0, 0, 100);
-    	glTexCoord2d(50,50);  glVertex3f(100, 0, 100);
-    	glTexCoord2d(0,50);  glVertex3f(100, 0, 0);
+    	glTexCoord2d(47,0);  glVertex3f(0, 0, 100);
+    	glTexCoord2d(47,47);  glVertex3f(100, 0, 100);
+    	glTexCoord2d(0,47);  glVertex3f(100, 0, 0);
     	glEnd();
     	glDisable(GL_TEXTURE_2D);
 
 glBegin(GL_POLYGON); //hinderniss1
 	glColor3f(0,0,1);
-	glVertex3f(10, 1, 5);
-	glVertex3f(10, 1, 7);
-	glVertex3f(20, 1, 7);
-	glVertex3f(20, 1, 5);
+	glVertex3f(10, 0.2, 5);
+	glVertex3f(10, 0.2, 7);
+	glVertex3f(20, 0.2, 7);
+	glVertex3f(20, 0.2, 5);
     	glEnd();
 
 glBegin(GL_POLYGON); //hinderniss2
 	glColor3f(0,0,1);
-	glVertex3f(30, 1, 5);
-	glVertex3f(30, 1, 25);
-	glVertex3f(35, 1, 25);
-	glVertex3f(35, 1, 5);
+	glVertex3f(30, 0.2, 5);
+	glVertex3f(30, 0.2, 25);
+	glVertex3f(35, 0.2, 25);
+	glVertex3f(35, 0.2, 5);
     	glEnd();
 
 
