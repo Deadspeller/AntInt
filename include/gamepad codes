@@ -1,0 +1,33 @@
+##L = Left, R = Right, T = Trigger, B = Bumper, D = Digital
+
+GP_LT = 8
+GP_RT = 9
+GP_LB = 10
+GP_RB = 11
+GP_LS = 1
+GP_RS = 2
+GP_Up = 12
+GP_Left = 15
+GP_Down = 14
+GP_Right = 13
+DUP = 4
+DLeft = 7
+DDown = 6
+DRight = 5
+Select = 0
+Start = 3
+XBox = 16
+
+Joysticks:
+Links Negativ
+Oben Negativ
+Rechts Positiv
+Unten Positiv
+
+Joystick Links:
+X-Achse: 0
+Y-Achse: 1
+
+Joystick Rechts:
+X-Achse: 2
+Y-Achse: 3
