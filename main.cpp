@@ -8,9 +8,10 @@
 #include "include/menu.h"
 #include "include/hud.h"
 #include "include/pointcalc.h"
+#include "include/blockclass.h"
 #include "include/antclass.h"
 #include "include/anthandler.h"
-#include "include/blockclass.h"
+
 #include "include/blockhandler.h"
 #include "include/movement.h"
 
@@ -75,11 +76,11 @@ float colobjects[6][4] =
 {0,0,0,0}
 };
 
-struct blockstruct {
+/*struct blockstruct {
       int minx, maxx, minz, maxz;
-    } ;
+    };
 vector <blockstruct> blockvector;
-
+*/
 
 Timer maintimer;
 
@@ -148,7 +149,7 @@ int main (int argc, char **argv) {
 
 
 
-blockvector.push_back(blockstruct());
+//blockvector.push_back(blockstruct());
 
 
 

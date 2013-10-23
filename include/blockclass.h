@@ -6,8 +6,13 @@
 #include <cmath>
 #include <time.h>
 
+extern float xpos, ypos, zpos;
+extern float colobjects[6][4];
 
-extern vector <blockstruct> blockvector;
+struct blockstruct {
+      int minx, maxx, minz, maxz;
+    };
+vector <blockstruct> blockvector;
 
 class Block
 {
@@ -33,16 +38,14 @@ void spawnBlock()
 cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 
-		colobjects[4][0] = xposition+1;
-		colobjects[4][1] = xposition-1;
-		colobjects[4][2] = zposition+1;
-		colobjects[4][3] = zposition-1;
-cout<<colobjects[4][0]<<" "<<colobjects[4][1]<<" "<<colobjects[4][2]<<" "<<colobjects[4][3]<<endl;
 
 //fill vector with data
-
-
-
+blockvector.push_back(blockstruct());
+cout<<"Block No: "<<blockvector.size()-1<<endl;
+blockvector[blockvector.size()-1].minx = xposition-1;
+blockvector[blockvector.size()-1].maxx = xposition+1;
+blockvector[blockvector.size()-1].minz = zposition-1;
+blockvector[blockvector.size()-1].maxz = zposition+1;
 
 		blockcreated = true;
 	}

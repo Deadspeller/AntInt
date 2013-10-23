@@ -8,6 +8,8 @@
 
 //extern  sf::RenderWindow DSWindow;
 
+extern vector <blockstruct> blockvector;
+
 extern float antspeed;
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
@@ -92,7 +94,6 @@ collision = false;
 			
 			if(gesTime >= 1)
 			{
-			cout<<"move"<<endl;
 			switch(a)	//move
 			{
 				case 1:	//vor
@@ -192,7 +193,24 @@ collision = false;
 		collision = false;
 		/*xcollision = false;
 		zcollision = false; */
+cout<<"blocks seen by ant: "<<blockvector.size()<<endl;
+if(blockvector.size()>0)
+for(int i=0; i<blockvector.size(); i++)
+		{
+cout<<"i: "<<i<<endl;
+			if(xorigin+xdif > blockvector[i].minx && xorigin+xdif < blockvector[i].maxx)
+			{
+				if(zorigin+zdif > blockvector[i].minz && zorigin+zdif < blockvector[i].maxz)
+				{
+cout<<"struct collision"<<endl;
+collision = true;
+	
+				}
+			}
+		}
 
+/*
+cout<<"normale collision"<<endl;
 		for(int i=0; i<6; i++)
 		{
 			if(xorigin+xdif > colobjects[i][0] && xorigin+xdif < colobjects[i][1])
@@ -219,11 +237,11 @@ if(xlinks <0.5 || xrechts <0.5)
 {
 	xcollision = true;
 }*/
-					
+	/*				
 				}
 			}
 		}
-		
+		*/
 	
 	}//endif antcollision
 
