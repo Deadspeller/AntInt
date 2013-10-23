@@ -7,6 +7,8 @@
 #include <time.h>
 
 
+extern vector <blockstruct> blockvector;
+
 class Block
 {
 
@@ -36,6 +38,11 @@ cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 		colobjects[4][2] = zposition+1;
 		colobjects[4][3] = zposition-1;
 cout<<colobjects[4][0]<<" "<<colobjects[4][1]<<" "<<colobjects[4][2]<<" "<<colobjects[4][3]<<endl;
+
+//fill vector with data
+
+
+
 
 		blockcreated = true;
 	}

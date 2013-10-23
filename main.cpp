@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
+#include <vector>
 #include "include/Timer.h"
 #include "include/world.h"
 #include "include/menu.h"
@@ -74,6 +75,11 @@ float colobjects[6][4] =
 {0,0,0,0}
 };
 
+struct blockstruct {
+      int minx, maxx, minz, maxz;
+    } ;
+vector <blockstruct> blockvector;
+
 
 Timer maintimer;
 
@@ -139,6 +145,10 @@ int main (int argc, char **argv) {
  	zpos=9;
 	xrot=80; //70
 	yrot=135;	//135
+
+
+
+blockvector.push_back(blockstruct());
 
 
 
@@ -269,6 +279,11 @@ int main (int argc, char **argv) {
 	BlockHandler("draw");
 	//antarray[0].antmove();
 	
+
+std::vector<int> v;
+ 
+    
+
 	world();	//build ground
 	DrawHUD();
 
