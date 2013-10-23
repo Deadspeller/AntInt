@@ -29,7 +29,6 @@ void AntHandler(string action)
 
 	if(action == "spawn")	//create new Bullet
 	{	
-	
 		for(int antcounter=0; antcounter<maxants; antcounter++)
 		{
 			if(antarray[antcounter].antalive == 0)

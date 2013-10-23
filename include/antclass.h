@@ -210,7 +210,6 @@ if(xlinks <0.5 || xrechts <0.5)
 			if(fmod(xpos,2) > 1)	
 				xorigin = ceil(xpos+1)+1;
 			else
-
 			if(fmod(xpos,2) > 0)	
 				xorigin = floor(xpos+1)+1;
 

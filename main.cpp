@@ -9,6 +9,8 @@
 #include "include/pointcalc.h"
 #include "include/antclass.h"
 #include "include/anthandler.h"
+#include "include/blockclass.h"
+#include "include/blockhandler.h"
 #include "include/movement.h"
 #include <iostream>
 #include <stdio.h>
@@ -49,7 +51,8 @@ float sprintpoints = 100;
 //shoot
 float antspeed = 3;
 int maxants = 100;
-
+int maxblocks = 100;
+int leftclickaction = 2;
 
 void keyPressed(unsigned char, int, int);
 void keyPressedswitch(unsigned char, int, int);
@@ -58,9 +61,9 @@ void keyUpswitch(unsigned char, int, int);
 
 float gesTime;
 float difTime;
-Ant ameise1;
 
 Ant antarray[100];
+Block blockarray[100];
 
 float colobjects[6][4] =
 {
@@ -174,6 +177,8 @@ int main (int argc, char **argv) {
 	sf::Joystick JoystickInput;
 	sf::Mouse MouseInput;
 //Keyboard
+	Key1 = KeyboardInput.isKeyPressed(sf::Keyboard::Num1);
+	Key2 = KeyboardInput.isKeyPressed(sf::Keyboard::Num2);
 	MoveForwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::W);
 	MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
 	MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
@@ -227,7 +232,17 @@ int main (int argc, char **argv) {
 
 			if(Event.type == sf::Event::MouseButtonPressed)	
 			{
-				if(Event.mouseButton.button == sf::Mouse::Left) AntHandler("spawn");
+				if(Event.mouseButton.button == sf::Mouse::Left) 
+					switch(leftclickaction)
+					{
+						case 1:	
+								AntHandler("spawn");
+								break;
+						case 2: 
+								BlockHandler("spawn");
+								break;
+
+					}
 			}
 
 			if(Event.type = sf::Event::MouseWheelMoved)
@@ -253,6 +268,7 @@ int main (int argc, char **argv) {
 	//gravi(); //calc new ypos
 	camera();	//set camera to new position
 	AntHandler("move");
+	BlockHandler("draw");
 	//antarray[0].antmove();
 	
 	world();	//build ground
