@@ -28,6 +28,12 @@ void spawnBlock()
 		if(fmod(xpos,2) > 0)	
 			xposition = floor(xpos+1)+1;
 
+		colobjects[4][0] = xposition-2;
+		colobjects[4][1] = xposition+2;
+		colobjects[4][2] = zposition-2;
+		colobjects[4][3] = zposition+2;
+cout<<colobjects[4][0]<<" "<<colobjects[4][1]<<" "<<colobjects[4][2]<<" "<<colobjects[4][3]<<endl;
+
 		blockcreated = true;
 	}
 
