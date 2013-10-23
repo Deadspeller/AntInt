@@ -2,14 +2,18 @@
 
 
 #include "SOIL/SOIL.h"
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 using namespace std;
 
 GLuint tex_ground[3]; //Textures
+GLuint tex_ant;
 
 int LoadTextures()                 // Load Images And Convert To Textures
 {	
+
+
 	//Texture 1
   	tex_ground[0] = SOIL_load_OGL_texture
         (
@@ -30,6 +34,14 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	tex_ground[2] = SOIL_load_OGL_texture
         (
         "textures/roof.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+	//Ant Texture
+	tex_ant = SOIL_load_OGL_texture
+        (
+        "textures/ant.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y

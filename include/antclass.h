@@ -152,11 +152,29 @@ collision = false;
 						break;
 			}	
 
-			glScalef(0.5,0.5,0.5);
+			glScalef(1,1,1);
 			glColor3f(1,0.1,0.1);
 		 
+glEnable(GL_TEXTURE_2D);
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    	glBindTexture(GL_TEXTURE_2D, tex_ant);
+    	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    	glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+
+    	glBegin(GL_POLYGON); //ground
+    	glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+    	glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
+    	glTexCoord2d(0,1);  glVertex3f(1, 1, 1);
+    	glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
+    	glEnd();
+glDisable(GL_BLEND);
+    	glDisable(GL_TEXTURE_2D);
+
+
 			// Body
-			glBegin(GL_POLYGON);
+			/*glBegin(GL_POLYGON);
 			glColor3f(1, 0, 0);
 			glVertex3f(-1, 1, -1);
 			glVertex3f(1, 1, -1);
@@ -171,7 +189,7 @@ collision = false;
 			glVertex3f(2, 1, -0.3);
 			glVertex3f(2, 1, 0.3);
 			glVertex3f(1, 1, 0.3);
-			glEnd();
+			glEnd();*/
 
 			glEnd();
 			glPopMatrix();
@@ -197,7 +215,6 @@ cout<<"blocks seen by ant: "<<blockvector.size()<<endl;
 if(blockvector.size()>0)
 for(int i=0; i<blockvector.size(); i++)
 		{
-cout<<"i: "<<i<<endl;
 			if(xorigin+xdif > blockvector[i].minx && xorigin+xdif < blockvector[i].maxx)
 			{
 				if(zorigin+zdif > blockvector[i].minz && zorigin+zdif < blockvector[i].maxz)
