@@ -2,8 +2,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
+#include "include/Timer.h"
 #include "include/world.h"
-#include "include/gravitation.h"
 #include "include/menu.h"
 #include "include/hud.h"
 #include "include/pointcalc.h"
@@ -12,6 +12,7 @@
 #include "include/blockclass.h"
 #include "include/blockhandler.h"
 #include "include/movement.h"
+
 #include <iostream>
 #include <stdio.h>
 #include <SFML/Window.hpp>
@@ -42,8 +43,6 @@ float xrot = 0, yrot = 0, zrot = 0;
 int diffx, diffy;
 float lastx, lasty; //position of the mouse-pointer
 sf::Vector2i center(xres/2, yres/2);
-	//Gravitation
-bool gravi_enable = 1;
 float velocity = 0;
 float hp = 100;
 float sprintpoints = 100;
@@ -69,10 +68,10 @@ float colobjects[6][4] =
 {
 {10,20,5,7},
 {30,35,5,25},
-{-5,0,0,100},
-{0,100,-5,0},
-{100,105,0,100},
-{0,100,100,105}
+{-5,0,0,50},
+{0,50,-5,0},
+{50,55,0,50},
+{0,50,50,55}
 };
 
 
@@ -265,7 +264,6 @@ int main (int argc, char **argv) {
 
     	enable();	//enable graphic-settings
 	movementcalc(difTime);
-	//gravi(); //calc new ypos
 	camera();	//set camera to new position
 	AntHandler("move");
 	BlockHandler("draw");

@@ -28,24 +28,28 @@ class Ant
 	bool antalive;
 	float yorigin, zorigin, xorigin;
 	int i = 0;
+	Timer AntTimer;
 	
 int backwards = false;
+
 	void main()
 	{
 		if(!xcollision && !backwards) 
 		{
-			antmove(2);		
+			antmove(4);		
 		}
 		if(xcollision || backwards)
 		{
-			antmove(1);
-			backwards = 1;
+			antmove(3);
+			if(backwards) backwards = 0;
+			else backwards = 1;
 		}
+		
 
 	}
 
 
-	Timer shoottimer1;
+	
 	void antmove(int a)	//move the ant
 	{
 		if(antalive)	//if the ant is alive
@@ -102,10 +106,10 @@ int backwards = false;
 						glRotatef(180,0.0,1.0,0.0);
 						break;
 				case 3:	//rechts
-						glRotatef(90,0.0,1.0,0.0);
+						glRotatef(-90,0.0,1.0,0.0);
 						break;
 				case 4:	//links
-						glRotatef(-90,0.0,1.0,0.0);
+						glRotatef(90,0.0,1.0,0.0);
 						break;
 			}	
 
@@ -135,11 +139,11 @@ int backwards = false;
 
 
 
-				shoottimer1.stop();
-				difTime = shoottimer1.getElapsedTimeInSec();
+				AntTimer.stop();
+				difTime = AntTimer.getElapsedTimeInSec();
 				if(difTime > 0.1) difTime = 0;	//remove first time
 				gesTime += difTime;
-				shoottimer1.start();
+				AntTimer.start();
 		}
 	} //endif antmove
 
@@ -195,22 +199,16 @@ if(xlinks <0.5 || xrechts <0.5)
 			xdif = 0;
 			zdif = 0;
 			ydif = 0;
-			xspeed = -1;
-			yspeed = 0;
-			zspeed = 0;
-
 			yorigin = 0.001;
 		
 			if(fmod(zpos,2) > 1)	
 				zorigin = ceil(zpos+1)+1;
-			else
-			if(fmod(zpos,2) > 0)	
+			else if(fmod(zpos,2) > 0)	
 				zorigin = floor(zpos+1)+1;
 			
 			if(fmod(xpos,2) > 1)	
 				xorigin = ceil(xpos+1)+1;
-			else
-			if(fmod(xpos,2) > 0)	
+			else if(fmod(xpos,2) > 0)	
 				xorigin = floor(xpos+1)+1;
 
 	

@@ -88,11 +88,11 @@ void movementcalc(float difTime)
 
 
 	if (FKeyDown)
-	{	gravi_enable = 0;
+	{	
 	}
 
 	if (GKeyDown)
-	{	gravi_enable = 1;
+	{	
 	}
 		
 	if (EscKeyDown)

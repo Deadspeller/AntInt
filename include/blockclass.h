@@ -16,22 +16,25 @@ public:
 
 void spawnBlock()
 	{
+		yposition = 0.1;
+
 		if(fmod(zpos,2) > 1)	
 			zposition = ceil(zpos+1)+1;
-		else
-		if(fmod(zpos,2) > 0)	
+		else if(fmod(zpos,2) > 0)	
 			zposition = floor(zpos+1)+1;
 			
 		if(fmod(xpos,2) > 1)	
 			xposition = ceil(xpos+1)+1;
-		else
-		if(fmod(xpos,2) > 0)	
+		else if(fmod(xpos,2) > 0)	
 			xposition = floor(xpos+1)+1;
 
-		colobjects[4][0] = xposition-2;
-		colobjects[4][1] = xposition+2;
-		colobjects[4][2] = zposition-2;
-		colobjects[4][3] = zposition+2;
+cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
+cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
+
+		colobjects[4][0] = xposition+1;
+		colobjects[4][1] = xposition-1;
+		colobjects[4][2] = zposition+1;
+		colobjects[4][3] = zposition-1;
 cout<<colobjects[4][0]<<" "<<colobjects[4][1]<<" "<<colobjects[4][2]<<" "<<colobjects[4][3]<<endl;
 
 		blockcreated = true;
@@ -55,7 +58,6 @@ void drawBlock()
 		glVertex3f(-1, 1, 1);
 		glEnd();
 
-		glEnd();
 		glPopMatrix();
 
 } //end blockplace
