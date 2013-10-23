@@ -8,7 +8,7 @@
 #include "include/hud.h"
 #include "include/pointcalc.h"
 #include "include/antclass.h"
-#include "include/antmove.h"
+#include "include/anthandler.h"
 #include "include/movement.h"
 #include <iostream>
 #include <stdio.h>
@@ -227,7 +227,7 @@ int main (int argc, char **argv) {
 
 			if(Event.type == sf::Event::MouseButtonPressed)	
 			{
-				if(Event.mouseButton.button == sf::Mouse::Left) AntHandler("handle"); //antarray[0].antspawn();
+				if(Event.mouseButton.button == sf::Mouse::Left) AntHandler("spawn");
 			}
 
 			if(Event.type = sf::Event::MouseWheelMoved)

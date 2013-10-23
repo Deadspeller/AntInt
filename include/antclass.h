@@ -29,27 +29,18 @@ class Ant
 	float yorigin, zorigin, xorigin;
 	int i = 0;
 	
-
+int backwards = false;
 	void main()
 	{
-		antcollision();
-
+		if(!xcollision && !backwards) 
+		{
 			antmove(2);		
-		if(xcollision)
+		}
+		if(xcollision || backwards)
 		{
 			antmove(1);
-			xcollision = false;
+			backwards = 1;
 		}
-
-	//antmove(2);
-		/*if(!xcollision && !zcollision)
-			antmove(2);
-		if(xcollision)
-			antmove(3);
-		else if(zcollision)
-			antmove(1);
-		*/
-		
 
 	}
 
@@ -61,7 +52,7 @@ class Ant
 		{ 	
 			if(gesTime >= 1)
 			{
-			switch(a)
+			switch(a)	//move
 			{
 				case 1:	//vor
 						xdif += 2;
@@ -76,46 +67,47 @@ class Ant
 						zdif -= 2;
 						break;
 			}
+			antcollision();	//check if collision
+			if(xcollision || zcollision)	//if collision go back
+			{
+				switch(a)	//move
+				{
+					case 1:	//vor
+							xdif -= 2;
+							break;
+					case 2:	//zurück
+							xdif += 2;
+							break;
+					case 3:	//rechts
+							zdif -= 2;
+							break;
+					case 4:	//links
+							zdif += 2;
+							break;
+				}
+			}
 			gesTime = 0;
 			}
 
-			//cout<<"move xspeed= "<<xspeed<<endl;
-			//move the ant
-			/*xdif += xspeed * antspeed * difTime;
-			zdif += zspeed * antspeed * difTime;
-			ydif += yspeed * antspeed * difTime;
-*/
-
 			//draw the ant
 			glPushMatrix();
-			//glTranslated(2,10,0);
 			glTranslated(xorigin+xdif, yorigin+ydif, zorigin+zdif);		
 
-			//if(xspeed<0) glRotatef(180,0.0,1.0,0.0);	//backwards			
-			//if(zspeed>0) glRotatef(-90,0.0,1.0,0.0);	//right
-			//if(zspeed<0) glRotatef(90,0.0,1.0,0.0);		//left
-			//glRotatef(asin(xspeed),0.0,1.0,0.0);
-			if(zspeed) glRotatef(-asin(zspeed)*180/3.14,0.0,1.0,0.0);
-			else if(xspeed) glRotatef(-asin(xspeed)*180/3.14,0.0,1.0,0.0);
-			else glRotatef(90,0.0,1.0,0.0);	
-switch(a)
+			switch(a)
 			{
 				case 1:	//vor
-						glRotatef(-90,0.0,1.0,0.0);
-						break;
-				case 2:	//zurück
-						glRotatef(90,0.0,1.0,0.0);
-						break;
-				case 3:	//rechts
-						glRotatef(180,0.0,1.0,0.0);
-						break;
-				case 4:	//links
 						glRotatef(0,0.0,1.0,0.0);
 						break;
+				case 2:	//zurück
+						glRotatef(180,0.0,1.0,0.0);
+						break;
+				case 3:	//rechts
+						glRotatef(90,0.0,1.0,0.0);
+						break;
+				case 4:	//links
+						glRotatef(-90,0.0,1.0,0.0);
+						break;
 			}	
-	
-			//glRotatef(90,0.0,1.0,0.0);
-			//glRotatef(zspeed*90,0.0,1.0,0.0);
 
 			glScalef(0.5,0.5,0.5);
 			glColor3f(1,0.1,0.1);
@@ -155,6 +147,10 @@ switch(a)
 
 	void antcollision()
 	{
+
+xcollision = false;
+zcollision = false;
+
 		for(int i=0; i<6; i++)
 		{
 			if(xorigin+xdif+1.2 > colobjects[i][0] && xorigin+xdif-1.2 < colobjects[i][1])
