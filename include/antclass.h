@@ -20,7 +20,7 @@ void impactdraw(char);
 class Ant
 {
 	public:
-	bool xcollision = false, zcollision = false;
+	bool collision = false;
 	float difTime, gesTime;
 	float xspeed, zspeed, yspeed;
 	float xdif, zdif, ydif;
@@ -29,12 +29,13 @@ class Ant
 	float yorigin, zorigin, xorigin;
 	int i = 0;
 	Timer AntTimer;
-	
+	int status = 1;	
+
 int backwards = false;
 
 	void main()
 	{
-		if(!xcollision && !backwards) 
+		/*if(!xcollision && !backwards) 
 		{
 			antmove(4);		
 		}
@@ -43,9 +44,43 @@ int backwards = false;
 			antmove(3);
 			if(backwards) backwards = 0;
 			else backwards = 1;
+		}*/
+	
+		switch(status)
+		{
+			case 1:
+					antmove(1);
+					if(collision)
+					{
+						status = 3;
+						collision = false;
+					}
+					break;
+			case 2:
+					antmove(2);
+					if(collision)
+					{
+						status = 4;
+						collision = false;
+					}
+					break;
+			case 3:
+					antmove(3);
+					if(collision)
+					{
+						status = 2;
+collision = false;
+					}
+					break;
+			case 4:
+					antmove(4);
+					if(collision)
+					{
+						status = 1;
+collision = false;
+					}
+					break;
 		}
-		
-
 	}
 
 
@@ -54,8 +89,10 @@ int backwards = false;
 	{
 		if(antalive)	//if the ant is alive
 		{ 	
+			
 			if(gesTime >= 1)
 			{
+			cout<<"move"<<endl;
 			switch(a)	//move
 			{
 				case 1:	//vor
@@ -72,8 +109,9 @@ int backwards = false;
 						break;
 			}
 			antcollision();	//check if collision
-			if(xcollision || zcollision)	//if collision go back
+			if(collision)	//if collision go back
 			{
+				cout<<"kollision"<<endl;
 				switch(a)	//move
 				{
 					case 1:	//vor
@@ -151,17 +189,20 @@ int backwards = false;
 
 	void antcollision()
 	{
-
-xcollision = false;
-zcollision = false;
+		collision = false;
+		/*xcollision = false;
+		zcollision = false; */
 
 		for(int i=0; i<6; i++)
 		{
-			if(xorigin+xdif+1.2 > colobjects[i][0] && xorigin+xdif-1.2 < colobjects[i][1])
+			if(xorigin+xdif > colobjects[i][0] && xorigin+xdif < colobjects[i][1])
 			{
-				if(zorigin+zdif+1.2 > colobjects[i][2] && zorigin+zdif-1.2 < colobjects[i][3])
+				if(zorigin+zdif > colobjects[i][2] && zorigin+zdif < colobjects[i][3])
 				{
-float xlinks, xrechts, zunten, zoben;
+//cout<<"kollision von"<<xorigin+xdif<<" und "<<colobjects[i][0] <<endl;
+collision = true;
+
+/*float xlinks, xrechts, zunten, zoben;
 xlinks = abs(colobjects[i][0] - (xorigin+xdif+1.2));
 xrechts = abs(xorigin+xdif+1.2 - (colobjects[i][1]));
 
@@ -177,7 +218,7 @@ if(zunten <0.5 || zoben <0.5)
 if(xlinks <0.5 || xrechts <0.5)
 {
 	xcollision = true;
-}
+}*/
 					
 				}
 			}

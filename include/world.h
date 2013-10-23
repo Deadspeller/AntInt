@@ -22,21 +22,43 @@ void world()	//Draw the world
     	glEnd();
     	glDisable(GL_TEXTURE_2D);
 
+
+
 glBegin(GL_POLYGON); //hinderniss1
 	glColor3f(0,0,1);
-	glVertex3f(10, 0.2, 5);
-	glVertex3f(10, 0.2, 7);
-	glVertex3f(20, 0.2, 7);
-	glVertex3f(20, 0.2, 5);
+	glVertex3f(9, 0.2, 19);
+	glVertex3f(9, 0.2, 21);
+	glVertex3f(19, 0.2, 21);
+	glVertex3f(19, 0.2, 19);
     	glEnd();
 
 glBegin(GL_POLYGON); //hinderniss2
 	glColor3f(0,0,1);
-	glVertex3f(30, 0.2, 5);
-	glVertex3f(30, 0.2, 25);
-	glVertex3f(35, 0.2, 25);
-	glVertex3f(35, 0.2, 5);
+	glVertex3f(9, 0.2, 5);
+	glVertex3f(9, 0.2, 19);
+	glVertex3f(11, 0.2, 19);
+	glVertex3f(11, 0.2, 5);
     	glEnd();
+
+glBegin(GL_POLYGON); //hinderniss3
+	glColor3f(0,0,1);
+	glVertex3f(9, 0.2, 5);
+	glVertex3f(9, 0.2, 7);
+	glVertex3f(19, 0.2, 7);
+	glVertex3f(19, 0.2, 5);
+    	glEnd();
+
+glBegin(GL_POLYGON); //hinderniss4
+	glColor3f(0,0,1);
+	glVertex3f(19, 0.2, 5);
+	glVertex3f(19, 0.2, 19);
+	glVertex3f(21, 0.2, 19);
+	glVertex3f(21, 0.2, 5);
+    	glEnd();
+
+
+
+
 
 
 glBegin(GL_POLYGON); //wall1
