@@ -11,7 +11,7 @@ extern float colobjects[6][4];
 
 struct blockstruct 
 	{
-		int blocktype = 0; //1 = block, 2 = food
+		int blocktype; //1 = block, 2 = food
 		int xposition, zposition;	
     	int minx, maxx, minz, maxz;
     };
