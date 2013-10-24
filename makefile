@@ -21,6 +21,22 @@ setup:
 	sudo apt-get install libsoil-dev
 	sudo apt-get install freeglut3-dev
 
+setup32:
+	sudo apt-get install g++
+	sudo apt-get install libglew-dev
+	sudo apt-get install libsfml-dev 
+	sudo cp -r SFML-2.0_32/* /usr/
+	sudo apt-get install libsoil-dev
+	sudo apt-get install freeglut3-dev
+
+setup64:
+	sudo apt-get install g++
+	sudo apt-get install libglew-dev
+	sudo apt-get install libsfml-dev 
+	sudo cp -r SFML-2.1_64/* /usr/
+	sudo apt-get install libsoil-dev
+	sudo apt-get install freeglut3-dev
+
 run: 	$(OUTPUTFILE)
 	./$(OUTPUTFILE)
 
