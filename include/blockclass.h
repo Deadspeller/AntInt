@@ -16,7 +16,10 @@ struct blockstruct
     	int minx, maxx, minz, maxz;
     };
 vector <blockstruct> blockvector;
-vector <vector <blockstruct> > blockvecvec(50, vector<blockstruct>(50));
+vector <vector <blockstruct> > blockvecvec(52, vector<blockstruct>(52));
+
+
+
 
 class Block
 {

@@ -21,7 +21,7 @@ void AntHandler(string action)
 		{
 			if(antarray[antcounter].antalive == 1) 
 			{
-			antarray[antcounter].main();
+			antarray[antcounter].ki();
 			
 			}
 		}	

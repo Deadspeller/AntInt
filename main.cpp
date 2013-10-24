@@ -55,6 +55,8 @@ int maxants = 100;
 int maxblocks = 100;
 int leftclickaction = 2;
 
+float roundTime = 1;
+
 void keyPressed(unsigned char, int, int);
 void keyPressedswitch(unsigned char, int, int);
 void keyUp(unsigned char, int, int);
@@ -65,6 +67,8 @@ float difTime;
 
 Ant antarray[100];
 Block blockarray[100];
+
+extern vector < vector <blockstruct> > blockvecvec;
 
 float colobjects[6][4] =
 {
@@ -147,6 +151,24 @@ int main (int argc, char **argv) {
 	xrot=80; //70
 	yrot=135;	//135
 
+for(int i =0; i<50; i++)
+{
+	blockvecvec[0][i].blocktype=1;
+}
+for(int i =0; i<50; i++)
+{
+	blockvecvec[i][0].blocktype=1;
+}
+for(int i =0; i<50; i++)
+{
+	blockvecvec[51][i].blocktype=1;
+}
+for(int i =0; i<50; i++)
+{
+	blockvecvec[i][51].blocktype=1;
+}
+
+
 
 
 //blockvector.push_back(blockstruct());
@@ -197,8 +219,8 @@ int main (int argc, char **argv) {
 	MoveSneakKey = KeyboardInput.isKeyPressed(sf::Keyboard::LControl);
 	MoveSprintKey = KeyboardInput.isKeyPressed(sf::Keyboard::LShift);
 	MoveLaydownKey = KeyboardInput.isKeyPressed(sf::Keyboard::Y);
-	FKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::F);
-	GKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::G);
+	KKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::K);
+	JKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::J);
 	EscKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::Escape);
 	MoveJumpKey = KeyboardInput.isKeyPressed(sf::Keyboard::Space);
 //Joystick
@@ -235,7 +257,23 @@ int main (int argc, char **argv) {
 			{		
 				if(JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
 			}
-		
+		DSWindow.setKeyRepeatEnabled(false);
+			if (Event.type == sf::Event::KeyPressed)
+			{
+				
+				if (Event.key.code == sf::Keyboard::K)
+				{
+					if(roundTime > 0.1)
+					roundTime -= 0.05;
+					cout<<"Zeit pro Runde: "<<roundTime<<endl;
+				}
+				if (Event.key.code == sf::Keyboard::J)
+				{
+					roundTime += 0.05;
+					cout<<"Zeit pro Runde: "<<roundTime<<endl;
+				}
+			}
+
 
 			// Close window : exit
             		if (Event.type == sf::Event::Closed)
