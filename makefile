@@ -1,7 +1,7 @@
 OUTPUTFILE:= AntInt-0.1
 INPUTFILE:= main
-LIBSHEADER:= -I/usr/include/SFML/ -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
-LIBSSO:= -L/usr/local/lib/ -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
+LIBSHEADER:= -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
+LIBSSO:= -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
 
 all: install run
 
