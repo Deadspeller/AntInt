@@ -189,6 +189,7 @@ int main (int argc, char **argv) {
 //Keyboard
 	Key1 = KeyboardInput.isKeyPressed(sf::Keyboard::Num1);
 	Key2 = KeyboardInput.isKeyPressed(sf::Keyboard::Num2);
+	Key3 = KeyboardInput.isKeyPressed(sf::Keyboard::Num3);
 	MoveForwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::W);
 	MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
 	MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
@@ -249,9 +250,11 @@ int main (int argc, char **argv) {
 								AntHandler("spawn");
 								break;
 						case 2: 
-								BlockHandler("spawn");
+								BlockHandler("bspawn");
 								break;
-
+						case 3:
+								BlockHandler("fspawn");
+								break;
 					}
 			}
 

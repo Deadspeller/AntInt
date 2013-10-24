@@ -9,10 +9,14 @@
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 
-struct blockstruct {
-      int minx, maxx, minz, maxz;
+struct blockstruct 
+	{
+		int blocktype = 0; //1 = block, 2 = food
+		int xposition, zposition;	
+    	int minx, maxx, minz, maxz;
     };
 vector <blockstruct> blockvector;
+vector <vector <blockstruct> > blockvecvec(50, vector<blockstruct>(50));
 
 class Block
 {
@@ -20,9 +24,11 @@ class Block
 public:
 	int xposition, zposition, yposition;
 	bool blockcreated;
+	int blocktype = 1;
 
-void spawnBlock()
+void spawnBlock(int typeblock)
 	{
+		blocktype = typeblock;
 		yposition = 0.1;
 
 		if(fmod(zpos,2) > 1)	
@@ -41,12 +47,15 @@ cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 
 //fill vector with data
 blockvector.push_back(blockstruct());
-cout<<"Block No: "<<blockvector.size()-1<<endl;
-blockvector[blockvector.size()-1].minx = xposition-1;
+//blockvector[blockvector.size()-1].xposition = xposition;
+//blockvector[blockvector.size()-1].zposition = zposition;
+
+blockvecvec[xposition][zposition].blocktype = typeblock;
+/*blockvector[blockvector.size()-1].minx = xposition-1;
 blockvector[blockvector.size()-1].maxx = xposition+1;
 blockvector[blockvector.size()-1].minz = zposition-1;
 blockvector[blockvector.size()-1].maxz = zposition+1;
-
+*/
 		blockcreated = true;
 	}
 
@@ -57,11 +66,14 @@ void drawBlock()
 		glTranslated(xposition, yposition, zposition);		
 
 		glScalef(1,1,1);
-		glColor3f(1,0.1,0.1);
+		
 	 
 		// Block
 		glBegin(GL_POLYGON);
-		glColor3f(0, 0, 1);
+		if(blocktype == 1)
+			glColor3f(0,0,1);
+		else
+			glColor3f(1,1,0);
 		glVertex3f(-1, 1, -1);
 		glVertex3f(1, 1, -1);
 		glVertex3f(1, 1, 1);

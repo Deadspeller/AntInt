@@ -10,7 +10,7 @@ extern float sprintpoints;
 extern sf::Window DSWindow;
 extern int leftclickaction;
 
-bool Key1, Key2, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
+bool Key1, Key2, Key3, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
 bool LControlKeyDown, YKeyDown, FKeyDown, GKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
 int MouseScrollValue = 0;
 
@@ -85,7 +85,10 @@ void movementcalc(float difTime)
 	{	
 		leftclickaction = 2;
 	}
-
+	if(Key3)
+	{
+		leftclickaction = 3;
+	}
 
 	if (FKeyDown)
 	{	

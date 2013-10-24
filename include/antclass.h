@@ -9,6 +9,7 @@
 //extern  sf::RenderWindow DSWindow;
 
 extern vector <blockstruct> blockvector;
+extern vector < vector <blockstruct> > blockvecvec;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
@@ -22,10 +23,13 @@ void impactdraw(char);
 class Ant
 {
 	public:
-	bool collision = false;
+	bool xpluscollision = false, xminuscollision = false, zpluscollision = false, zminuscollision = false;
+	bool xplusfood = false, xminusfood = false, zplusfood = false, zminusfood = false;
+	bool collision;
 	float difTime, gesTime;
 	float xspeed, zspeed, yspeed;
 	float xdif, zdif, ydif;
+	float oldxdif, oldzdif;
 	float xdimension =3, zdimension =2;
 	bool antalive;
 	float yorigin, zorigin, xorigin;
@@ -47,40 +51,44 @@ int backwards = false;
 			if(backwards) backwards = 0;
 			else backwards = 1;
 		}*/
-	
 		switch(status)
 		{
 			case 1:
-					antmove(1);
-					if(collision)
+					
+					if(xpluscollision)
 					{
+						cout<<"case xpluscoll"<<endl;
 						status = 3;
-						collision = false;
+						xpluscollision = false;
 					}
+					antmove(1);
 					break;
 			case 2:
-					antmove(2);
-					if(collision)
+					
+					if(xminuscollision)
 					{
 						status = 4;
-						collision = false;
+						xminuscollision = false;
 					}
+					antmove(2);
 					break;
 			case 3:
-					antmove(3);
-					if(collision)
+					
+					if(zpluscollision)
 					{
 						status = 2;
-collision = false;
+						zpluscollision = false;
 					}
+					antmove(3);
 					break;
 			case 4:
-					antmove(4);
-					if(collision)
+					
+					if(zminuscollision)
 					{
 						status = 1;
-collision = false;
+						zminuscollision = false;
 					}
+					antmove(4);
 					break;
 		}
 	}
@@ -91,9 +99,12 @@ collision = false;
 	{
 		if(antalive)	//if the ant is alive
 		{ 	
-			
+			nearcheck();
+
 			if(gesTime >= 1)
 			{
+			oldxdif = xdif;
+			oldzdif = zdif;
 			switch(a)	//move
 			{
 				case 1:	//vor
@@ -110,7 +121,15 @@ collision = false;
 						break;
 			}
 			antcollision();	//check if collision
-			if(collision)	//if collision go back
+
+			if(collision)
+			{
+				cout<<"kollision"<<endl;
+				xdif = oldxdif;
+				zdif = oldzdif;
+			}
+
+			/*if(collision)	//if collision go back
 			{
 				cout<<"kollision"<<endl;
 				switch(a)	//move
@@ -128,7 +147,7 @@ collision = false;
 							zdif += 2;
 							break;
 				}
-			}
+			}*/
 			gesTime = 0;
 			}
 
@@ -211,7 +230,7 @@ glDisable(GL_BLEND);
 		collision = false;
 		/*xcollision = false;
 		zcollision = false; */
-cout<<"blocks seen by ant: "<<blockvector.size()<<endl;
+/*cout<<"blocks seen by ant: "<<blockvector.size()<<endl;
 if(blockvector.size()>0)
 for(int i=0; i<blockvector.size(); i++)
 		{
@@ -224,44 +243,64 @@ collision = true;
 	
 				}
 			}
-		}
+		} */
 
-/*
-cout<<"normale collision"<<endl;
-		for(int i=0; i<6; i++)
+
+		if(blockvecvec[xorigin+xdif][zorigin+zdif].blocktype == 1)
 		{
-			if(xorigin+xdif > colobjects[i][0] && xorigin+xdif < colobjects[i][1])
-			{
-				if(zorigin+zdif > colobjects[i][2] && zorigin+zdif < colobjects[i][3])
-				{
-//cout<<"kollision von"<<xorigin+xdif<<" und "<<colobjects[i][0] <<endl;
-collision = true;
-
-/*float xlinks, xrechts, zunten, zoben;
-xlinks = abs(colobjects[i][0] - (xorigin+xdif+1.2));
-xrechts = abs(xorigin+xdif+1.2 - (colobjects[i][1]));
-
-zunten = abs(colobjects[i][2] - (zorigin+zdif+1.2));
-zoben = abs(zorigin+zdif+1.2 - (colobjects[i][3]));
-
-
-if(zunten <0.5 || zoben <0.5)
-{
-	zcollision = true;
-}
-	
-if(xlinks <0.5 || xrechts <0.5)
-{
-	xcollision = true;
-}*/
-	/*				
-				}
-			}
+			collision = true;
 		}
-		*/
+
 	
 	}//endif antcollision
 
+void nearcheck()
+{
+	xpluscollision = false;
+	xminuscollision = false;
+	zpluscollision = false;
+	zminuscollision = false;
+
+	xplusfood = false;
+	xminusfood = false;
+	zplusfood = false;
+	zminusfood = false;
+
+	if(blockvecvec[xorigin+xdif+2][zorigin+zdif].blocktype == 1)
+	{
+		xpluscollision = true;
+	}
+	if(blockvecvec[xorigin+xdif-2][zorigin+zdif].blocktype == 1)
+	{
+		xminuscollision = true;
+	}
+	if(blockvecvec[xorigin+xdif][zorigin+zdif+2].blocktype == 1)
+	{
+		zpluscollision = true;
+	}
+	if(blockvecvec[xorigin+xdif][zorigin+zdif-2].blocktype == 1)
+	{
+		zminuscollision = true;
+	}
+
+	if(blockvecvec[xorigin+xdif+2][zorigin+zdif].blocktype == 2)
+	{
+		xplusfood = true;
+	}
+	if(blockvecvec[xorigin+xdif-2][zorigin+zdif].blocktype == 2)
+	{
+		xminusfood = true;
+	}
+	if(blockvecvec[xorigin+xdif][zorigin+zdif+2].blocktype == 2)
+	{
+		zplusfood = true;
+	}
+	if(blockvecvec[xorigin+xdif][zorigin+zdif-2].blocktype == 2)
+	{
+		zminusfood = true;
+	}
+
+}	//end nearcheck
 
 
 	void antspawn()	//spawn a new ant
