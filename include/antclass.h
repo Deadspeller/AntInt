@@ -29,10 +29,8 @@ class Ant
 	bool xplusfood = false, xminusfood = false, zplusfood = false, zminusfood = false;
 	bool collision;
 	float difTime, gesTime;
-	float xspeed, zspeed, yspeed;
 	float xdif, zdif, ydif;
 	float oldxdif, oldzdif;
-	float xdimension =3, zdimension =2;
 	bool antalive;
 	float yorigin, zorigin, xorigin;
 	int i = 0;
@@ -252,25 +250,6 @@ glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 glDisable(GL_BLEND);
     	glDisable(GL_TEXTURE_2D);
 
-
-			// Body
-			/*glBegin(GL_POLYGON);
-			glColor3f(1, 0, 0);
-			glVertex3f(-1, 1, -1);
-			glVertex3f(1, 1, -1);
-			glVertex3f(1, 1, 1);
-			glVertex3f(-1, 1, 1);
-			glEnd();
-			 
-			// Head
-			glBegin(GL_POLYGON);
-			glColor3f(1, 0, 0);
-			glVertex3f(1, 1, -0.3);
-			glVertex3f(2, 1, -0.3);
-			glVertex3f(2, 1, 0.3);
-			glVertex3f(1, 1, 0.3);
-			glEnd();*/
-
 			glEnd();
 			glPopMatrix();
 
@@ -290,23 +269,7 @@ glDisable(GL_BLEND);
 	void antcollision()
 	{
 		collision = false;
-		/*xcollision = false;
-		zcollision = false; */
-/*cout<<"blocks seen by ant: "<<blockvector.size()<<endl;
-if(blockvector.size()>0)
-for(int i=0; i<blockvector.size(); i++)
-		{
-			if(xorigin+xdif > blockvector[i].minx && xorigin+xdif < blockvector[i].maxx)
-			{
-				if(zorigin+zdif > blockvector[i].minz && zorigin+zdif < blockvector[i].maxz)
-				{
-cout<<"struct collision"<<endl;
-collision = true;
-	
-				}
-			}
-		} */
-
+		
 		if(xorigin+xdif < 50 && zorigin+zdif < 50)
 		if(xorigin+xdif > 0 && zorigin+zdif > 0)
 		if(blockvecvec[xorigin+xdif][zorigin+zdif].blocktype == 1)
@@ -314,7 +277,6 @@ collision = true;
 			collision = true;
 		}
 
-	
 	}//endif antcollision
 
 void nearcheck()

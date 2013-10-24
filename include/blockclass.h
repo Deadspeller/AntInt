@@ -44,21 +44,15 @@ void spawnBlock(int typeblock)
 		else if(fmod(xpos,2) > 0)	
 			xposition = floor(xpos+1)+1;
 
-cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
-cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
+		cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
+		if(blocktype ==1)cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
+	if(blocktype ==2)cout<<"Food created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 
 
-//fill vector with data
-blockvector.push_back(blockstruct());
-//blockvector[blockvector.size()-1].xposition = xposition;
-//blockvector[blockvector.size()-1].zposition = zposition;
+		//fill vector with data
+		blockvector.push_back(blockstruct());
 
-blockvecvec[xposition][zposition].blocktype = typeblock;
-/*blockvector[blockvector.size()-1].minx = xposition-1;
-blockvector[blockvector.size()-1].maxx = xposition+1;
-blockvector[blockvector.size()-1].minz = zposition-1;
-blockvector[blockvector.size()-1].maxz = zposition+1;
-*/
+		blockvecvec[xposition][zposition].blocktype = typeblock;
 		blockcreated = true;
 	}
 
