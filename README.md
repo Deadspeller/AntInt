@@ -5,17 +5,29 @@ AntInt
 +-----------------+
 You probably need the following Librarys:
 
+use "make setup32" or "make setup64" to install all neccessary librarys and files
+
+- sudo apt-get install g++
 - sudo apt-get install libglew-dev //GLEW Library
-- // not really working sudo apt-get install libsfml-dev //SFML Library
-
-Download SFML Library from here: http://www.sfml-dev.org/download/sfml/2.1/
-Extract it and copy include, lib and share to /usr/local/
-
+- sudo apt-get install libsfml-dev //SFML Library
 - sudo apt-get install libsoil-dev //SOIL Library
 - sudo apt-get install freeglut3-dev //Glut Library
 
-Vielleicht einfügen:
--sudo apt-get install g++
+- setup32:
+	sudo apt-get install g++
+	sudo apt-get install libglew-dev
+	sudo apt-get install libsfml-dev 
+	sudo cp -r SFML-2.0_32/* /usr/
+	sudo apt-get install libsoil-dev
+	sudo apt-get install freeglut3-dev
+
+- setup64:
+	sudo apt-get install g++
+	sudo apt-get install libglew-dev
+	sudo apt-get install libsfml-dev 
+	sudo cp -r SFML-2.1_64/* /usr/
+	sudo apt-get install libsoil-dev
+	sudo apt-get install freeglut3-dev
 
 +-----------------+
 |Compile the Game:|
