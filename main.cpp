@@ -7,12 +7,10 @@
 #include "include/world.h"
 #include "include/menu.h"
 #include "include/hud.h"
-#include "include/pointcalc.h"
 #include "include/blockclass.h"
+#include "include/blockhandler.h"
 #include "include/antclass.h"
 #include "include/anthandler.h"
-
-#include "include/blockhandler.h"
 #include "include/movement.h"
 
 #include <iostream>
@@ -38,16 +36,16 @@ GLfloat qaDiffuseLight[] = {0.8,0.8,0.8,1.0};
 GLfloat qaSpecularLight[] = {1,1,1,1.0};
 GLfloat qaLightPosition[] = {50,50,10,1.0};
 GLfloat globalAmbient[] = { 0.2, 0.2, 0.2, 0.0 };
-	//Position and Direction
+
+	//Position and Direction of Camera
 float xpos = 0, ypos = 0, zpos = 0; 
 float xrot = 0, yrot = 0, zrot = 0;
+
 	//Mouse-Help-Variables
 int diffx, diffy;
 float lastx, lasty; //position of the mouse-pointer
 sf::Vector2i center(xres/2, yres/2);
 float velocity = 0;
-float hp = 100;
-float sprintpoints = 100;
 
 //shoot
 float antspeed = 3;
@@ -68,23 +66,7 @@ float difTime;
 Ant antarray[100];
 Block blockarray[100];
 
-extern vector < vector <worldstruct> > blockvecvec;
-
-float colobjects[6][4] =
-{
-{9,19,19,21},
-{9,11,5,19},
-{9,19,5,7},
-{19,21,5,19},
-{0,0,0,0},
-{0,0,0,0}
-};
-
-/*struct blockstruct {
-      int minx, maxx, minz, maxz;
-    };
-vector <blockstruct> blockvector;
-*/
+extern vector < vector <worldstruct> > worldvector;
 
 Timer maintimer;
 
@@ -153,19 +135,19 @@ int main (int argc, char **argv) {
 
 for(int i =0; i<50; i++)
 {
-	blockvecvec[0][i].blocktype=1;
+	worldvector[0][i].blocktype=1;
 }
 for(int i =0; i<50; i++)
 {
-	blockvecvec[i][0].blocktype=1;
+	worldvector[i][0].blocktype=1;
 }
 for(int i =0; i<50; i++)
 {
-	blockvecvec[51][i].blocktype=1;
+	worldvector[51][i].blocktype=1;
 }
 for(int i =0; i<50; i++)
 {
-	blockvecvec[i][51].blocktype=1;
+	worldvector[i][51].blocktype=1;
 }
 
 
@@ -330,8 +312,6 @@ std::vector<int> v;
 	DrawHUD();
 
 
-	if(hp <= 0) lifecalc();
-	if(sprintpoints < 100 && MoveSprintKey == false) sprintcalc();      
 
         // Finally, display the rendered frame on screen
         DSWindow.display();

@@ -8,8 +8,7 @@
 
 //extern  sf::RenderWindow DSWindow;
 
-extern vector <worldstruct> blockvector;
-extern vector < vector <worldstruct> > blockvecvec;
+extern vector < vector <worldstruct> > worldvector;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
@@ -273,7 +272,7 @@ glDisable(GL_BLEND);
 		
 		if(xorigin+xdif < 50 && zorigin+zdif < 50)
 		if(xorigin+xdif > 0 && zorigin+zdif > 0)
-		if(blockvecvec[xorigin+xdif][zorigin+zdif].blocktype == 1)
+		if(worldvector[xorigin+xdif][zorigin+zdif].blocktype == 1)
 		{
 			collision = true;
 		}
@@ -292,36 +291,36 @@ void nearcheck()
 	zplusfood = false;
 	zminusfood = false;
 
-	if(blockvecvec[xorigin+xdif+2][zorigin+zdif].blocktype == 1)
+	if(worldvector[xorigin+xdif+2][zorigin+zdif].blocktype == 1)
 	{
 		xpluscollision = true;
 	}
-	if(blockvecvec[xorigin+xdif-2][zorigin+zdif].blocktype == 1)
+	if(worldvector[xorigin+xdif-2][zorigin+zdif].blocktype == 1)
 	{
 		xminuscollision = true;
 	}
-	if(blockvecvec[xorigin+xdif][zorigin+zdif+2].blocktype == 1)
+	if(worldvector[xorigin+xdif][zorigin+zdif+2].blocktype == 1)
 	{
 		zpluscollision = true;
 	}
-	if(blockvecvec[xorigin+xdif][zorigin+zdif-2].blocktype == 1)
+	if(worldvector[xorigin+xdif][zorigin+zdif-2].blocktype == 1)
 	{
 		zminuscollision = true;
 	}
 
-	if(blockvecvec[xorigin+xdif+2][zorigin+zdif].blocktype == 2)
+	if(worldvector[xorigin+xdif+2][zorigin+zdif].blocktype == 2)
 	{
 		xplusfood = true;
 	}
-	if(blockvecvec[xorigin+xdif-2][zorigin+zdif].blocktype == 2)
+	if(worldvector[xorigin+xdif-2][zorigin+zdif].blocktype == 2)
 	{
 		xminusfood = true;
 	}
-	if(blockvecvec[xorigin+xdif][zorigin+zdif+2].blocktype == 2)
+	if(worldvector[xorigin+xdif][zorigin+zdif+2].blocktype == 2)
 	{
 		zplusfood = true;
 	}
-	if(blockvecvec[xorigin+xdif][zorigin+zdif-2].blocktype == 2)
+	if(worldvector[xorigin+xdif][zorigin+zdif-2].blocktype == 2)
 	{
 		zminusfood = true;
 	}
