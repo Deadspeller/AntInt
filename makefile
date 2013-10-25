@@ -12,8 +12,6 @@ install: main.cpp include/SOIL/SOIL.h include/timer.h include/world.h include/te
 	g++ $(INPUTFILE).o -o $(OUTPUTFILE) $(LIBSSO)
 	echo "Success. Launching Game ..."
 
-#	g++ -m32 -o $(FILE)_64bit main.cpp include/SOIL/libSOIL.a -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
-
 setup:
 	sudo apt-get install g++
 	sudo apt-get install libglew-dev

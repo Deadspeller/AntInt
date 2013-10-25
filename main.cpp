@@ -132,30 +132,22 @@ int main (int argc, char **argv) {
 	xrot=80; //70
 	yrot=135;	//135
 
-for(int i =0; i<50; i++)
-{
-	worldvector[0][i].blocktype=1;
-}
-for(int i =0; i<50; i++)
-{
-	worldvector[i][0].blocktype=1;
-}
-for(int i =0; i<50; i++)
-{
-	worldvector[51][i].blocktype=1;
-}
-for(int i =0; i<50; i++)
-{
-	worldvector[i][51].blocktype=1;
-}
-
-
-
-
-//blockvector.push_back(blockstruct());
-
-
-
+	for(int i =0; i<50; i++)
+	{
+		worldvector[0][i].blocktype=1;
+	}
+	for(int i =0; i<50; i++)
+	{
+		worldvector[i][0].blocktype=1;
+	}
+	for(int i =0; i<50; i++)
+	{
+		worldvector[51][i].blocktype=1;
+	}
+	for(int i =0; i<50; i++)
+	{
+		worldvector[i][51].blocktype=1;
+	}
 
     // Set the color and depth clear values
     glClearDepth(1.f);
@@ -172,76 +164,74 @@ for(int i =0; i<50; i++)
 	LoadTextures();
 
     // Start the game loop
-    while (DSWindow.isOpen())
-    {
-  //     float Framerate = 1.f / DSWindow.getFrameTime();		
+	while (DSWindow.isOpen())
+	{		
 
-//Timer for main loop
-	maintimer.stop();
-	difTime = maintimer.getElapsedTimeInSec();
-	if(difTime > 0.1) difTime = 0;	//remove first time
-	gesTime += difTime;
-	maintimer.start();
+		//Timer for main loop
+		maintimer.stop();
+		difTime = maintimer.getElapsedTimeInSec();
+		if(difTime > 0.1) difTime = 0;	//remove first time
+		gesTime += difTime;
+		maintimer.start();
 		
 
-	sf::Event Event;
+		sf::Event Event;
 
-	sf::Keyboard KeyboardInput;
-	sf::Joystick JoystickInput;
-	sf::Mouse MouseInput;
-//Keyboard
-	Key1 = KeyboardInput.isKeyPressed(sf::Keyboard::Num1);
-	Key2 = KeyboardInput.isKeyPressed(sf::Keyboard::Num2);
-	Key3 = KeyboardInput.isKeyPressed(sf::Keyboard::Num3);
-	MoveForwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::W);
-	MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
-	MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
-	MoveRightKey = KeyboardInput.isKeyPressed(sf::Keyboard::D);
-	MoveSneakKey = KeyboardInput.isKeyPressed(sf::Keyboard::LControl);
-	MoveSprintKey = KeyboardInput.isKeyPressed(sf::Keyboard::LShift);
-	MoveLaydownKey = KeyboardInput.isKeyPressed(sf::Keyboard::Y);
-	KKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::K);
-	JKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::J);
-	EscKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::Escape);
-	MoveJumpKey = KeyboardInput.isKeyPressed(sf::Keyboard::Space);
-//Joystick
-	MoveForwardKey |= JoystickInput.isButtonPressed(0, GP_DUp);
-	MoveLeftKey |= JoystickInput.isButtonPressed(0, GP_DLeft);
-	MoveBackwardKey |= JoystickInput.isButtonPressed(0, GP_DDown);
-	MoveRightKey |= JoystickInput.isButtonPressed(0, GP_DRight);
-	MoveSneakKey |= JoystickInput.isButtonPressed(0, GP_LStick);
-	MoveSprintKey |= JoystickInput.isButtonPressed(0, GP_LT);
-	MoveJumpKey |= JoystickInput.isButtonPressed(0, GP_LB);
-//Mouse
-	LeftClickDown = MouseInput.isButtonPressed(sf::Mouse::Left);
-//Joystick Axis
-	if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) < 0) MoveForwardKey = true;
-	if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) > 0) MoveBackwardKey = true;
-	if(JoystickInput.getAxisPosition(0, sf::Joystick::X) > 0) MoveRightKey = true;
-	if(JoystickInput.getAxisPosition(0, sf::Joystick::X) < 0) MoveLeftKey = true;
+		sf::Keyboard KeyboardInput;
+		sf::Joystick JoystickInput;
+		sf::Mouse MouseInput;
+		//Keyboard
+		Key1 = KeyboardInput.isKeyPressed(sf::Keyboard::Num1);
+		Key2 = KeyboardInput.isKeyPressed(sf::Keyboard::Num2);
+		Key3 = KeyboardInput.isKeyPressed(sf::Keyboard::Num3);
+		MoveForwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::W);
+		MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
+		MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
+		MoveRightKey = KeyboardInput.isKeyPressed(sf::Keyboard::D);
+		MoveSneakKey = KeyboardInput.isKeyPressed(sf::Keyboard::LControl);
+		MoveSprintKey = KeyboardInput.isKeyPressed(sf::Keyboard::LShift);
+		MoveLaydownKey = KeyboardInput.isKeyPressed(sf::Keyboard::Y);
+		KKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::K);
+		JKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::J);
+		EscKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::Escape);
+		MoveJumpKey = KeyboardInput.isKeyPressed(sf::Keyboard::Space);
+		//Joystick
+		MoveForwardKey |= JoystickInput.isButtonPressed(0, GP_DUp);
+		MoveLeftKey |= JoystickInput.isButtonPressed(0, GP_DLeft);
+		MoveBackwardKey |= JoystickInput.isButtonPressed(0, GP_DDown);
+		MoveRightKey |= JoystickInput.isButtonPressed(0, GP_DRight);
+		MoveSneakKey |= JoystickInput.isButtonPressed(0, GP_LStick);
+		MoveSprintKey |= JoystickInput.isButtonPressed(0, GP_LT);
+		MoveJumpKey |= JoystickInput.isButtonPressed(0, GP_LB);
+		//Mouse
+		LeftClickDown = MouseInput.isButtonPressed(sf::Mouse::Left);
+		//Joystick Axis
+		if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) < 0) MoveForwardKey = true;
+		if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) > 0) MoveBackwardKey = true;
+		if(JoystickInput.getAxisPosition(0, sf::Joystick::X) > 0) MoveRightKey = true;
+		if(JoystickInput.getAxisPosition(0, sf::Joystick::X) < 0) MoveLeftKey = true;
 	
 
-	if(xrot < -90) xrot = -90;
-	else
-	yrot = yrot + joystickyspeed * 0.2 * JoystickInput.getAxisPosition(0, sf::Joystick::Z);
+		if(xrot < -90) xrot = -90;
+		else
+		yrot = yrot + joystickyspeed * 0.2 * JoystickInput.getAxisPosition(0, sf::Joystick::Z);
 
-	if(xrot > 90) xrot = 90;
-	else
-	xrot = xrot - joystickxspeed * 0.1 * JoystickInput.getAxisPosition(0, sf::Joystick::R);
+		if(xrot > 90) xrot = 90;
+		else
+		xrot = xrot - joystickxspeed * 0.1 * JoystickInput.getAxisPosition(0, sf::Joystick::R);
 
 
 		while (DSWindow.pollEvent(Event))
-       		{
+		{
 
 			
 			if(Event.type == sf::Event::JoystickButtonPressed)
 			{		
 				if(JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
 			}
-		DSWindow.setKeyRepeatEnabled(false);
+			DSWindow.setKeyRepeatEnabled(false);
 			if (Event.type == sf::Event::KeyPressed)
 			{
-				
 				if (Event.key.code == sf::Keyboard::K)
 				{
 					if(roundTime > 0.1)
@@ -255,14 +245,13 @@ for(int i =0; i<50; i++)
 				}
 			}
 
-
 			// Close window : exit
-            		if (Event.type == sf::Event::Closed)
-               		DSWindow.close();
+          if (Event.type == sf::Event::Closed)
+          	DSWindow.close();
 
-			if(Event.type == sf::Event::MouseButtonPressed)	
-			{
-				if(Event.mouseButton.button == sf::Mouse::Left) 
+				if(Event.type == sf::Event::MouseButtonPressed)	
+				{
+					if(Event.mouseButton.button == sf::Mouse::Left) 
 					switch(leftclickaction)
 					{
 						case 1:	
@@ -275,46 +264,36 @@ for(int i =0; i<50; i++)
 								BlockHandler("fspawn");
 								break;
 					}
-			}
+				}
 
-			if(Event.type = sf::Event::MouseWheelMoved)
-			{
-				MouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
-			}
-			else
-				MouseScrollValue = 0;
+				if(Event.type = sf::Event::MouseWheelMoved)
+				{
+					MouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
+				}
+				else
+					MouseScrollValue = 0;
 		}
 
+     	DSWindow.setActive();
+     	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+     	glMatrixMode(GL_MODELVIEW);
+     	glLoadIdentity();
 
 
-        DSWindow.setActive();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+ 		glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
 
+ 		enableGlOptions();	//enable graphic-settings
+		movementcalc(difTime);
+		camera();	//set camera to new position
+		AntHandler("move");
+		BlockHandler("draw");		  
 
-    	glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
+		world();		//draw the "World
+		DrawHUD();
 
-    	enableGlOptions();	//enable graphic-settings
-	movementcalc(difTime);
-	camera();	//set camera to new position
-	AntHandler("move");
-	BlockHandler("draw");
-	//antarray[0].antmove();
-	
-
-std::vector<int> v;
- 
-    
-
-	world();	//build ground
-	DrawHUD();
-
-
-
-        // Finally, display the rendered frame on screen
-        DSWindow.display();
-    }
+     // Finally, display the rendered frame on screen
+     DSWindow.display();
+	}
 
 return EXIT_SUCCESS;
 }
