@@ -9,14 +9,13 @@
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 
-struct blockstruct 
+struct worldstruct 
 	{
-		int blocktype; //1 = block, 2 = food
+		int blocktype; //1 = block, 2 = food, 3 = ant, 4 = enemy
 		int xposition, zposition;	
-    	int minx, maxx, minz, maxz;
     };
-vector <blockstruct> blockvector;
-vector <vector <blockstruct> > blockvecvec(52, vector<blockstruct>(52));
+vector <worldstruct> blockvector;
+vector <vector <worldstruct> > blockvecvec(52, vector<worldstruct>(52));
 
 
 
@@ -49,7 +48,6 @@ void spawnBlock(int typeblock)
 
 
 		//fill vector with data
-		blockvector.push_back(blockstruct());
 
 		blockvecvec[xposition][zposition].blocktype = typeblock;
 		blockcreated = true;

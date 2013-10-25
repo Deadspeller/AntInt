@@ -8,8 +8,8 @@
 
 //extern  sf::RenderWindow DSWindow;
 
-extern vector <blockstruct> blockvector;
-extern vector < vector <blockstruct> > blockvecvec;
+extern vector <worldstruct> blockvector;
+extern vector < vector <worldstruct> > blockvecvec;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
