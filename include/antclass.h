@@ -25,23 +25,24 @@ void impactdraw(char);
 class Ant
 {
 	public:
-	bool xpluscollision = false, xminuscollision = false, zpluscollision = false, zminuscollision = false;
-	bool xplusfood = false, xminusfood = false, zplusfood = false, zminusfood = false;
+	bool xpluscollision, xminuscollision , zpluscollision , zminuscollision ;
+	bool xplusfood , xminusfood , zplusfood , zminusfood ;
 	bool collision;
 	float difTime, gesTime;
 	float xdif, zdif, ydif;
 	float oldxdif, oldzdif;
 	bool antalive;
 	float yorigin, zorigin, xorigin;
-	int i = 0;
 	Timer AntTimer;
-	int status = 1;	
-int done = 1;
+	
 
-int backwards = false;
 
 	void ki()
 	{
+
+	static int status;	
+	static int done ;
+
 		nearcheck();
 	/*
 	switch(status)

@@ -27,7 +27,7 @@ class Block
 public:
 	int xposition, zposition, yposition;
 	bool blockcreated;
-	int blocktype = 1;
+	int blocktype;	// 1 = block, 2 = food
 
 void spawnBlock(int typeblock)
 	{
@@ -44,7 +44,6 @@ void spawnBlock(int typeblock)
 		else if(fmod(xpos,2) > 0)	
 			xposition = floor(xpos+1)+1;
 
-		cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 		if(blocktype ==1)cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 	if(blocktype ==2)cout<<"Food created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 
