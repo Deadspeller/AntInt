@@ -5,7 +5,7 @@ LIBSSO:= -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
 
 all: install run
 
-install: main.cpp include/SOIL/SOIL.h include/Timer.h include/world.h include/texture.h include/shoot.h include/menu.h
+install: main.cpp include/SOIL/SOIL.h include/timer.h include/world.h include/texture.h include/menu.h
 	echo "Create Object Files ..."
 	g++ -c $(INPUTFILE).cpp $(LIBSHEADER)
 	echo "Create Executable ..."

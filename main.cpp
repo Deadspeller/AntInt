@@ -76,13 +76,12 @@ sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence");
 void drawswitch() //change between menu and game
 {
 	if(menuplay == 1)// display();
-	cout<<"Test"<<endl;
 	else 
 	DrawMenu();
 }
 
 
-void enable (void) {
+void enableGlOptions (void) {
 	//Light
    	
 	glEnable (GL_DEPTH_TEST);
@@ -296,7 +295,7 @@ for(int i =0; i<50; i++)
 
     	glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
 
-    	enable();	//enable graphic-settings
+    	enableGlOptions();	//enable graphic-settings
 	movementcalc(difTime);
 	camera();	//set camera to new position
 	AntHandler("move");

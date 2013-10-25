@@ -17,7 +17,7 @@ vector <vector <worldstruct> > worldvector(52, vector<worldstruct>(52));
 
 
 
-class Block
+class Block	//class for all classes, Wall-Blocks and Food-Blocks
 {
 
 public:
