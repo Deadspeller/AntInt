@@ -68,7 +68,7 @@ float difTime;
 Ant antarray[100];
 Block blockarray[100];
 
-extern vector < vector <blockstruct> > blockvecvec;
+extern vector < vector <worldstruct> > blockvecvec;
 
 float colobjects[6][4] =
 {
