@@ -163,8 +163,8 @@ int main (int argc, char **argv) {
     gluPerspective(90.f, 1.f, 1.f, 500.f);
 	LoadTextures();
 
-    // Start the game loop
-	while (DSWindow.isOpen())
+    
+	while (DSWindow.isOpen()) // Game loop
 	{		
 
 		//Timer for main loop
@@ -174,9 +174,7 @@ int main (int argc, char **argv) {
 		gesTime += difTime;
 		maintimer.start();
 		
-
 		sf::Event Event;
-
 		sf::Keyboard KeyboardInput;
 		sf::Joystick JoystickInput;
 		sf::Mouse MouseInput;
@@ -223,8 +221,6 @@ int main (int argc, char **argv) {
 
 		while (DSWindow.pollEvent(Event))
 		{
-
-			
 			if(Event.type == sf::Event::JoystickButtonPressed)
 			{		
 				if(JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
@@ -279,7 +275,6 @@ int main (int argc, char **argv) {
      	glMatrixMode(GL_MODELVIEW);
      	glLoadIdentity();
 
-
  		glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
 
  		enableGlOptions();	//enable graphic-settings
@@ -290,9 +285,10 @@ int main (int argc, char **argv) {
 
 		world();		//draw the "World
 		DrawHUD();
+	
 
-     // Finally, display the rendered frame on screen
-     DSWindow.display();
+     	// Finally, display the rendered frame on screen
+     	DSWindow.display();
 	}
 
 return EXIT_SUCCESS;

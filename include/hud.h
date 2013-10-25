@@ -10,10 +10,6 @@ int ammoleft = 0, i=0, a=0;
 char cammoleft[10] = "default";
 char chp[10] = "default";
 
-
-
-
-
 //DSWindow.Draw(Test2);
 
 //ammo left
@@ -29,11 +25,6 @@ sprintf(cammoleft,"Ammo: %d", ammoleft);
 sprintf(chp,"HP: %d", hp);
 */
 
-
-
-
-
-
    glMatrixMode( GL_PROJECTION );
    glPushMatrix();
    glLoadIdentity();
@@ -42,19 +33,17 @@ sprintf(chp,"HP: %d", hp);
 
    		glPushMatrix(); 	//map
    		glLoadIdentity();
-            	glColor3f( 1.0f, 1.0f, 0.0f );
-            	glBegin( GL_LINE_LOOP);
-             	glVertex2f( -95.0f, 95.0f );
-             	glVertex2f( -95.0f, 50.0f );
-             	glVertex2f( -50.0f, 50.0f );
-              	glVertex2f( -50.0f, 95.0f );
-           	glEnd();
-
-		
+      	glColor3f( 1.0f, 1.0f, 0.0f );
+      	glBegin( GL_LINE_LOOP);
+       	glVertex2f( -95.0f, 95.0f );
+       	glVertex2f( -95.0f, 50.0f );
+       	glVertex2f( -50.0f, 50.0f );
+        	glVertex2f( -50.0f, 95.0f );
+         glEnd();
 	
 	//aim
 		glColor3f( 0.0f, 1.0f, 0.0f );
-            	glBegin(GL_LINE_LOOP);
+      glBegin(GL_LINE_LOOP);
 		glVertex2f( -4.0f, 0.1f );
 		glVertex2f( -0.1f, 0.1f );
 		glVertex2f( -0.1f, 4.0f );
@@ -67,8 +56,8 @@ sprintf(chp,"HP: %d", hp);
 		glVertex2f( -0.1f, -4.0f );
 		glVertex2f( -0.1f, -0.1f );
 		glVertex2f( -4.0f, -0.1f );
-	        glVertex2f( -4.0f, -0.1f );
-           	glEnd();
+	   glVertex2f( -4.0f, -0.1f );
+      glEnd();
 
 /*		glPushMatrix(); 	//Ammo
    		glLoadIdentity();
@@ -92,6 +81,8 @@ sprintf(chp,"HP: %d", hp);
 		a++;
  		}
 */
+
+
    	glMatrixMode( GL_PROJECTION );					
    	glPopMatrix();	
 				
