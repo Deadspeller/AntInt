@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
-#include "include/Timer.h"
+#include "include/timer.h"
 #include "include/world.h"
 #include "include/menu.h"
 #include "include/hud.h"
