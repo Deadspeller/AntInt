@@ -7,9 +7,9 @@
 #include "include/world.h"
 #include "include/menu.h"
 #include "include/hud.h"
-#include "include/blockclass.h"
+#include "include/block.h"
 #include "include/blockhandler.h"
-#include "include/antclass.h"
+#include "include/ant.h"
 #include "include/anthandler.h"
 #include "include/movement.h"
 
@@ -75,7 +75,7 @@ sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence");
 
 void drawswitch() //change between menu and game
 {
-	if(menuplay == 1)// display();
+	if(menuplay == 1);// display();
 	else 
 	DrawMenu();
 }
