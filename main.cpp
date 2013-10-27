@@ -34,6 +34,10 @@ extern int MouseScrollValue;
 int leftclickaction = 2;
 float roundTime = 1;
 
+//world
+int xworldsize = 30;
+int zworldsize = 30;
+
 //Ants
 const int maxants = 100;
 const int maxblocks = 100;

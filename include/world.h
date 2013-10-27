@@ -5,25 +5,26 @@
 
 
 extern vector < vector <worldstruct> > worldvector;
+extern int xworldsize, zworldsize;
 
 void world()	//Draw the world
 {
 	//setting up the "walls"
-	for(int i =0; i<30; i++)
+	for(int i =0; i<zworldsize; i++)
 	{
 		worldvector[0][i].blocktype=1;
 	}
-	for(int i =0; i<30; i++)
+	for(int i =0; i<xworldsize; i++)
 	{
 		worldvector[i][0].blocktype=1;
 	}
-	for(int i =0; i<30; i++)
+	for(int i =0; i<zworldsize; i++)
 	{
-		worldvector[31][i].blocktype=1;
+		worldvector[xworldsize+1][i].blocktype=1;
 	}
-	for(int i =0; i<30; i++)
+	for(int i =0; i<xworldsize; i++)
 	{
-		worldvector[i][31].blocktype=1;
+		worldvector[i][zworldsize+1].blocktype=1;
 	}
 
 	//Draw the Walls
@@ -34,51 +35,51 @@ void world()	//Draw the world
 	glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
 
 	glBegin(GL_POLYGON); //ground
-	glTexCoord2d(0,0);  glVertex3f(1, 0, 1);
-	glTexCoord2d(25,0);  glVertex3f(1, 0, 31);
-	glTexCoord2d(25,25);  glVertex3f(31, 0, 31);
-	glTexCoord2d(0,25);  glVertex3f(31, 0, 1);
+	glTexCoord2d(0,0);  glVertex3f(-0.5, 0, -0.5);
+	glTexCoord2d(xworldsize+1,0);  glVertex3f(-0.5, 0, xworldsize+0.5);
+	glTexCoord2d(xworldsize+1,zworldsize+1);  glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
+	glTexCoord2d(0,zworldsize+1);  glVertex3f(zworldsize+0.5, 0, -0.5);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 
 	glBegin(GL_POLYGON); //wall1
 	glColor3f(0.9,1,1);
-	glVertex3f(1, 0, 1);
-	glVertex3f(1, 0, 31);
-	glVertex3f(1, 31, 31);
-	glVertex3f(1, 31, 1);
+	glVertex3f(-0.5, 0, -0.5);
+	glVertex3f(-0.5, 0, xworldsize+0.5);
+	glVertex3f(-0.5, 30, xworldsize+0.5);
+	glVertex3f(-0.5, 30, -0.5);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall2
 	glColor3f(1,0.9,1);
-	glVertex3f(1, 0, 1);
-	glVertex3f(31, 0, 1);
-	glVertex3f(31, 30, 1);
-	glVertex3f(1, 30, 1);
+	glVertex3f(-0.5, 0, -0.5);
+	glVertex3f(zworldsize+0.5, 0, -0.5);
+	glVertex3f(zworldsize+0.5, 30, -0.5);
+	glVertex3f(-0.5, 30, -0.5);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall3
 	glColor3f(1,1,0.9);
-	glVertex3f(31, 0, 1);
-	glVertex3f(31, 0, 31);
-	glVertex3f(31, 50, 31);
-	glVertex3f(31, 50, 1);
+	glVertex3f(zworldsize+0.5, 0, -0.5);
+	glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
+	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
+	glVertex3f(zworldsize+0.5, 30, -0.5);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall4
 	glColor3f(0.9,0.9,1);
-	glVertex3f(1, 0, 31);
-	glVertex3f(31, 0, 31);
-	glVertex3f(31, 30, 31);
-	glVertex3f(1, 30, 31);
+	glVertex3f(-0.5, 0, xworldsize+0.5);
+	glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
+	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
+	glVertex3f(-0.5, 30, xworldsize+0.5);
 	glEnd();
 
 	glBegin(GL_POLYGON); //top
 	glColor3f(1,1,1);
-	glVertex3f(1, 30, 1);
-	glVertex3f(31, 30, 1);
-	glVertex3f(31, 30, 31);
-	glVertex3f(1, 30, 31);
+	glVertex3f(-0.5, 30, -0.5);
+	glVertex3f(zworldsize+0.5, 30, -0.5);
+	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
+	glVertex3f(-0.5, 30, xworldsize+0.5);
 	glEnd();
 }
 

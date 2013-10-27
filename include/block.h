@@ -20,14 +20,14 @@ class Block	//class for all classes, Wall-Blocks and Food-Blocks
 {
 
 public:
-	int xposition, zposition, yposition;
+	float xposition, zposition, yposition;
 	bool blockcreated;
 	int blocktype;	// 1 = block, 2 = food
 
 void spawnBlock(int typeblock)
 	{
 		blocktype = typeblock;
-		yposition = 0.1;
+		yposition = 0;
 
 
 			zposition = round(zpos+1);
