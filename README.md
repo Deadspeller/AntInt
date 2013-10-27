@@ -3,9 +3,7 @@ AntInt
 
 Before Compiling:
 -------
-You probably need the following Librarys:
-
-use `make setup32` or `make setup64` to install all neccessary librarys and files
+Use `make setup32` or `make setup64` to install all neccessary librarys and files
 
 The following librarys are installed:
 
@@ -53,17 +51,17 @@ Makefile:
 
 Controlls in the Game:
 -------
-- WASD		-	Camera Movement
-- Mouse		-	
-- "SPACE" 	-	
-- "F"		- 	faster Simulation
-- "G"		-	slower Simulation
-- "ESC"		- 	Exit-Game
-- "1"		-	Ant-Mode
-- "2"		-	Block-Mode
-- "3"		- 	Food-Mode
-- LMouse 	- 	Place something (Ant-Mode, Block-Mode, Food-Mode)
-- RMouse	-	
+- WASD		>-	>Camera Movement
+- Mouse		>-	
+- "SPACE" 	>-	
+- "F"		>- 	>faster Simulation
+- "G"		>-	>slower Simulation
+- "ESC"		>- 	>Exit-Game
+- "1"		>-	>Ant-Mode
+- "2"		>-	>Block-Mode
+- "3"		>- 	>Food-Mode
+- LMouse 	>- 	>Place something (Ant-Mode, Block-Mode, Food-Mode)
+- RMouse	>-	
 
 
 
