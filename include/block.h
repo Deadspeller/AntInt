@@ -9,12 +9,8 @@
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 
-struct worldstruct 
-	{
-		int blocktype; //1 = block, 2 = food, 3 = ant, 4 = enemy
-   };
-vector <vector <worldstruct> > worldvector(52, vector<worldstruct>(52));
 
+extern vector < vector <worldstruct> > worldvector;
 
 
 class Block	//class for all classes, Wall-Blocks and Food-Blocks

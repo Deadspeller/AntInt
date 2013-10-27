@@ -24,6 +24,8 @@ void impactdraw(char);
 class Ant
 {
 	public:
+	extern vector < vector <int> > antworld;
+
 	bool xpluscollision, xminuscollision , zpluscollision , zminuscollision ;
 	bool xplusfood , xminusfood , zplusfood , zminusfood ;
 	bool collision;
@@ -239,7 +241,6 @@ class Ant
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
-
             glBegin(GL_POLYGON); //ground
             glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
             glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
@@ -248,9 +249,8 @@ class Ant
             glEnd();
 			glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
-
-                        glEnd();
-                        glPopMatrix();
+            glEnd();
+            glPopMatrix();
 
 			AntTimer.stop();
 			difTime = AntTimer.getElapsedTimeInSec();

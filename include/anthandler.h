@@ -15,7 +15,7 @@ extern class Ant antarray[100];
 
 void AntHandler(string action)
 {
-	if(action == "move")	//move the existing Bullets
+	if(action == "move")	//move the existing Ants
 	{	
 		for(int antcounter = 0; antcounter<maxants; antcounter++)
 		{
@@ -27,7 +27,7 @@ void AntHandler(string action)
 		}	
 	}
 
-	if(action == "spawn")	//create new Bullet
+	if(action == "spawn")	//create a new Ant
 	{	
 		for(int antcounter=0; antcounter<maxants; antcounter++)
 		{
