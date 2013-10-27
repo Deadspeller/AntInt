@@ -12,7 +12,7 @@
 #include "include/blockhandler.h"
 #include "include/ant.h"
 #include "include/anthandler.h"
-#include "include/movement.h"
+#include "include/cameracalc.h"
 #include "include/world.h"
 
 #include <iostream>
@@ -115,11 +115,6 @@ void enableGlOptions (void) {
 	glShadeModel (GL_SMOOTH); //set the shader to smooth shader
 }
 
-void camera (void) {
-    	glRotatef(xrot,1.0,0.0,0.0);  //rotate our camera on teh x-axis (left and right)
-    	glRotatef(yrot,0.0,1.0,0.0);  //rotate our camera on the y-axis (up and down)
-    	glTranslated(-xpos,-ypos,-zpos); //translate the screen to the position of our camera
-}
 
 
 
@@ -154,13 +149,14 @@ int main (int argc, char **argv) {
 	while (DSWindow.isOpen()) // Game loop
 	{		
 
-		//Timer for main loop
+		//calculate Time
 		maintimer.stop();
 		difTime = maintimer.getElapsedTimeInSec();
 		if(difTime > 0.1) difTime = 0;	//remove first time
 		gesTime += difTime;
 		maintimer.start();
 		
+		//check for Inputs
 		sf::Event Event;
 		sf::Keyboard KeyboardInput;
 		sf::Joystick JoystickInput;
@@ -232,47 +228,53 @@ int main (int argc, char **argv) {
           if (Event.type == sf::Event::Closed)
           	DSWindow.close();
 
-				if(Event.type == sf::Event::MouseButtonPressed)	
-				{
-					if(Event.mouseButton.button == sf::Mouse::Left) 
-					switch(leftclickaction)
-					{
-						case 1:	
-								AntHandler("spawn");
-								break;
-						case 2: 
-								BlockHandler("bspawn");
-								break;
-						case 3:
-								BlockHandler("fspawn");
-								break;
-					}
-				}
-
-				if(Event.type = sf::Event::MouseWheelMoved)
-				{
-					MouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
-				}
-				else
-					MouseScrollValue = 0;
+		if(Event.type == sf::Event::MouseButtonPressed)	
+		{
+			if(Event.mouseButton.button == sf::Mouse::Left) 
+			switch(leftclickaction)
+			{
+				case 1:	
+						AntHandler("spawn");
+						break;
+				case 2: 
+						BlockHandler("bspawn");
+						break;
+				case 3:
+						BlockHandler("fspawn");
+						break;
+			}
 		}
 
-     	DSWindow.setActive();
+		if(Event.type = sf::Event::MouseWheelMoved)
+		{
+			MouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
+		}
+		else
+			MouseScrollValue = 0;
+		}
+///////////////////End Input////////////////
+
+     	//Clear Screen and set OpenGL Settings
+		DSWindow.setActive();
      	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
      	glMatrixMode(GL_MODELVIEW);
      	glLoadIdentity();
-
  		glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
-
  		enableGlOptions();	//enable graphic-settings
-		movementcalc(difTime);
-		camera();	//set camera to new position
-		AntHandler("move");
-		BlockHandler("draw");		  
+
+
+		cameracalc(difTime);	//move the camera
+
+		AntHandler("move");	//move the Ants
+
+		BlockHandler("draw");	//draw the Blocks
 
 		world();		//draw the "World
-		DrawHUD();
-	
+
+		DrawHUD();		//draw the HUD
+
+
+
 
      	// Finally, display the rendered frame on screen
      	DSWindow.display();
