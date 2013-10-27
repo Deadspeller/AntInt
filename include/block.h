@@ -72,7 +72,6 @@ void drawBlock()
 		glEnd();
 
 		glPopMatrix();
-
 } //end blockplace
 
 

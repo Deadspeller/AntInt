@@ -38,9 +38,8 @@ class Ant
 
 	void ki()
 	{
-
-	static int status;	
-	static int done ;
+		static int status = 1;	
+		static int done ;
 
 		nearcheck();
 	/*
@@ -181,33 +180,33 @@ class Ant
 
 			if(gesTime >= roundTime)
 			{
-			oldxdif = xdif;
-			oldzdif = zdif;
-			switch(a)	//move
-			{
-				case 1:	//vor
-						xdif += 2;
-						break;
-				case 2:	//zurück
-						xdif -= 2;
-						break;
-				case 3:	//rechts
-						zdif += 2;
-						break;
-				case 4:	//links
-						zdif -= 2;
-						break;
-			}
-			antcollision();	//check if collision
+				oldxdif = xdif;
+				oldzdif = zdif;
+				switch(a)	//move
+				{
+					case 1:	//vor
+							xdif += 2;
+							break;
+					case 2:	//zurück
+							xdif -= 2;
+							break;
+					case 3:	//rechts
+							zdif += 2;
+							break;
+					case 4:	//links
+							zdif -= 2;
+							break;
+				}
+				antcollision();	//check if collision
 
-			if(collision)
-			{
-				cout<<"kollision"<<endl;
-				xdif = oldxdif;
-				zdif = oldzdif;
-			}
-			gesTime = 0;
-			return 1;
+				if(collision)
+				{
+					cout<<"kollision"<<endl;
+					xdif = oldxdif;
+					zdif = oldzdif;
+				}
+				gesTime = 0;
+				return 1;
 			}
 
 			//draw the ant
@@ -230,36 +229,34 @@ class Ant
 						break;
 			}	
 
-			glScalef(1,1,1);
-			glColor3f(1,0.1,0.1);
-		 
-glEnable(GL_TEXTURE_2D);
-glEnable(GL_BLEND);
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    	glBindTexture(GL_TEXTURE_2D, tex_ant);
-    	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    	glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+			  glScalef(1,1,1);
+                        glColor3f(1,0.1,0.1);
+                 
+			glEnable(GL_TEXTURE_2D);
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBindTexture(GL_TEXTURE_2D, tex_ant);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
 
-    	glBegin(GL_POLYGON); //ground
-    	glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
-    	glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
-    	glTexCoord2d(0,1);  glVertex3f(1, 1, 1);
-    	glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
-    	glEnd();
-glDisable(GL_BLEND);
-    	glDisable(GL_TEXTURE_2D);
+            glBegin(GL_POLYGON); //ground
+            glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+            glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
+            glTexCoord2d(0,1);  glVertex3f(1, 1, 1);
+            glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
+            glEnd();
+			glDisable(GL_BLEND);
+            glDisable(GL_TEXTURE_2D);
 
-			glEnd();
-			glPopMatrix();
+                        glEnd();
+                        glPopMatrix();
 
-
-
-				AntTimer.stop();
-				difTime = AntTimer.getElapsedTimeInSec();
-				if(difTime > 0.1) difTime = 0;	//remove first time
-				gesTime += difTime;
-				AntTimer.start();
+			AntTimer.stop();
+			difTime = AntTimer.getElapsedTimeInSec();
+			if(difTime > 0.1) difTime = 0;	//remove first time
+			gesTime += difTime;
+			AntTimer.start();
 		}
 	return 0;
 	} //endif antmove
