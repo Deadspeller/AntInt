@@ -5,9 +5,14 @@
 #include <iostream>
 #include <cmath>
 #include <time.h>
+using namespace std;
 
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
+struct worldstruct 
+	{
+		int blocktype; //1 = block, 2 = food, 3 = ant, 4 = enemy
+   };
 
 extern vector < vector <worldstruct> > worldvector;
 
@@ -37,9 +42,7 @@ void spawnBlock(int typeblock)
 		if(blocktype ==1)cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 	if(blocktype ==2)cout<<"Food created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 
-
 		//fill vector with data
-
 		worldvector[xposition][zposition].blocktype = typeblock;
 		blockcreated = true;
 	}

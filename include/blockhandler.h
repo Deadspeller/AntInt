@@ -6,7 +6,7 @@
 using namespace std;
 
 extern float xpos, zpos;
-extern int maxblocks;
+extern const int maxblocks;
 extern class Block blockarray[100];
 
 

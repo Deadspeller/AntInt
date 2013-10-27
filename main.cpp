@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
+#include <GL/glew.h> // Include the GLEW header file 
 #include "include/timer.h"
-#include "include/world.h"
+#include "include/texture.h"
 #include "include/menu.h"
 #include "include/hud.h"
 #include "include/block.h"
@@ -12,6 +13,7 @@
 #include "include/ant.h"
 #include "include/anthandler.h"
 #include "include/movement.h"
+#include "include/world.h"
 
 #include <iostream>
 #include <stdio.h>
@@ -23,10 +25,32 @@
 
 using namespace std;
 
+
+vector <vector <worldstruct> > worldvector(52, vector<worldstruct>(52)); //contains all informations about blocks, ants and food
+
 extern int MouseScrollValue;
 
-int xres = 640, yres = 480;
-//--Variables--
+// Game Configurations
+int leftclickaction = 2;
+float roundTime = 1;
+
+//Ants
+const int maxants = 100;
+const int maxblocks = 100;
+
+//Classes
+Ant antarray[maxants];
+Block blockarray[maxblocks];
+
+float gesTime;
+float difTime;
+
+Timer maintimer;
+
+//--OpenGL Variables--
+
+int xres = 640, yres = 480;	//size of the Window
+
 	//Fog
 GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};
 GLfloat density = 0.01;
@@ -47,51 +71,32 @@ float lastx, lasty; //position of the mouse-pointer
 sf::Vector2i center(xres/2, yres/2);
 float velocity = 0;
 
-//shoot
-float antspeed = 3;
-int maxants = 100;
-int maxblocks = 100;
-int leftclickaction = 2;
-
-float roundTime = 1;
-
 void keyPressed(unsigned char, int, int);
 void keyPressedswitch(unsigned char, int, int);
 void keyUp(unsigned char, int, int);
 void keyUpswitch(unsigned char, int, int);
 
-float gesTime;
-float difTime;
 
-Ant antarray[100];
-Block blockarray[100];
-
-extern vector < vector <worldstruct> > worldvector;
-
-Timer maintimer;
 
 
 sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence");
 
-void drawswitch() //change between menu and game
+void drawswitch() //change between menu and game  !!NOT IN USE!!
 {
-	if(menuplay == 1);// display();
+	if(menuplay == 1);	// Draw the Game
 	else 
-	DrawMenu();
+	DrawMenu();			// Draw the Menu
 }
 
 
 void enableGlOptions (void) {
-	//Light
-   	
 	glEnable (GL_DEPTH_TEST);
     //glEnable (GL_LIGHTING); //enable the lighting BUGGY
 	//glEnable(GL_COLOR_MATERIAL);
-    	glEnable (GL_LIGHT0);
+    glEnable (GL_LIGHT0);
 	glEnable (GL_LIGHT1);
 	glEnable (GL_LIGHT2);
 	glEnable( GL_NORMALIZE ); //for lightning. not really working
-
 	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
 	glLightfv(GL_LIGHT1, GL_POSITION, qaLightPosition);
 	glLightfv(GL_LIGHT2, GL_POSITION, qaLightPosition);
@@ -99,17 +104,14 @@ void enableGlOptions (void) {
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, qaDiffuseLight);
 	glLightfv(GL_LIGHT2, GL_SPECULAR, qaSpecularLight);
 	glLightModelfv( GL_LIGHT_MODEL_AMBIENT, globalAmbient );
-
 	glDisable(GL_COLOR_MATERIAL);
 	glDisable (GL_LIGHTING);
-
 	//FOG
 	glEnable (GL_FOG);
 	glFogi (GL_FOG_MODE, GL_EXP2); //set the fog mode to GL_EXP2
 	glFogfv (GL_FOG_COLOR, fogColor);
 	glFogf (GL_FOG_DENSITY, density);
 	glHint (GL_FOG_HINT, GL_NICEST); // set the fog to look the nicest
-
 	glShadeModel (GL_SMOOTH); //set the shader to smooth shader
 }
 
@@ -125,29 +127,14 @@ void camera (void) {
 
 
 int main (int argc, char **argv) {
-	//Init
+	//Init with start Position
 	xpos=9;
  	ypos=15;
  	zpos=9;
-	xrot=80; //70
-	yrot=135;	//135
+	xrot=80; //70°
+	yrot=135;	//135°
 
-	for(int i =0; i<50; i++)
-	{
-		worldvector[0][i].blocktype=1;
-	}
-	for(int i =0; i<50; i++)
-	{
-		worldvector[i][0].blocktype=1;
-	}
-	for(int i =0; i<50; i++)
-	{
-		worldvector[51][i].blocktype=1;
-	}
-	for(int i =0; i<50; i++)
-	{
-		worldvector[i][51].blocktype=1;
-	}
+	
 
     // Set the color and depth clear values
     glClearDepth(1.f);

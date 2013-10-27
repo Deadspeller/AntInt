@@ -6,10 +6,9 @@
 using namespace std;
 
 extern float camheight;
-extern float bulletpos;
 extern float xpos, zpos;
 extern float yrot, xrot;
-extern int maxants;
+extern const int maxants;
 extern class Ant antarray[100];
 
 
@@ -22,7 +21,13 @@ void AntHandler(string action)
 			if(antarray[antcounter].antalive == 1) 
 			{
 			antarray[antcounter].ki();
-			
+			for(int a = 0; a < 3; a++)
+			{
+				for(int b = 0; b<3; b++)
+				{
+					//antarray[antcounter].antworldarray[a][b] = worldvector[antarray[antcounter].xAntPosition-1+a][antarray[antcounter].zAntPosition-1+a];
+				}
+			}
 			}
 		}	
 	}

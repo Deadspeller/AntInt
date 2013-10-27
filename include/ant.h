@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <time.h>
+#include <vector>
 
 //extern  sf::RenderWindow DSWindow;
 
@@ -20,20 +21,22 @@ using namespace std;
 
 void shootcollision();
 void impactdraw(char);
-
+	
 class Ant
 {
 	public:
-	extern vector < vector <int> > antworld;
-
+	vector <vector <int> > antworldvector;
+	int antworldarray[3][3];
 	bool xpluscollision, xminuscollision , zpluscollision , zminuscollision ;
 	bool xplusfood , xminusfood , zplusfood , zminusfood ;
 	bool collision;
 	float difTime, gesTime;
-	float xdif, zdif, ydif;
-	float oldxdif, oldzdif;
 	bool antalive;
-	float yorigin, zorigin, xorigin;
+	float yorigin, zorigin, xorigin; //where the ant started
+
+
+	int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
+	int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
 	Timer AntTimer;
 	
 
@@ -182,21 +185,21 @@ class Ant
 
 			if(gesTime >= roundTime)
 			{
-				oldxdif = xdif;
-				oldzdif = zdif;
+				oldxAntPosition = xAntPosition;
+				oldzAntPosition = zAntPosition;
 				switch(a)	//move
 				{
 					case 1:	//vor
-							xdif += 2;
+							xAntPosition += 2;
 							break;
 					case 2:	//zurück
-							xdif -= 2;
+							xAntPosition -= 2;
 							break;
 					case 3:	//rechts
-							zdif += 2;
+							zAntPosition += 2;
 							break;
 					case 4:	//links
-							zdif -= 2;
+							zAntPosition -= 2;
 							break;
 				}
 				antcollision();	//check if collision
@@ -204,8 +207,8 @@ class Ant
 				if(collision)
 				{
 					cout<<"kollision"<<endl;
-					xdif = oldxdif;
-					zdif = oldzdif;
+					xAntPosition = oldxAntPosition;
+					zAntPosition = oldzAntPosition;
 				}
 				gesTime = 0;
 				return 1;
@@ -213,7 +216,7 @@ class Ant
 
 			//draw the ant
 			glPushMatrix();
-			glTranslated(xorigin+xdif, yorigin+ydif, zorigin+zdif);		
+			glTranslated(xAntPosition, yAntPosition, zAntPosition);		
 
 			switch(a)
 			{
@@ -267,9 +270,9 @@ class Ant
 	{
 		collision = false;
 		
-		if(xorigin+xdif < 50 && zorigin+zdif < 50)
-		if(xorigin+xdif > 0 && zorigin+zdif > 0)
-		if(worldvector[xorigin+xdif][zorigin+zdif].blocktype == 1)
+		if(xAntPosition < 50 && zAntPosition < 50)
+		if(xAntPosition > 0 && zAntPosition > 0)
+		if(worldvector[xAntPosition][zAntPosition].blocktype == 1)
 		{
 			collision = true;
 		}
@@ -288,36 +291,36 @@ void nearcheck()
 	zplusfood = false;
 	zminusfood = false;
 
-	if(worldvector[xorigin+xdif+2][zorigin+zdif].blocktype == 1)
+	if(worldvector[xAntPosition+2][zAntPosition].blocktype == 1)
 	{
 		xpluscollision = true;
 	}
-	if(worldvector[xorigin+xdif-2][zorigin+zdif].blocktype == 1)
+	if(worldvector[xAntPosition-2][zAntPosition].blocktype == 1)
 	{
 		xminuscollision = true;
 	}
-	if(worldvector[xorigin+xdif][zorigin+zdif+2].blocktype == 1)
+	if(worldvector[xAntPosition][zAntPosition+2].blocktype == 1)
 	{
 		zpluscollision = true;
 	}
-	if(worldvector[xorigin+xdif][zorigin+zdif-2].blocktype == 1)
+	if(worldvector[xAntPosition][zAntPosition-2].blocktype == 1)
 	{
 		zminuscollision = true;
 	}
 
-	if(worldvector[xorigin+xdif+2][zorigin+zdif].blocktype == 2)
+	if(worldvector[xAntPosition+2][zAntPosition].blocktype == 2)
 	{
 		xplusfood = true;
 	}
-	if(worldvector[xorigin+xdif-2][zorigin+zdif].blocktype == 2)
+	if(worldvector[xAntPosition-2][zAntPosition].blocktype == 2)
 	{
 		xminusfood = true;
 	}
-	if(worldvector[xorigin+xdif][zorigin+zdif+2].blocktype == 2)
+	if(worldvector[xAntPosition][zAntPosition+2].blocktype == 2)
 	{
 		zplusfood = true;
 	}
-	if(worldvector[xorigin+xdif][zorigin+zdif-2].blocktype == 2)
+	if(worldvector[xAntPosition][zAntPosition-2].blocktype == 2)
 	{
 		zminusfood = true;
 	}
@@ -333,27 +336,27 @@ void nearcheck()
 			
 			antalive = true;
 			gesTime = 0;
-			xdif = 0;
-			zdif = 0;
-			ydif = 0;
 			yorigin = 0.001;
 		
+
 			if(fmod(zpos,2) > 1)	
-				zorigin = ceil(zpos+1)+1;
+				zAntPosition = ceil(zpos+1)+1;
 			else if(fmod(zpos,2) > 0)	
-				zorigin = floor(zpos+1)+1;
+				zAntPosition = floor(zpos+1)+1;
 			
 			if(fmod(xpos,2) > 1)	
-				xorigin = ceil(xpos+1)+1;
+				xAntPosition = ceil(xpos+1)+1;
 			else if(fmod(xpos,2) > 0)	
-				xorigin = floor(xpos+1)+1;
+				xAntPosition = floor(xpos+1)+1;
 
-	
+	zorigin = zAntPosition;
+	xorigin = xAntPosition;
+
+worldvector[xAntPosition][zAntPosition].blocktype = 3;
+
 cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
-cout<<"Ant not alive. Ant created and spawned at: x="<<xorigin<<" z="<<zorigin<<endl;
+cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
-			//xspeed = sin(0.4*(3,14/2))*antspeed;
-			//zspeed = -cos(0.4*(3,14/2))*antspeed;
 		}
 	}	//endif antspawn
 
