@@ -51,17 +51,17 @@ Makefile:
 
 Controlls in the Game:
 -------
-- WASD		>-	>Camera Movement
-- Mouse		>-	
-- "SPACE" 	>-	
-- "F"		>- 	>faster Simulation
-- "G"		>-	>slower Simulation
-- "ESC"		>- 	>Exit-Game
-- "1"		>-	>Ant-Mode
-- "2"		>-	>Block-Mode
-- "3"		>- 	>Food-Mode
-- LMouse 	>- 	>Place something (Ant-Mode, Block-Mode, Food-Mode)
-- RMouse	>-	
+- WASD		> -	> Camera Movement
+- Mouse		> -	
+- "SPACE" 	> -	
+- "F"		> - 	> faster Simulation
+- "G"		> -	> slower Simulation
+- "ESC"		> - 	> Exit-Game
+- "1"		> -	> Ant-Mode
+- "2"		> -	> Block-Mode
+- "3"		> - 	> Food-Mode
+- LMouse 	> - 	> Place something (Ant-Mode, Block-Mode, Food-Mode)
+- RMouse	> -	
 
 
 
