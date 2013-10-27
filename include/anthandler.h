@@ -21,13 +21,16 @@ void AntHandler(string action)
 			if(antarray[antcounter].antalive == 1) 
 			{
 			antarray[antcounter].ki();
-			for(int a = 0; a < 3; a++)
-			{
-				for(int b = 0; b<3; b++)
+
+				/*for(int a = 0; a < 3; a++)
 				{
-					//antarray[antcounter].antworldarray[a][b] = worldvector[antarray[antcounter].xAntPosition-1+a][antarray[antcounter].zAntPosition-1+a];
-				}
-			}
+					for(int b = 0; b<3; b++)
+					{
+						antarray[antcounter].antworldarray[a][b] = worldvector[antarray[antcounter].xAntPosition-1+a][antarray[antcounter].zAntPosition-1+a].blocktype;
+					cout<<a<<" "<<b<<endl;
+					}
+				}*/
+
 			}
 		}	
 	}

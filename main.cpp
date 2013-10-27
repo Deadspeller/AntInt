@@ -124,7 +124,7 @@ void enableGlOptions (void) {
 int main (int argc, char **argv) {
 	//Init with start Position
 	xpos=9;
- 	ypos=15;
+ 	ypos=9;
  	zpos=9;
 	xrot=80; //70°
 	yrot=135;	//135°

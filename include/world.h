@@ -9,21 +9,21 @@ extern vector < vector <worldstruct> > worldvector;
 void world()	//Draw the world
 {
 	//setting up the "walls"
-	for(int i =0; i<50; i++)
+	for(int i =0; i<30; i++)
 	{
 		worldvector[0][i].blocktype=1;
 	}
-	for(int i =0; i<50; i++)
+	for(int i =0; i<30; i++)
 	{
 		worldvector[i][0].blocktype=1;
 	}
-	for(int i =0; i<50; i++)
+	for(int i =0; i<30; i++)
 	{
-		worldvector[51][i].blocktype=1;
+		worldvector[31][i].blocktype=1;
 	}
-	for(int i =0; i<50; i++)
+	for(int i =0; i<30; i++)
 	{
-		worldvector[i][51].blocktype=1;
+		worldvector[i][31].blocktype=1;
 	}
 
 	//Draw the Walls
@@ -35,50 +35,50 @@ void world()	//Draw the world
 
 	glBegin(GL_POLYGON); //ground
 	glTexCoord2d(0,0);  glVertex3f(1, 0, 1);
-	glTexCoord2d(25,0);  glVertex3f(1, 0, 51);
-	glTexCoord2d(25,25);  glVertex3f(51, 0, 51);
-	glTexCoord2d(0,25);  glVertex3f(51, 0, 1);
+	glTexCoord2d(25,0);  glVertex3f(1, 0, 31);
+	glTexCoord2d(25,25);  glVertex3f(31, 0, 31);
+	glTexCoord2d(0,25);  glVertex3f(31, 0, 1);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 
 	glBegin(GL_POLYGON); //wall1
 	glColor3f(0.9,1,1);
 	glVertex3f(1, 0, 1);
-	glVertex3f(1, 0, 51);
-	glVertex3f(1, 51, 51);
-	glVertex3f(1, 51, 1);
+	glVertex3f(1, 0, 31);
+	glVertex3f(1, 31, 31);
+	glVertex3f(1, 31, 1);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall2
 	glColor3f(1,0.9,1);
 	glVertex3f(1, 0, 1);
-	glVertex3f(51, 0, 1);
-	glVertex3f(51, 50, 1);
-	glVertex3f(1, 50, 1);
+	glVertex3f(31, 0, 1);
+	glVertex3f(31, 30, 1);
+	glVertex3f(1, 30, 1);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall3
 	glColor3f(1,1,0.9);
-	glVertex3f(51, 0, 1);
-	glVertex3f(51, 0, 51);
-	glVertex3f(51, 50, 51);
-	glVertex3f(51, 50, 1);
+	glVertex3f(31, 0, 1);
+	glVertex3f(31, 0, 31);
+	glVertex3f(31, 50, 31);
+	glVertex3f(31, 50, 1);
 	glEnd();
 
 	glBegin(GL_POLYGON); //wall4
 	glColor3f(0.9,0.9,1);
-	glVertex3f(1, 0, 51);
-	glVertex3f(51, 0, 51);
-	glVertex3f(51, 50, 51);
-	glVertex3f(1, 50, 51);
+	glVertex3f(1, 0, 31);
+	glVertex3f(31, 0, 31);
+	glVertex3f(31, 30, 31);
+	glVertex3f(1, 30, 31);
 	glEnd();
 
 	glBegin(GL_POLYGON); //top
 	glColor3f(1,1,1);
-	glVertex3f(1, 50, 1);
-	glVertex3f(51, 50, 1);
-	glVertex3f(51, 50, 51);
-	glVertex3f(1, 50, 51);
+	glVertex3f(1, 30, 1);
+	glVertex3f(31, 30, 1);
+	glVertex3f(31, 30, 31);
+	glVertex3f(1, 30, 31);
 	glEnd();
 }
 

@@ -12,7 +12,7 @@ extern float colobjects[6][4];
 struct worldstruct 
 	{
 		int blocktype; //1 = block, 2 = food, 3 = ant, 4 = enemy
-   };
+	};
 
 extern vector < vector <worldstruct> > worldvector;
 
@@ -29,15 +29,10 @@ void spawnBlock(int typeblock)
 		blocktype = typeblock;
 		yposition = 0.1;
 
-		if(fmod(zpos,2) > 1)	
-			zposition = ceil(zpos+1)+1;
-		else if(fmod(zpos,2) > 0)	
-			zposition = floor(zpos+1)+1;
-			
-		if(fmod(xpos,2) > 1)	
-			xposition = ceil(xpos+1)+1;
-		else if(fmod(xpos,2) > 0)	
-			xposition = floor(xpos+1)+1;
+
+			zposition = round(zpos+1);
+			xposition = round(xpos+1);
+
 
 		if(blocktype ==1)cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
 	if(blocktype ==2)cout<<"Food created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
@@ -53,7 +48,7 @@ void drawBlock()
 		glPushMatrix();
 		glTranslated(xposition, yposition, zposition);		
 
-		glScalef(1,1,1);
+		glScalef(0.5,0.5,0.5);
 		
 	 
 		// Block

@@ -185,21 +185,33 @@ class Ant
 
 			if(gesTime >= roundTime)
 			{
+/*
+cout<<"antarray"<<endl;
+			for(int a = 0; a < 3; a++)
+			{
+				cout<<antworldarray[a][0]<<antworldarray[a][1]<<antworldarray[a][2]<<endl;	
+			}
+cout<<"worldvector"<<endl;
+for(int a = 0; a < 3; a++)
+			{
+				cout<<worldvector[a][0].blocktype<<worldvector[a][0].blocktype<<worldvector[a][0].blocktype<<endl;	
+			}
+*/
 				oldxAntPosition = xAntPosition;
 				oldzAntPosition = zAntPosition;
 				switch(a)	//move
 				{
 					case 1:	//vor
-							xAntPosition += 2;
+							xAntPosition += 1;
 							break;
 					case 2:	//zurück
-							xAntPosition -= 2;
+							xAntPosition -= 1;
 							break;
 					case 3:	//rechts
-							zAntPosition += 2;
+							zAntPosition += 1;
 							break;
 					case 4:	//links
-							zAntPosition -= 2;
+							zAntPosition -= 1;
 							break;
 				}
 				antcollision();	//check if collision
@@ -234,7 +246,7 @@ class Ant
 						break;
 			}	
 
-			  glScalef(1,1,1);
+			  glScalef(0.5,0.5,0.5);
                         glColor3f(1,0.1,0.1);
                  
 			glEnable(GL_TEXTURE_2D);
@@ -281,6 +293,15 @@ class Ant
 
 void nearcheck()
 {
+
+	/*for(int a = 0; a < 3; a++)
+	{
+		for(int b = 0; b<3; b++)
+		{
+			antworldarray[a][b] = worldvector[xAntPosition-1+a][zAntPosition-1+a].blocktype;
+		}
+	}*/
+
 	xpluscollision = false;
 	xminuscollision = false;
 	zpluscollision = false;
@@ -291,36 +312,36 @@ void nearcheck()
 	zplusfood = false;
 	zminusfood = false;
 
-	if(worldvector[xAntPosition+2][zAntPosition].blocktype == 1)
+	if(worldvector[xAntPosition+1][zAntPosition].blocktype == 1)
 	{
 		xpluscollision = true;
 	}
-	if(worldvector[xAntPosition-2][zAntPosition].blocktype == 1)
+	if(worldvector[xAntPosition-1][zAntPosition].blocktype == 1)
 	{
 		xminuscollision = true;
 	}
-	if(worldvector[xAntPosition][zAntPosition+2].blocktype == 1)
+	if(worldvector[xAntPosition][zAntPosition+1].blocktype == 1)
 	{
 		zpluscollision = true;
 	}
-	if(worldvector[xAntPosition][zAntPosition-2].blocktype == 1)
+	if(worldvector[xAntPosition][zAntPosition-1].blocktype == 1)
 	{
 		zminuscollision = true;
 	}
 
-	if(worldvector[xAntPosition+2][zAntPosition].blocktype == 2)
+	if(worldvector[xAntPosition+1][zAntPosition].blocktype == 2)
 	{
 		xplusfood = true;
 	}
-	if(worldvector[xAntPosition-2][zAntPosition].blocktype == 2)
+	if(worldvector[xAntPosition-1][zAntPosition].blocktype == 2)
 	{
 		xminusfood = true;
 	}
-	if(worldvector[xAntPosition][zAntPosition+2].blocktype == 2)
+	if(worldvector[xAntPosition][zAntPosition+1].blocktype == 2)
 	{
 		zplusfood = true;
 	}
-	if(worldvector[xAntPosition][zAntPosition-2].blocktype == 2)
+	if(worldvector[xAntPosition][zAntPosition-1].blocktype == 2)
 	{
 		zminusfood = true;
 	}
@@ -338,22 +359,14 @@ void nearcheck()
 			gesTime = 0;
 			yorigin = 0.001;
 		
+				zAntPosition = round(zpos+1);
+				xAntPosition = round(xpos+1);
 
-			if(fmod(zpos,2) > 1)	
-				zAntPosition = ceil(zpos+1)+1;
-			else if(fmod(zpos,2) > 0)	
-				zAntPosition = floor(zpos+1)+1;
-			
-			if(fmod(xpos,2) > 1)	
-				xAntPosition = ceil(xpos+1)+1;
-			else if(fmod(xpos,2) > 0)	
-				xAntPosition = floor(xpos+1)+1;
 
 	zorigin = zAntPosition;
 	xorigin = xAntPosition;
 
 worldvector[xAntPosition][zAntPosition].blocktype = 3;
-
 cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
