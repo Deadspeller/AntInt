@@ -9,9 +9,7 @@
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 
-
 extern vector < vector <worldstruct> > worldvector;
-
 
 class Block	//class for all classes, Wall-Blocks and Food-Blocks
 {
