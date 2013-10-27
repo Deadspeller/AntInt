@@ -39,6 +39,7 @@ void spawnBlock(int typeblock)
 
 		//fill vector with data
 		worldvector[xposition][zposition].blocktype = typeblock;
+		cout<<worldvector[xposition][zposition].blocktype<<endl;
 		blockcreated = true;
 	}
 

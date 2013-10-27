@@ -22,14 +22,28 @@ void AntHandler(string action)
 			{
 			antarray[antcounter].ki();
 
-				/*for(int a = 0; a < 3; a++)
-				{
-					for(int b = 0; b<3; b++)
-					{
-						antarray[antcounter].antworldarray[a][b] = worldvector[antarray[antcounter].xAntPosition-1+a][antarray[antcounter].zAntPosition-1+a].blocktype;
-					cout<<a<<" "<<b<<endl;
-					}
-				}*/
+						//antarray[antcounter].antworldarray[x][z] = worldvector[antarray[antcounter].xAntPosition-1+x][antarray[antcounter].zAntPosition-1+z].blocktype;
+
+antarray[antcounter].antworldarray[0][0] = worldvector[antarray[antcounter].xAntPosition+1][antarray[antcounter].zAntPosition-1].blocktype;
+
+antarray[antcounter].antworldarray[0][1] = worldvector[antarray[antcounter].xAntPosition][antarray[antcounter].zAntPosition-1].blocktype;
+
+antarray[antcounter].antworldarray[0][2] = worldvector[antarray[antcounter].xAntPosition-1][antarray[antcounter].zAntPosition-1].blocktype;
+
+
+antarray[antcounter].antworldarray[1][0] = worldvector[antarray[antcounter].xAntPosition+1][antarray[antcounter].zAntPosition].blocktype;
+
+antarray[antcounter].antworldarray[1][1] = worldvector[antarray[antcounter].xAntPosition][antarray[antcounter].zAntPosition].blocktype;
+
+antarray[antcounter].antworldarray[1][2] = worldvector[antarray[antcounter].xAntPosition-1][antarray[antcounter].zAntPosition].blocktype;
+
+
+antarray[antcounter].antworldarray[2][0] = worldvector[antarray[antcounter].xAntPosition+1][antarray[antcounter].zAntPosition+1].blocktype;
+
+antarray[antcounter].antworldarray[2][1] = worldvector[antarray[antcounter].xAntPosition][antarray[antcounter].zAntPosition+1].blocktype;
+
+antarray[antcounter].antworldarray[2][2] = worldvector[antarray[antcounter].xAntPosition-1][antarray[antcounter].zAntPosition+1].blocktype;
+
 
 			}
 		}	

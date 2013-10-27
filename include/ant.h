@@ -102,7 +102,14 @@ class Ant
 					break;
 		}*/
 
-
+if(done)
+{
+	cout<<"antarray"<<endl;
+	for(int a = 0; a < 3; a++)
+	{
+		cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;	
+	}
+}
 
 		switch(status)
 		{
@@ -121,7 +128,7 @@ class Ant
 					{
 						status =4;
 					}
-					antmove(1);
+					done = antmove(1);
 					break;
 			case 2:
 					if(xminuscollision)
@@ -137,7 +144,7 @@ class Ant
 					{
 						status =4;
 					}
-					antmove(2);
+					done = antmove(2);
 					break;
 			case 3:
 					if(zpluscollision)
@@ -153,7 +160,7 @@ class Ant
 					{
 						status =2;
 					}
-					antmove(3);
+					done = antmove(3);
 					break;
 			case 4:
 					if(zminuscollision)
@@ -169,7 +176,7 @@ class Ant
 					{
 						status =2;
 					}
-					antmove(4);
+					done = antmove(4);
 					break;
 		}
 
@@ -185,18 +192,7 @@ class Ant
 
 			if(gesTime >= roundTime)
 			{
-/*
-cout<<"antarray"<<endl;
-			for(int a = 0; a < 3; a++)
-			{
-				cout<<antworldarray[a][0]<<antworldarray[a][1]<<antworldarray[a][2]<<endl;	
-			}
-cout<<"worldvector"<<endl;
-for(int a = 0; a < 3; a++)
-			{
-				cout<<worldvector[a][0].blocktype<<worldvector[a][0].blocktype<<worldvector[a][0].blocktype<<endl;	
-			}
-*/
+
 				oldxAntPosition = xAntPosition;
 				oldzAntPosition = zAntPosition;
 				switch(a)	//move
@@ -222,7 +218,11 @@ for(int a = 0; a < 3; a++)
 					xAntPosition = oldxAntPosition;
 					zAntPosition = oldzAntPosition;
 				}
+				
+				worldvector[oldxAntPosition][oldzAntPosition].blocktype = 0;
+				worldvector[xAntPosition][zAntPosition].blocktype = 3;
 				gesTime = 0;
+
 				return 1;
 			}
 
