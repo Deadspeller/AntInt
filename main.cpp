@@ -15,7 +15,6 @@
 #include "include/anthandler.h"
 #include "include/cameracalc.h"
 #include "include/world.h"
-
 #include <iostream>
 #include <stdio.h>
 #include <SFML/Window.hpp>
@@ -47,7 +46,7 @@ const int maxblocks = 100;
 Ant antarray[maxants];
 Block blockarray[maxblocks];
 ObjectCreator objectcreator1;
-
+LevelManager levelManager1;
 float gesTime;
 float difTime;
 
