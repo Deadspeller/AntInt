@@ -1,11 +1,11 @@
 OUTPUTFILE:= AntInt-0.1
-INPUTFILE:= main
+INPUTFILE:= include/levelmanager.cpp main
 LIBSHEADER:= -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
 LIBSSO:= -lsfml-graphics -lsfml-window -lsfml-system -lGLU -lGLEW -lGL -lSOIL
 
 all: install run
 
-install: main.cpp include/SOIL/SOIL.h include/timer.h include/world.h include/texture.h include/menu.h
+install: main.cpp include/levelmanager.cpp
 	echo "Create Object Files ..."
 	g++ -c $(INPUTFILE).cpp $(LIBSHEADER)
 	echo "Create Executable ..."
