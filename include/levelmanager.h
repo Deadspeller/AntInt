@@ -12,7 +12,7 @@ public:
     LevelManager();
     void LoadFile(const string File);
     void SaveFile();
-    void Update();
+    void update();
     std::vector<Block*> blockVector();
 
 private:

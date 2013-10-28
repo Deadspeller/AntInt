@@ -14,11 +14,15 @@ public:
 
 	void drawBlocks()
 	{
+        levelManager1.update(); // nur test! sollte eigtl dort aufgerufen werden wo dem worldvec ein neuer block hinzugefügt wird!
+
         std::vector<Block*>::iterator it;
         std::vector<Block*> BlockVec = levelManager1.blockVector();
         for(it = BlockVec.begin(); it != BlockVec.end(); it++ )
         {
 
+            if((*it)->blockType != 0)
+            {
                      glPushMatrix();
                      glTranslated((*it)->xBlockPosition, (*it)->yBlockPosition, (*it)->zBlockPosition);
                      glScalef(0.5,0.5,0.5);
@@ -38,6 +42,7 @@ public:
                      glPopMatrix();
 
                      }
+        }
 	}
                 
 }; //end Class

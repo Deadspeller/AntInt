@@ -4,6 +4,12 @@
 
 LevelManager::LevelManager()
 {
+    update();
+}
+
+void LevelManager::update()
+{
+    blockVec.clear();
     std::vector< std::vector<worldstruct> >::iterator row;
     std::vector<worldstruct>::iterator col;
     for(row = worldvector.begin(); row != worldvector.end(); row++)
@@ -11,6 +17,7 @@ LevelManager::LevelManager()
         {
             tempBlock = new Block(col->blocktype, row - worldvector.begin(), col - row->begin());
             blockVec.push_back(tempBlock);
+//            cout << "x: " << row - worldvector.begin() << " y: " << col - row->begin() << " type: " << col->blocktype << endl;
         }
 }
 
