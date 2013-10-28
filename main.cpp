@@ -8,8 +8,10 @@
 #include "include/texture.h"
 #include "include/menu.h"
 #include "include/hud.h"
+
 #include "include/block.h"
-#include "include/blockhandler.h"
+#include "include/leveldrawer.h"
+//#include "include/blockhandler.h"
 #include "include/ant.h"
 #include "include/anthandler.h"
 #include "include/cameracalc.h"
@@ -241,10 +243,10 @@ int main (int argc, char **argv) {
 						AntHandler("spawn");
 						break;
 				case 2: 
-						BlockHandler("bspawn");
+						//BlockHandler("bspawn");
 						break;
 				case 3:
-						BlockHandler("fspawn");
+						//BlockHandler("fspawn");
 						break;
 			}
 		}
@@ -271,7 +273,7 @@ int main (int argc, char **argv) {
 
 		AntHandler("move");	//move the Ants
 
-		BlockHandler("draw");	//draw the Blocks
+		//BlockHandler("draw");	//draw the Blocks
 
 		world();		//draw the "World
 

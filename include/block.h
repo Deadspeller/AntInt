@@ -20,52 +20,21 @@ class Block	//class for all classes, Wall-Blocks and Food-Blocks
 {
 
 public:
-	float xposition, zposition, yposition;
-	bool blockcreated;
-	int blocktype;	// 1 = block, 2 = food
+	float xBlockPosition, yBlockPosition, zBlockPosition;
+	int blockType;	// 0 = none, 1 = block, 2 = food
 
-void spawnBlock(int typeblock)
+	void block(int typeblock, float xposi, float zposi)
 	{
-		blocktype = typeblock;
-		yposition = 0;
+		blockType = typeblock;
+			
+		xBlockPosition = round(xposi);
+		yBlockPosition = 0.1;
+		zBlockPosition = round(zposi);
+			
 
+		if(blockType ==1)cout<<"Block created and spawned at: x="<<xBlockPosition<<" z="<<zBlockPosition<<endl;
+		if(blockType ==2)cout<<"Food created and spawned at: x="<<xBlockPosition<<" z="<<zBlockPosition<<endl;
 
-			zposition = round(zpos+1);
-			xposition = round(xpos+1);
-
-
-		if(blocktype ==1)cout<<"Block created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
-	if(blocktype ==2)cout<<"Food created and spawned at: x="<<xposition<<" z="<<zposition<<endl;
-
-		//fill vector with data
-		worldvector[xposition][zposition].blocktype = typeblock;
-		cout<<worldvector[xposition][zposition].blocktype<<endl;
-		blockcreated = true;
 	}
-
-void drawBlock()
-{
-		//draw the ant
-		glPushMatrix();
-		glTranslated(xposition, yposition, zposition);		
-
-		glScalef(0.5,0.5,0.5);
-		
-	 
-		// Block
-		glBegin(GL_POLYGON);
-		if(blocktype == 1)
-			glColor3f(0,0,1);
-		else
-			glColor3f(1,1,0);
-		glVertex3f(-1, 1, -1);
-		glVertex3f(1, 1, -1);
-		glVertex3f(1, 1, 1);
-		glVertex3f(-1, 1, 1);
-		glEnd();
-
-		glPopMatrix();
-} //end blockplace
-
 
 }; //end Class
