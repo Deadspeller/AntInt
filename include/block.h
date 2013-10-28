@@ -26,7 +26,7 @@ public:
 	float xBlockPosition, yBlockPosition, zBlockPosition;
 	int blockType;	// 0 = none, 1 = block, 2 = food
 
-	void block(int typeblock, float xposi, float zposi)
+    Block(int typeblock, float xposi, float zposi)
 	{
 		blockType = typeblock;
 			
@@ -39,6 +39,9 @@ public:
 		if(blockType ==2)cout<<"Food created and spawned at: x="<<xBlockPosition<<" z="<<zBlockPosition<<endl;
 
 	}
+
+    Block()
+    {}
 
 }; //end Class
 
