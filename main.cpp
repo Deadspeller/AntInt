@@ -8,10 +8,8 @@
 #include "include/texture.h"
 #include "include/menu.h"
 #include "include/hud.h"
-
 #include "include/block.h"
 #include "include/leveldrawer.h"
-//#include "include/blockhandler.h"
 #include "include/ant.h"
 #include "include/anthandler.h"
 #include "include/cameracalc.h"
