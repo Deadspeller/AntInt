@@ -8,8 +8,9 @@ public:
         
 void drawBlock()
 {
-        /*for(int i = 0; i < blockVec.size(); i++)
+        for(int i = 0; i < levelManager1.blockVector().size(); i++)
         {
+		}/*
                 glPushMatrix();
                 glTranslated(blockVec.at(i).xBlockPosition, blockVec.at(i).xyBlockPosition, blockVec.at(i).zBlockPosition);                
                 glScalef(0.5,0.5,0.5);
