@@ -27,8 +27,6 @@ class Ant
 	public:
 	vector <vector <int> > antworldvector;
 	int antworldarray[3][3];
-	bool xpluscollision, xminuscollision , zpluscollision , zminuscollision ;
-	bool xplusfood , xminusfood , zplusfood , zminusfood ;
 	bool collision;
 	float difTime, gesTime;
 	bool antalive;
@@ -114,68 +112,63 @@ if(done)
 		switch(status)
 		{
 			case 1:
-					if(xpluscollision)
+					if(antworldarray[1][0]==1) //front is block
 					{
-						cout<<"case xpluscoll"<<endl;
 						status = 3;
-						xpluscollision = false;
 					}
-					if(zplusfood)
+					if(antworldarray[2][1]==2) //right is food
 					{
-						status =3;
+						status = 3;
 					}
-					if(zminusfood)
+					if(antworldarray[0][1]==2) //left is food
 					{
-						status =4;
+						status = 4;
 					}
 					done = antmove(1);
 					break;
 			case 2:
-					if(xminuscollision)
+					if(antworldarray[1][2]==1) //front is block
 					{
 						status = 4;
-						xminuscollision = false;
 					}
-					if(zplusfood)
+					if(antworldarray[0][1]==2) //right is food
 					{
-						status =3;
+						status = 4;
 					}
-					if(zminusfood)
+					if(antworldarray[2][1]==2) //left is food
 					{
-						status =4;
+						status = 3;
 					}
 					done = antmove(2);
 					break;
 			case 3:
-					if(zpluscollision)
+					if(antworldarray[2][1]==1) //front is block
 					{
 						status = 2;
-						zpluscollision = false;
 					}
-					if(xplusfood)
+					if(antworldarray[1][2]==2) //right is food
 					{
-						status =1;
+						status = 2;
 					}
-					if(xminusfood)
+					if(antworldarray[1][0]==2) //left is food
 					{
-						status =2;
-					}
+						status = 1;
+					}					
 					done = antmove(3);
 					break;
 			case 4:
-					if(zminuscollision)
+					if(antworldarray[0][1]==1) //front is block
 					{
 						status = 1;
-						zminuscollision = false;
 					}
-					if(xplusfood)
+					if(antworldarray[1][0]==2) //right is food
 					{
-						status =1;
+						status = 1;
 					}
-					if(xminusfood)
+					if(antworldarray[1][2]==2) //left is food
 					{
-						status =2;
-					}
+						status = 2;
+					}					
 					done = antmove(4);
 					break;
 		}
@@ -293,57 +286,23 @@ if(done)
 void nearcheck()
 {
 
-	/*for(int a = 0; a < 3; a++)
-	{
-		for(int b = 0; b<3; b++)
-		{
-			antworldarray[a][b] = worldvector[xAntPosition-1+a][zAntPosition-1+a].blocktype;
-		}
-	}*/
+		antworldarray[0][0] = worldvector[xAntPosition+1][zAntPosition-1].blocktype;
 
-	xpluscollision = false;
-	xminuscollision = false;
-	zpluscollision = false;
-	zminuscollision = false;
+		antworldarray[0][1] = worldvector[xAntPosition][zAntPosition-1].blocktype;
 
-	xplusfood = false;
-	xminusfood = false;
-	zplusfood = false;
-	zminusfood = false;
+		antworldarray[0][2] = worldvector[xAntPosition-1][zAntPosition-1].blocktype;
 
-	if(worldvector[xAntPosition+1][zAntPosition].blocktype == 1)
-	{
-		xpluscollision = true;
-	}
-	if(worldvector[xAntPosition-1][zAntPosition].blocktype == 1)
-	{
-		xminuscollision = true;
-	}
-	if(worldvector[xAntPosition][zAntPosition+1].blocktype == 1)
-	{
-		zpluscollision = true;
-	}
-	if(worldvector[xAntPosition][zAntPosition-1].blocktype == 1)
-	{
-		zminuscollision = true;
-	}
+		antworldarray[1][0] = worldvector[xAntPosition+1][zAntPosition].blocktype;
 
-	if(worldvector[xAntPosition+1][zAntPosition].blocktype == 2)
-	{
-		xplusfood = true;
-	}
-	if(worldvector[xAntPosition-1][zAntPosition].blocktype == 2)
-	{
-		xminusfood = true;
-	}
-	if(worldvector[xAntPosition][zAntPosition+1].blocktype == 2)
-	{
-		zplusfood = true;
-	}
-	if(worldvector[xAntPosition][zAntPosition-1].blocktype == 2)
-	{
-		zminusfood = true;
-	}
+		antworldarray[1][1] = worldvector[xAntPosition][zAntPosition].blocktype;
+
+		antworldarray[1][2] = worldvector[xAntPosition-1][zAntPosition].blocktype;
+
+		antworldarray[2][0] = worldvector[xAntPosition+1][zAntPosition+1].blocktype;
+
+		antworldarray[2][1] = worldvector[xAntPosition][zAntPosition+1].blocktype;
+
+		antworldarray[2][2] = worldvector[xAntPosition-1][zAntPosition+1].blocktype;
 
 }	//end nearcheck
 
