@@ -9,6 +9,7 @@
 #include "include/menu.h"
 #include "include/hud.h"
 #include "include/block.h"
+#include "include/objectcreator.h"
 #include "include/leveldrawer.h"
 #include "include/ant.h"
 #include "include/anthandler.h"
@@ -45,6 +46,7 @@ const int maxblocks = 100;
 //Classes
 Ant antarray[maxants];
 Block blockarray[maxblocks];
+ObjectCreator objectcreator1;
 
 float gesTime;
 float difTime;
@@ -241,9 +243,11 @@ int main (int argc, char **argv) {
 						AntHandler("spawn");
 						break;
 				case 2: 
+						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 1);
 						//BlockHandler("bspawn");
 						break;
 				case 3:
+						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 2);
 						//BlockHandler("fspawn");
 						break;
 			}

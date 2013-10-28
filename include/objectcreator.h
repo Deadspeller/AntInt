@@ -1,25 +1,34 @@
 
+extern vector < vector <worldstruct> > worldvector;
+extern int xworldsize, zworldsize;
+
 
 class ObjectCreator        //class for all classes, Wall-Blocks and Food-Blocks
 {
 
 public:
         
-void createBlock(float xpos, float zpos, int blocktype)
+void createBlock(float xwert, float zwert, int blocktype)
 {
-	/*
-		for()
-			for()
-		if(worldvector[a][b].xblockposition = xpos && worldvector[a][b].zblockposition = zpos)
-			worldvector.delete[a][b];
-		else
-        	worldvector.insert[xpos][zpos].blocktype = blocktype;
-	*/
+	
+
+				if(worldvector[xwert][zwert].blocktype == 1  || worldvector[xwert][zwert].blocktype == 2)
+				{
+					worldvector[xwert][zwert].blocktype = 0;	//delete Block
+					cout<<"delete block"<<endl;		
+				}				
+				else
+				{
+        		worldvector[xwert][zwert].blocktype = blocktype;	// add Block
+				cout<<"create block"<<endl;				
+				}
+
+	
 }
 
 void createAnt(float xpos, float zpos)
 {
-        //worldvector.insert[xpos][zpos];
+        //worldvector[xpos][zpos];
 }
 
                 
