@@ -11,6 +11,7 @@
 #include "include/block.h"
 #include "include/objectcreator.h"
 #include "include/leveldrawer.h"
+#include "include/levelmanager.h"
 #include "include/ant.h"
 #include "include/anthandler.h"
 #include "include/cameracalc.h"

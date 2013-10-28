@@ -1,5 +1,6 @@
+#include "levelmanager.h"
 
-
+extern LevelManager levelManager1;
 
 class LevelDrawer        //class for all classes, Wall-Blocks and Food-Blocks
 {
@@ -8,9 +9,9 @@ public:
         
 void drawBlock()
 {
-        for(int i = 0; i < levelManager1.blockVector().size(); i++)
+        /*for(int i = 0; i < levelManager1.blockVector().size(); i++)
         {
-		}/*
+		}
                 glPushMatrix();
                 glTranslated(blockVec.at(i).xBlockPosition, blockVec.at(i).xyBlockPosition, blockVec.at(i).zBlockPosition);                
                 glScalef(0.5,0.5,0.5);

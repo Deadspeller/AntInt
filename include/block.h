@@ -1,3 +1,6 @@
+#ifndef BLOCK_H
+#define BLOCK_H
+
 #include <GL/glew.h> // Include the GLEW header file  
 //include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -38,3 +41,5 @@ public:
 	}
 
 }; //end Class
+
+#endif
