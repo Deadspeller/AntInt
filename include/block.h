@@ -33,11 +33,6 @@ public:
 		xBlockPosition = round(xposi);
 		yBlockPosition = 0.1;
 		zBlockPosition = round(zposi);
-			
-
-		if(blockType ==1)cout<<"Block created and spawned at: x="<<xBlockPosition<<" z="<<zBlockPosition<<endl;
-		if(blockType ==2)cout<<"Food created and spawned at: x="<<xBlockPosition<<" z="<<zBlockPosition<<endl;
-
 	}
 
     Block()
