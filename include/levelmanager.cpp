@@ -9,12 +9,12 @@ LevelManager::LevelManager()
     for(row = worldvector.begin(); row != worldvector.end(); row++)
         for(col = row->begin(); col != row->end(); col++)
         {
-            blockVec.push_back( new Block(col->blocktype) );
-            std::cout << col->blocktype;
+            tempBlock = new Block(col->blocktype,0,0);
+            blockVec.push_back(tempBlock);
         }
 }
 
-std::vector<Block> LevelManager::blockVector()
+std::vector<Block*> LevelManager::blockVector()
 {
     return blockVec;
 }

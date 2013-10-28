@@ -13,10 +13,11 @@ public:
     void LoadFile(const string File);
     void SaveFile();
     void Update();
-    std::vector<Block> blockVector();
+    std::vector<Block*> blockVector();
 
 private:
-    std::vector<Block> blockVec;
+    std::vector<Block*> blockVec;
+    Block* tempBlock;
 
 };
 
