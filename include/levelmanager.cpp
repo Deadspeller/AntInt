@@ -9,7 +9,7 @@ LevelManager::LevelManager()
     for(row = worldvector.begin(); row != worldvector.end(); row++)
         for(col = row->begin(); col != row->end(); col++)
         {
-            tempBlock = new Block(col->blocktype,0,0);
+            tempBlock = new Block(col->blocktype, row - worldvector.begin(), col - row->begin());
             blockVec.push_back(tempBlock);
         }
 }
