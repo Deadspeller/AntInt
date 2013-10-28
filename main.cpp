@@ -48,7 +48,7 @@ Ant antarray[maxants];
 Block blockarray[maxblocks];
 ObjectCreator objectcreator1;
 LevelDrawer levelDrawer1;
-//LevelManager levelManager1;
+LevelManager levelManager1;
 float gesTime;
 float difTime;
 

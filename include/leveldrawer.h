@@ -21,7 +21,7 @@ public:
         for(it = BlockVec.begin(); it != BlockVec.end(); it++ )
         {
 
-            if((*it)->blockType != 0)
+            if((*it)->blockType == 1 || (*it)->blockType == 2)
             {
                      glPushMatrix();
                      glTranslated((*it)->xBlockPosition, (*it)->yBlockPosition, (*it)->zBlockPosition);
