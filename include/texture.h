@@ -17,7 +17,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	//Texture 1
   	tex_ground[0] = SOIL_load_OGL_texture
         (
-        "textures/ground_grass.jpg",
+        "textures/ground_grass2.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
@@ -41,7 +41,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
 	//Ant Texture
 	tex_ant = SOIL_load_OGL_texture
         (
-        "textures/ant.png",
+        "textures/ant3.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
