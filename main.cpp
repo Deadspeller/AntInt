@@ -277,7 +277,7 @@ int main (int argc, char **argv) {
 		
 		world();		//draw the "World
 
-		//levelDrawer1.drawBlocks();
+		levelDrawer1.drawBlocks();
 
 		AntHandler("move");	//move the Ants
 
