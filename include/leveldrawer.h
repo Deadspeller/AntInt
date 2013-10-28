@@ -7,7 +7,7 @@ class LevelDrawer        //class for all classes, Wall-Blocks and Food-Blocks
 
 public:
         
-	void drawBlock()
+	void drawBlocks()
 	{
 		for(int i = 0; i < levelManager1.blockVector().size(); i++)
 		{

@@ -47,6 +47,7 @@ const int maxblocks = 100;
 Ant antarray[maxants];
 Block blockarray[maxblocks];
 ObjectCreator objectcreator1;
+LevelDrawer levelDrawer1;
 //LevelManager levelManager1;
 float gesTime;
 float difTime;
@@ -274,10 +275,9 @@ int main (int argc, char **argv) {
 		cameracalc(difTime);	//move the camera
 
 		
-
-		//BlockHandler("draw");	//draw the Blocks
-
 		world();		//draw the "World
+
+		//levelDrawer1.drawBlocks();
 
 		AntHandler("move");	//move the Ants
 
