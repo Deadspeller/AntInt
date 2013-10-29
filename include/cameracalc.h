@@ -12,7 +12,7 @@ extern int leftclickaction;
 extern float roundTime;
 
 bool Key1, Key2, Key3, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
-bool LControlKeyDown, YKeyDown, KKeyDown, JKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
+bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
 int MouseScrollValue = 0;
 
 	//Movement height
@@ -95,9 +95,9 @@ void cameracalc(float difTime)
 	{		
 	}
 
-	if (JKeyDown)
+	if (IKeyDown)
 	{	
-		
+		//roundTime = 0;
 	}
 		
 	if (EscKeyDown)

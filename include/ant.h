@@ -37,79 +37,23 @@ class Ant
 	int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
 	Timer AntTimer;
 	
-
+	int status = 1;	
+	int done ;
 
 	void ki()
 	{
-		static int status = 1;	
-		static int done ;
-
 		nearcheck();
-	/*
-	switch(status)
+
+		if(done)
 		{
-			case 1:
-					if(!zpluscollision && done)
-					{
-						status = 3;
-						
-					}
-					else if(xpluscollision && zpluscollision && done)
-					{
-						cout<<"lasdfien"<<endl;
-						status = 4;
-					}
-					
-					done = antmove(1);
-					break;
-			case 2:
-					if(!zminuscollision && done)
-					{
-						status = 4;
-						
-					}
-					else if(xminuscollision && zminuscollision && done)
-					{
-						status = 3;
-					}
-					done = antmove(2);
-					break;
-			case 3:
-					if(!xminuscollision && done)
-					{
-						status = 2;
-						
-					}
-					else if(zpluscollision && xminuscollision && done)
-					{
-						status = 1;
-					}
-					done = antmove(3);
-					break;
-			case 4:
-					if(!xpluscollision && done)
-					{
-						status = 1;
-						
-					}
-					else if(zminuscollision && xpluscollision && done)
-					{
-						status = 2;
-					}
-					done = antmove(4);
-					break;
-		}*/
+			cout<<"antarray"<<endl;
+			for(int a = 0; a < 3; a++)
+			{
+				cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;	
+			}
+		}
 
-if(done)
-{
-	cout<<"antarray"<<endl;
-	for(int a = 0; a < 3; a++)
-	{
-		cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;	
-	}
-}
-
-		switch(status)
+switch(status)
 		{
 			case 1:
 					if(antworldarray[1][0]==1) //front is block
@@ -171,6 +115,7 @@ if(done)
 					}					
 					done = antmove(4);
 					break;
+			
 		}
 
 
@@ -185,7 +130,7 @@ if(done)
 
 			if(gesTime >= roundTime)
 			{
-
+			cout<<"Ant Status: "<<a<<endl;
 				oldxAntPosition = xAntPosition;
 				oldzAntPosition = zAntPosition;
 				switch(a)	//move
@@ -239,25 +184,25 @@ if(done)
 						break;
 			}	
 
-		  	glScalef(0.5,0.5,0.5);
+		glScalef(0.5,0.5,0.5);
       	glColor3f(1,0.1,0.1);    
-			glEnable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-         glBindTexture(GL_TEXTURE_2D, tex_ant);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-         glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
-         glBegin(GL_POLYGON); //ground
-         glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
-         glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
-         glTexCoord2d(0,1);  glVertex3f(1, 1, 1);
-         glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
-         glEnd();
-			glDisable(GL_BLEND);
-         glDisable(GL_TEXTURE_2D);
-         glEnd();
-         glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glBindTexture(GL_TEXTURE_2D, tex_ant);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+        glBegin(GL_POLYGON); //ground
+        glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+        glTexCoord2d(1,1);  glVertex3f(1, 1, -1);
+        glTexCoord2d(0,1);  glVertex3f(1, 1, 1);
+        glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
+        glEnd();
+		glDisable(GL_BLEND);
+        glDisable(GL_TEXTURE_2D);
+        glEnd();
+        glPopMatrix();
 
 			AntTimer.stop();
 			difTime = AntTimer.getElapsedTimeInSec();
@@ -285,7 +230,6 @@ if(done)
 
 void nearcheck()
 {
-
 		antworldarray[0][0] = worldvector[xAntPosition+1][zAntPosition-1].blocktype;
 
 		antworldarray[0][1] = worldvector[xAntPosition][zAntPosition-1].blocktype;
@@ -317,16 +261,16 @@ void nearcheck()
 			gesTime = 0;
 			yorigin = 0.001;
 		
-				zAntPosition = round(zpos+1);
-				xAntPosition = round(xpos+1);
+			zAntPosition = round(zpos+1);
+			xAntPosition = round(xpos+1);
 
 
-	zorigin = zAntPosition;
-	xorigin = xAntPosition;
+			zorigin = zAntPosition;
+			xorigin = xAntPosition;
 
-worldvector[xAntPosition][zAntPosition].blocktype = 3;
-cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
-cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
+			worldvector[xAntPosition][zAntPosition].blocktype = 3;
+			cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
+			cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
 		}
 	}	//endif antspawn
