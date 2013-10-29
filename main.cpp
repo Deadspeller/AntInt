@@ -179,8 +179,8 @@ int main (int argc, char **argv) {
 		MoveSneakKey = KeyboardInput.isKeyPressed(sf::Keyboard::LControl);
 		MoveSprintKey = KeyboardInput.isKeyPressed(sf::Keyboard::LShift);
 		MoveLaydownKey = KeyboardInput.isKeyPressed(sf::Keyboard::Y);
+		IKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::I);
 		KKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::K);
-		JKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::J);
 		EscKeyDown = KeyboardInput.isKeyPressed(sf::Keyboard::Escape);
 		MoveJumpKey = KeyboardInput.isKeyPressed(sf::Keyboard::Space);
 		//Joystick
