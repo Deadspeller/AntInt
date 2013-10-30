@@ -54,6 +54,8 @@ Controlls in the Game:
 - `WASD`   -  Camera Movement
 - `Mouse`  -	
 - `SPACE` -	
+- `Z` - zoom in
+- `U` - zoom out
 - `F`  -  faster Simulation
 - `G`  -  slower Simulation
 - `ESC`  -  Exit-Game
