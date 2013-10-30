@@ -27,38 +27,9 @@ void world()	//Draw the world
 		worldvector[zworldsize+1][i].blocktype=1;
 	}
 
-	
-	//Draw the Walls
-	
-
-
-
-	glBegin(GL_POLYGON); //wall3
-	glColor3f(1,1,0.9);
-	glVertex3f(zworldsize+0.5, 0, 0.5);
-	glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
-	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
-	glVertex3f(zworldsize+0.5, 30, 0.5);
-	glEnd();
-
-	glBegin(GL_POLYGON); //wall4
-	glColor3f(0.9,0.9,1);
-	glVertex3f(0.5, 0, xworldsize+0.5);
-	glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
-	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
-	glVertex3f(0.5, 30, xworldsize+0.5);
-	glEnd();
-
-	glBegin(GL_POLYGON); //top
-	glColor3f(1,1,1);
-	glVertex3f(0.5, 30, 0.5);
-	glVertex3f(zworldsize+0.5, 30, 0.5);
-	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
-	glVertex3f(0.5, 30, xworldsize+0.5);
-	glEnd();
 
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, tex_ground[0]);
+	glBindTexture(GL_TEXTURE_2D, tex_grass);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.

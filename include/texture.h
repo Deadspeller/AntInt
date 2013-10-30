@@ -7,7 +7,7 @@
 
 using namespace std;
 
-GLuint tex_ground[3];
+GLuint tex_grass;
 GLuint tex_ant; 
 GLuint tex_wood_horizontal; 
 GLuint tex_wood_vertical;
@@ -17,31 +17,16 @@ int LoadTextures()                 // Load Images And Convert To Textures
 
 
 	//Texture 1
-  	tex_ground[0] = SOIL_load_OGL_texture
+  	tex_grass = SOIL_load_OGL_texture
         (
-        "textures/ground_grass2.jpg",
+        "textures/ground_grass.jpg",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
-	//Texture 2
-	tex_ground[1] = SOIL_load_OGL_texture
-        (
-        "textures/wall.jpg",
-        SOIL_LOAD_AUTO,
-        SOIL_CREATE_NEW_ID,
-        SOIL_FLAG_INVERT_Y
-        );
-	//Texture 3
-	tex_ground[2] = SOIL_load_OGL_texture
-        (
-        "textures/roof.jpg",
-        SOIL_LOAD_AUTO,
-        SOIL_CREATE_NEW_ID,
-        SOIL_FLAG_INVERT_Y
-        );
+
 	//wood horizontal
-	/*tex_wood_horizontal = SOIL_load_OGL_texture
+	tex_wood_horizontal = SOIL_load_OGL_texture
         (
         "textures/wood_horizontal.png",
         SOIL_LOAD_AUTO,
@@ -49,18 +34,18 @@ int LoadTextures()                 // Load Images And Convert To Textures
         SOIL_FLAG_INVERT_Y
         );
 	//wood horizontal
-	tex_wood_horizontal = SOIL_load_OGL_texture
+	tex_wood_vertical = SOIL_load_OGL_texture
         (
-        "textures/wood_vertical.jpg",
+        "textures/wood_vertical.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
-        );*/
+        );
 
 	//Ant Texture
 	tex_ant = SOIL_load_OGL_texture
         (
-        "textures/ant3.png",
+        "textures/ant2.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y

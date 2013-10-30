@@ -280,21 +280,15 @@ int main (int argc, char **argv) {
  		glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
  		enableGlOptions();	//enable graphic-settings
 
-
 		cameracalc(difTime);	//move the camera
-
-		
 		
 		world();		//draw the "World
+
 		levelDrawer1.drawBlocks();
-		
 
 		AntHandler("move");	//move the Ants
 
 		DrawHUD();		//draw the HUD
-
-
-
 
      	// Finally, display the rendered frame on screen
      	DSWindow.display();
