@@ -86,7 +86,7 @@ void keyUpswitch(unsigned char, int, int);
 
 
 
-sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence");
+sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence", sf::Style::Default, sf::ContextSettings(32));
 
 void drawswitch() //change between menu and game  !!NOT IN USE!!
 {

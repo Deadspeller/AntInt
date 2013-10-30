@@ -37,7 +37,7 @@ class Ant
 	int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
 	Timer AntTimer;
 	
-	int status = 1;	
+	int status;	
 	int done ;
 
 	void ki()
@@ -115,7 +115,9 @@ switch(status)
 					}					
 					done = antmove(4);
 					break;
-			
+			default:
+						status = 1;
+						break;
 		}
 
 
