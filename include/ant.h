@@ -159,8 +159,8 @@ switch(status)
 					zAntPosition = oldzAntPosition;
 				}
 				
-				worldvector[oldxAntPosition][oldzAntPosition].blocktype = 0;
-				worldvector[xAntPosition][zAntPosition].blocktype = 3;
+				//worldvector[oldxAntPosition][oldzAntPosition].blocktype = 0;
+				//worldvector[xAntPosition][zAntPosition].blocktype = 3;
 				gesTime = 0;
 
 				return 1;
@@ -272,7 +272,7 @@ void nearcheck()
 			zorigin = zAntPosition;
 			xorigin = xAntPosition;
 
-			worldvector[xAntPosition][zAntPosition].blocktype = 3;
+			//worldvector[xAntPosition][zAntPosition].blocktype = 3;
 			cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 			cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
