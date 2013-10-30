@@ -14,6 +14,7 @@
 
 # Other stuff
 *.pro*
+*.user
 *.cbp
 *.old
 *.orig
