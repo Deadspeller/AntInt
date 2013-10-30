@@ -6,6 +6,54 @@ cmake_minimum_required (VERSION 2.6)
 project (AntInt) 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+set(AntInt_SOURCES 
+	src/main.cpp
+	src/levelmanager.cpp)
 
-add_subdirectory (include) 
+set(AntInt_HEADERS 
+	src/ant.h
+	src/anthandler.h
+	src/block.h
+	src/blockhandler.h
+	src/cameracalc.h
+	src/hud.h
+	src/leveldrawer.h
+	src/menu.h
+	src/objectcreator.h
+	src/texture.h
+	src/timer.h
+	src/world.h)
+
+#add_subdirectory (include)
 #add_subdirectory (Demo)
+
+add_executable(AntInt ${AntInt_SOURCES}
+	${AntInt_HEADERS})
+
+find_package (SFML 2.0 REQUIRED system window graphics)
+if (SFML_FOUND)
+  include_directories(${SFML_INCLUDE_DIRS})
+  target_link_libraries (AntInt ${SFML_LIBRARIES})
+endif (SFML_FOUND)
+
+#include_directories(${AntInt_SOURCE_DIR}/SFML-2.1_64)
+
+find_package(GLUT)
+if (GLUT_FOUND)
+  include_directories(${GLUT_INCLUDE_DIRS})
+  target_link_libraries (AntInt ${GLUT_LIBRARIES})
+endif (GLUT_FOUND)
+
+find_package(OpenGL)
+if (OpenGL_FOUND)
+  include_directories(${OpenGL_INCLUDE_DIRS})
+  target_link_libraries (AntInt ${OpenGL_LIBRARIES} ${OPENGL_glu_LIBRARY})
+endif (OpenGL_FOUND)
+
+find_package (SOIL)
+if (SOIL_FOUND)
+  include_directories(${SOIL_INCLUDE_DIRS})
+  target_link_libraries (AntInt ${SOIL_LIBRARIES})
+endif (SOIL_FOUND)
+
+

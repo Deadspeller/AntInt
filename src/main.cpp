@@ -122,6 +122,20 @@ void enableGlOptions (void) {
 	glShadeModel (GL_SMOOTH); //set the shader to smooth shader
 }
 
+// Replaces gluPerspective. Sets the frustum to perspective mode.
+// fovY     - Field of vision in degrees in the y direction
+// aspect   - Aspect ratio of the viewport
+// zNear    - The near clipping distance
+// zFar     - The far clipping distance
+
+void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar )
+{
+    const GLdouble pi = 3.1415926535897932384626433832795;
+    GLdouble fW, fH;
+    fH = tan( fovY / 360 * pi ) * zNear;
+    fW = fH * aspect;
+    glFrustum( -fW, fW, -fH, fH, zNear, zFar );
+}
 
 
 
@@ -133,10 +147,8 @@ int main (int argc, char **argv) {
 	xpos=9;
  	ypos=9;
  	zpos=9;
-	xrot=80; //80°
+    xrot=80; //80°
 	yrot=135;	//135°
-
-	
 
     // Set the color and depth clear values
     glClearDepth(1.f);
@@ -149,10 +161,9 @@ int main (int argc, char **argv) {
     // Setup a perspective projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(90.f, 1.f, 1.f, 500.f);
+    perspectiveGL(90.f, 1.f, 1.f, 500.f);
 	LoadTextures();
 
-    
 	while (DSWindow.isOpen()) // Game loop
 	{		
 
