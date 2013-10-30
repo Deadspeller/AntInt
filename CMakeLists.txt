@@ -24,9 +24,6 @@ set(AntInt_HEADERS
 	src/timer.h
 	src/world.h)
 
-#add_subdirectory (include)
-#add_subdirectory (Demo)
-
 add_executable(AntInt ${AntInt_SOURCES}
 	${AntInt_HEADERS})
 
@@ -35,8 +32,6 @@ if (SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIRS})
   target_link_libraries (AntInt ${SFML_LIBRARIES})
 endif (SFML_FOUND)
-
-#include_directories(${AntInt_SOURCE_DIR}/SFML-2.1_64)
 
 find_package(GLUT)
 if (GLUT_FOUND)
@@ -47,7 +42,7 @@ endif (GLUT_FOUND)
 find_package(OpenGL)
 if (OpenGL_FOUND)
   include_directories(${OpenGL_INCLUDE_DIRS})
-  target_link_libraries (AntInt ${OpenGL_LIBRARIES} ${OPENGL_glu_LIBRARY})
+  target_link_libraries (AntInt ${OpenGL_LIBRARIES})
 endif (OpenGL_FOUND)
 
 find_package (SOIL)
@@ -55,5 +50,3 @@ if (SOIL_FOUND)
   include_directories(${SOIL_INCLUDE_DIRS})
   target_link_libraries (AntInt ${SOIL_LIBRARIES})
 endif (SOIL_FOUND)
-
-
