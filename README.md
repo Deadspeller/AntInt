@@ -3,19 +3,12 @@ AntInt
 
 Before Compiling:
 -------
-Use `make setup32` or `make setup64` to install all neccessary librarys and files
 
-The following librarys are installed:
-
-- **make setup32:**
-
-	`sudo apt-get install g++`
+Make sure the following librarys are installed:
 
 	`sudo apt-get install libglew-dev`
 
 	`sudo apt-get install libsfml-dev` 
-
-	`sudo cp -r SFML-2.0_32/* /usr/`
 
 	`sudo apt-get install libsoil-dev`
 
@@ -23,33 +16,20 @@ The following librarys are installed:
 	
 	`sudo apt-get install libxmu-dev libxi-dev`
 
-
-- **make setup64:**
+And following programms:
 
 	`sudo apt-get install g++`
 
-	`sudo apt-get install libglew-dev`
+	`sudo apt-get install cmake`
 
-	`sudo apt-get install libsfml-dev` 
-
-	`sudo cp -r SFML-2.1_64/* /usr/`
-
-	`sudo apt-get install libsoil-dev`
-
-	`sudo apt-get install freeglut3-dev`
-
-	`sudo apt-get install libxmu-dev libxi-dev`
-
-Makefile:
+Compiling:
 -------
 
-- `make` to compile and then start the game	
 - `make install` to compile the game
-- `make setup32` to install all librarys on 32bit Linux
-- `make setup64` to install all librarys on 64bit Linux
+- `mkdir build && cd build/` to create a build directory and step into it
+- `cmake ..` to run cmake with the CMakeLists.txt from the folder above
+- `make` to compile
 - `make run` to start the game
-- `make count` to count all the lines of code
-
 
 
 Controlls in the Game:
