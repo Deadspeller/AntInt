@@ -23,25 +23,90 @@ public:
 
             if((*it)->blockType == 1 || (*it)->blockType == 2)
             {
-                     glPushMatrix();
-                     glTranslated((*it)->xBlockPosition, (*it)->yBlockPosition, (*it)->zBlockPosition);
-                     glScalef(0.5,0.5,0.5);
+            	glPushMatrix();
+				glTranslated((*it)->xBlockPosition, (*it)->yBlockPosition, (*it)->zBlockPosition);
+                glScalef(0.5,0.5,0.5);
 		             
-                     // Block
-                     glBegin(GL_POLYGON);
+				switch((*it)->blockType)
+				{
+					case 1: 	//Block
+							glColor3f(0.8,0.8,0.8);
+							glBegin(GL_POLYGON);
+							glVertex3f(-1, 1, -1);
+                 			glVertex3f(1, 1, -1);
+					        glVertex3f(1, 1, 1);
+					        glVertex3f(-1, 1, 1);
+					        glEnd();
 
-                     if((*it)->blockType == 1)
-                             glColor3f(0,0,1);
-                     else
-                             glColor3f(1,1,0);
-                     glVertex3f(-1, 1, -1);
-                     glVertex3f(1, 1, -1);
-                     glVertex3f(1, 1, 1);
-                     glVertex3f(-1, 1, 1);
-                     glEnd();
-                     glPopMatrix();
+							glEnable(GL_TEXTURE_2D);
+							glBindTexture(GL_TEXTURE_2D, tex_ground[1]);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+							glColor3f(1,1,1);
+							glBegin(GL_POLYGON); //ground
+							glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
+							glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+							glTexCoord2d(1,1);  glVertex3f(-1, -2, -1);
+							glTexCoord2d(0,1);  glVertex3f(-1, -2, 1);
+							glEnd();
+	
+							glBindTexture(GL_TEXTURE_2D, tex_ground[1]);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+							glColor3f(1,1,1);
+							glBegin(GL_POLYGON); //ground
+							glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
+							glTexCoord2d(1,0);  glVertex3f(-1, 1, 1);
+							glTexCoord2d(1,1);  glVertex3f(-1, -2, 1);
+							glTexCoord2d(0,1);  glVertex3f(1, -2, 1);
+							glEnd();
 
-                     }
+							glBindTexture(GL_TEXTURE_2D, tex_ground[1]);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+							glColor3f(1,1,1);
+							glBegin(GL_POLYGON); //ground
+							glTexCoord2d(0,0);  glVertex3f(1, 1, -1);
+							glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+							glTexCoord2d(1,1);  glVertex3f(-1, -2, -1);
+							glTexCoord2d(0,1);  glVertex3f(1, -2, -1);
+							glEnd();
+
+							glBindTexture(GL_TEXTURE_2D, tex_ground[1]);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+							glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+							glColor3f(1,1,1);
+							glBegin(GL_POLYGON); //ground
+							glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
+							glTexCoord2d(1,0);  glVertex3f(1, 1, -1);
+							glTexCoord2d(1,1);  glVertex3f(1, -2, -1);
+							glTexCoord2d(0,1);  glVertex3f(1, -2, 1);
+							glEnd();
+							glDisable(GL_TEXTURE_2D);
+
+                
+							break;
+					case 2: 	//Food
+							glColor3f(1,1,0);
+							glBegin(GL_POLYGON);
+							glVertex3f(-1, 1, -1);
+                 			glVertex3f(1, 1, -1);
+					        glVertex3f(1, 1, 1);
+					        glVertex3f(-1, 1, 1);
+					        glEnd();
+							
+
+							break;
+
+					default:
+							break;
+
+				}
+				glPopMatrix();
+
+					
+
+        }
         }
 	}
                 

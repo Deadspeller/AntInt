@@ -133,7 +133,7 @@ int main (int argc, char **argv) {
 	xpos=9;
  	ypos=9;
  	zpos=9;
-	xrot=80; //70°
+	xrot=80; //80°
 	yrot=135;	//135°
 
 	
@@ -229,6 +229,15 @@ int main (int argc, char **argv) {
 					roundTime += 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
+				if (Event.key.code == sf::Keyboard::Z)
+				{
+					if(ypos > 4)
+					ypos -= 0.5;
+				}
+				if (Event.key.code == sf::Keyboard::U)
+				{
+					ypos += 0.5;
+				}
 			}
 
 			// Close window : exit
@@ -275,9 +284,10 @@ int main (int argc, char **argv) {
 		cameracalc(difTime);	//move the camera
 
 		
+		
 		world();		//draw the "World
-
 		levelDrawer1.drawBlocks();
+		
 
 		AntHandler("move");	//move the Ants
 

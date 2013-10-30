@@ -7,8 +7,10 @@
 
 using namespace std;
 
-GLuint tex_ground[3]; //Textures
-GLuint tex_ant;
+GLuint tex_ground[3];
+GLuint tex_ant; 
+GLuint tex_wood_horizontal; 
+GLuint tex_wood_vertical;
 
 int LoadTextures()                 // Load Images And Convert To Textures
 {	
@@ -38,6 +40,23 @@ int LoadTextures()                 // Load Images And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
+	//wood horizontal
+	/*tex_wood_horizontal = SOIL_load_OGL_texture
+        (
+        "textures/wood_horizontal.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+	//wood horizontal
+	tex_wood_horizontal = SOIL_load_OGL_texture
+        (
+        "textures/wood_vertical.jpg",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );*/
+
 	//Ant Texture
 	tex_ant = SOIL_load_OGL_texture
         (

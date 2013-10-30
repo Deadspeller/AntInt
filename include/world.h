@@ -29,36 +29,9 @@ void world()	//Draw the world
 
 	
 	//Draw the Walls
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, tex_ground[0]);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
-	glBegin(GL_POLYGON); //ground
-	glTexCoord2d(0,0);  glVertex3f(0.5, 0, 0.5);
-	glTexCoord2d(xworldsize+1,0);  glVertex3f(0.5, 0, xworldsize+0.5);
-	glTexCoord2d(xworldsize+1,zworldsize+1);  glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
-	glTexCoord2d(0,zworldsize+1);  glVertex3f(zworldsize+0.5, 0, 0.5);
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
+	
 
 
-
-	glBegin(GL_POLYGON); //wall1
-	glColor3f(0.9,1,1);
-	glVertex3f(0.5, 0, 0.5);
-	glVertex3f(0.5, 0, xworldsize+0.5);
-	glVertex3f(0.5, 30, xworldsize+0.5);
-	glVertex3f(0.5, 30, 0.5);
-	glEnd();
-
-	glBegin(GL_POLYGON); //wall2
-	glColor3f(1,0.9,1);
-	glVertex3f(0.5, 0, 0.5);
-	glVertex3f(zworldsize+0.5, 0, 0.5);
-	glVertex3f(zworldsize+0.5, 30, 0.5);
-	glVertex3f(0.5, 30, 0.5);
-	glEnd();
 
 	glBegin(GL_POLYGON); //wall3
 	glColor3f(1,1,0.9);
@@ -83,5 +56,19 @@ void world()	//Draw the world
 	glVertex3f(zworldsize+0.5, 30, xworldsize+0.5);
 	glVertex3f(0.5, 30, xworldsize+0.5);
 	glEnd();
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, tex_ground[0]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
+	glBegin(GL_POLYGON); //ground
+	glTexCoord2d(0,0);  glVertex3f(0.5, 0, 0.5);
+	glTexCoord2d(xworldsize,0);  glVertex3f(0.5, 0, xworldsize+0.5);
+	glTexCoord2d(xworldsize,zworldsize);  glVertex3f(zworldsize+0.5, 0, xworldsize+0.5);
+	glTexCoord2d(0,zworldsize);  glVertex3f(zworldsize+0.5, 0, 0.5);
+	glEnd();
+		glDisable(GL_TEXTURE_2D);
+
 }
 
