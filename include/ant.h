@@ -169,7 +169,6 @@ switch(status)
 			//draw the ant
 			glPushMatrix();
 			glTranslated(xAntPosition, yAntPosition, zAntPosition);		
-			cout<<"yantposition: "<<yAntPosition<<endl;
 			switch(a)
 			{
 				case 1:	//vor
@@ -253,7 +252,7 @@ void nearcheck()
 }	//end nearcheck
 
 
-	void antspawn()	//spawn a new ant
+	void antspawn(int x, int z)	//spawn a new ant
 	{
 		
 		if(antalive == 0)	//if ant is not already alive
@@ -263,8 +262,10 @@ void nearcheck()
 			gesTime = 0;
 			yorigin = 0.0001;
 		
-			zAntPosition = round(zpos+1);
-			xAntPosition = round(xpos+1);
+			//zAntPosition = round(zpos+1);
+			//xAntPosition = round(xpos+1);
+			xAntPosition = x;
+			zAntPosition = z;
 			yAntPosition = -0.4;
 
 
@@ -276,6 +277,8 @@ void nearcheck()
 			cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
 		}
+		else
+			cout<<"ant already alive"<<endl;
 	}	//endif antspawn
 
 };	//end class

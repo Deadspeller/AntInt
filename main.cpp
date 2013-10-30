@@ -13,7 +13,9 @@
 #include "include/leveldrawer.h"
 #include "include/levelmanager.h"
 #include "include/ant.h"
+#include "include/anthill.h"
 #include "include/anthandler.h"
+
 #include "include/cameracalc.h"
 #include "include/world.h"
 #include <iostream>
@@ -49,6 +51,7 @@ Block blockarray[maxblocks];
 ObjectCreator objectcreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
+AntHill antHill1;
 float gesTime;
 float difTime;
 
@@ -149,6 +152,7 @@ int main (int argc, char **argv) {
 		Key1 = KeyboardInput.isKeyPressed(sf::Keyboard::Num1);
 		Key2 = KeyboardInput.isKeyPressed(sf::Keyboard::Num2);
 		Key3 = KeyboardInput.isKeyPressed(sf::Keyboard::Num3);
+		Key4 = KeyboardInput.isKeyPressed(sf::Keyboard::Num4);
 		MoveForwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::W);
 		MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
 		MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
@@ -215,6 +219,11 @@ int main (int argc, char **argv) {
 				{
 					ypos += 0.5;
 				}
+				if (Event.key.code == sf::Keyboard::T)
+				{
+					cout<<"Anthill Spawn"<<endl;
+					antHill1.ki();
+				}
 			}
 
 			// Close window : exit
@@ -236,6 +245,10 @@ int main (int argc, char **argv) {
 				case 3:
 						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 2);
 						//BlockHandler("fspawn");
+						break;
+				case 4:
+						objectcreator1.createHill(round(xpos+1), round(zpos+1));
+						antHill1.spawnHill(round(xpos)+1, round(zpos)+1);
 						break;
 			}
 		}

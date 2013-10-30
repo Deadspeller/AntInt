@@ -11,7 +11,7 @@ extern sf::Window DSWindow;
 extern int leftclickaction;
 extern float roundTime;
 
-bool Key1, Key2, Key3, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
+bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
 bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
 int MouseScrollValue = 0;
 
@@ -89,6 +89,10 @@ void cameracalc(float difTime)
 	if(Key3)
 	{
 		leftclickaction = 3;
+	}
+	if(Key4)
+	{
+		leftclickaction = 4;
 	}
 
 	if (KKeyDown)

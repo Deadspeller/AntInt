@@ -10,7 +10,7 @@ extern float xpos, zpos;
 extern float yrot, xrot;
 extern const int maxants;
 extern class Ant antarray[100];
-
+extern class AntHill antHill1;
 
 void AntHandler(string action)
 {
@@ -21,14 +21,12 @@ void AntHandler(string action)
 			if(antarray[antcounter].antalive == 1) 
 			{
 			antarray[antcounter].ki();
-
-						//antarray[antcounter].antworldarray[x][z] = worldvector[antarray[antcounter].xAntPosition-1+x][antarray[antcounter].zAntPosition-1+z].blocktype;
-
-
-
-
 			}
 		}	
+		for(int i=0; i<antHill1.antVec.size(); i++)
+		{
+			antHill1.antVec[i].ki();
+		}
 	}
 
 	if(action == "spawn")	//create a new Ant
@@ -37,7 +35,7 @@ void AntHandler(string action)
 		{
 			if(antarray[antcounter].antalive == 0)
 			{
-			antarray[antcounter].antspawn();
+			antarray[antcounter].antspawn(xpos+1, zpos+1);
 			cout<<"antcounter "<<antcounter<<endl;
 			antcounter = maxants;
 				
