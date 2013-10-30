@@ -84,8 +84,6 @@ void keyUp(unsigned char, int, int);
 void keyUpswitch(unsigned char, int, int);
 
 
-
-
 sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence", sf::Style::Default, sf::ContextSettings(32));
 
 void drawswitch() //change between menu and game  !!NOT IN USE!!
@@ -98,21 +96,7 @@ void drawswitch() //change between menu and game  !!NOT IN USE!!
 
 void enableGlOptions (void) {
 	glEnable (GL_DEPTH_TEST);
-    //glEnable (GL_LIGHTING); //enable the lighting BUGGY
-	//glEnable(GL_COLOR_MATERIAL);
-    glEnable (GL_LIGHT0);
-	glEnable (GL_LIGHT1);
-	glEnable (GL_LIGHT2);
-	glEnable( GL_NORMALIZE ); //for lightning. not really working
-	glLightfv(GL_LIGHT0, GL_POSITION, qaLightPosition);
-	glLightfv(GL_LIGHT1, GL_POSITION, qaLightPosition);
-	glLightfv(GL_LIGHT2, GL_POSITION, qaLightPosition);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, qaAmbientLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, qaDiffuseLight);
-	glLightfv(GL_LIGHT2, GL_SPECULAR, qaSpecularLight);
-	glLightModelfv( GL_LIGHT_MODEL_AMBIENT, globalAmbient );
-	glDisable(GL_COLOR_MATERIAL);
-	glDisable (GL_LIGHTING);
+   
 	//FOG
 	glEnable (GL_FOG);
 	glFogi (GL_FOG_MODE, GL_EXP2); //set the fog mode to GL_EXP2
@@ -136,26 +120,19 @@ int main (int argc, char **argv) {
 	xrot=80; //80°
 	yrot=135;	//135°
 
-	
+   // Set the color and depth clear values
+   glClearDepth(1.f);
+   glClearColor(0.f, 0.f, 0.f, 0.f);
 
-    // Set the color and depth clear values
-    glClearDepth(1.f);
-    glClearColor(0.f, 0.f, 0.f, 0.f);
-
-    // Enable Z-buffer read and write
-    glEnable(GL_DEPTH_TEST);
-    glDepthMask(GL_TRUE);
-
-    // Setup a perspective projection
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(90.f, 1.f, 1.f, 500.f);
+   // Setup a perspective projection
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluPerspective(90.f, 1.f, 1.f, 500.f);
 	LoadTextures();
 
     
 	while (DSWindow.isOpen()) // Game loop
 	{		
-
 		//calculate Time
 		maintimer.stop();
 		difTime = maintimer.getElapsedTimeInSec();
