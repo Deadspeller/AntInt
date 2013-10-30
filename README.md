@@ -20,6 +20,8 @@ The following librarys are installed:
 	`sudo apt-get install libsoil-dev`
 
 	`sudo apt-get install freeglut3-dev`
+	
+	`sudo apt-get install libxmu-dev libxi-dev`
 
 
 - **make setup64:**
@@ -36,6 +38,7 @@ The following librarys are installed:
 
 	`sudo apt-get install freeglut3-dev`
 
+	`sudo apt-get install libxmu-dev libxi-dev`
 
 Makefile:
 -------
