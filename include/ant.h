@@ -33,7 +33,7 @@ class Ant
 	float yorigin, zorigin, xorigin; //where the ant started
 
 
-	int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
+	float xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
 	int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
 	Timer AntTimer;
 	
@@ -169,7 +169,7 @@ switch(status)
 			//draw the ant
 			glPushMatrix();
 			glTranslated(xAntPosition, yAntPosition, zAntPosition);		
-
+			cout<<"yantposition: "<<yAntPosition<<endl;
 			switch(a)
 			{
 				case 1:	//vor
@@ -261,10 +261,11 @@ void nearcheck()
 			
 			antalive = true;
 			gesTime = 0;
-			yorigin = 0.001;
+			yorigin = 0.0001;
 		
 			zAntPosition = round(zpos+1);
 			xAntPosition = round(xpos+1);
+			yAntPosition = -0.4;
 
 
 			zorigin = zAntPosition;
