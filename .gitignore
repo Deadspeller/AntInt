@@ -18,6 +18,7 @@
 *.cbp
 *.old
 *.orig
+*cache.txt
 
 # directories
 *build/
