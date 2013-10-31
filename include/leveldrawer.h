@@ -21,7 +21,7 @@ public:
         for(it = BlockVec.begin(); it != BlockVec.end(); it++ )
         {
 
-            if((*it)->blockType == 1 || (*it)->blockType == 2)
+            if((*it)->blockType == 1 || (*it)->blockType == 2 || (*it)->blockType == 4)
             {
             	glPushMatrix();
 				glTranslated((*it)->xBlockPosition, (*it)->yBlockPosition, (*it)->zBlockPosition);
@@ -94,8 +94,15 @@ public:
 					        glVertex3f(1, 1, 1);
 					        glVertex3f(-1, 1, 1);
 					        glEnd();
-							
-
+							break;
+					case 4: 	//AntHill
+							glColor3f(0.4,0.4,0.4);
+							glBegin(GL_POLYGON);
+							glVertex3f(-1, 1, -1);
+                 		glVertex3f(1, 1, -1);
+					      glVertex3f(1, 1, 1);
+					      glVertex3f(-1, 1, 1);
+					      glEnd();
 							break;
 
 					default:

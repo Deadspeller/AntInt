@@ -33,11 +33,11 @@ class Ant
 	float yorigin, zorigin, xorigin; //where the ant started
 
 
-	int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
+	float xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
 	int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
 	Timer AntTimer;
 	
-	int status = 1;	
+	int status;	
 	int done ;
 
 	void ki()
@@ -115,7 +115,9 @@ switch(status)
 					}					
 					done = antmove(4);
 					break;
-			
+			default:
+						status = 1;
+						break;
 		}
 
 
@@ -157,8 +159,8 @@ switch(status)
 					zAntPosition = oldzAntPosition;
 				}
 				
-				worldvector[oldxAntPosition][oldzAntPosition].blocktype = 0;
-				worldvector[xAntPosition][zAntPosition].blocktype = 3;
+				//worldvector[oldxAntPosition][oldzAntPosition].blocktype = 0;
+				//worldvector[xAntPosition][zAntPosition].blocktype = 3;
 				gesTime = 0;
 
 				return 1;
@@ -167,7 +169,6 @@ switch(status)
 			//draw the ant
 			glPushMatrix();
 			glTranslated(xAntPosition, yAntPosition, zAntPosition);		
-
 			switch(a)
 			{
 				case 1:	//vor
@@ -251,7 +252,7 @@ void nearcheck()
 }	//end nearcheck
 
 
-	void antspawn()	//spawn a new ant
+	void antspawn(int x, int z)	//spawn a new ant
 	{
 		
 		if(antalive == 0)	//if ant is not already alive
@@ -259,20 +260,25 @@ void nearcheck()
 			
 			antalive = true;
 			gesTime = 0;
-			yorigin = 0.001;
+			yorigin = 0.0001;
 		
-			zAntPosition = round(zpos+1);
-			xAntPosition = round(xpos+1);
+			//zAntPosition = round(zpos+1);
+			//xAntPosition = round(xpos+1);
+			xAntPosition = x;
+			zAntPosition = z;
+			yAntPosition = -0.4;
 
 
 			zorigin = zAntPosition;
 			xorigin = xAntPosition;
 
-			worldvector[xAntPosition][zAntPosition].blocktype = 3;
+			//worldvector[xAntPosition][zAntPosition].blocktype = 3;
 			cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
 			cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
 		}
+		else
+			cout<<"ant already alive"<<endl;
 	}	//endif antspawn
 
 };	//end class
