@@ -27,7 +27,7 @@
 using namespace std;
 
 
-vector <vector <worldstruct> > worldvector(52, vector<worldstruct>(52)); //contains all informations about blocks, ants and food
+vector <vector <Square> > worldvector(52, vector<Square>(52)); //contains all informations about blocks, ants and food
 
 extern int MouseScrollValue;
 
@@ -45,7 +45,7 @@ const int maxblocks = 100;
 
 //Classes
 Ant antarray[maxants];
-Block blockarray[maxblocks];
+Square blockarray[maxblocks];
 ObjectCreator objectcreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
@@ -86,7 +86,7 @@ void keyUpswitch(unsigned char, int, int);
 
 
 
-sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence");
+sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence", sf::Style::Default, sf::ContextSettings(32));
 
 void drawswitch() //change between menu and game  !!NOT IN USE!!
 {
@@ -231,12 +231,14 @@ int main (int argc, char **argv) {
 			{
 				if (Event.key.code == sf::Keyboard::K)
 				{
+                    levelManager1.saveFile();
 					if(roundTime > 0.1)
 					roundTime -= 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
 				if (Event.key.code == sf::Keyboard::J)
 				{
+                    levelManager1.loadFile();
 					roundTime += 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}

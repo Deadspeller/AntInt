@@ -2,30 +2,30 @@
 
 
 #include <GL/glew.h> // Include the GLEW header file  
+#include "block.h"
 
-
-extern vector < vector <worldstruct> > worldvector;
+extern vector < vector <Square> > worldvector;
 extern int xworldsize, zworldsize;
 
 void world()	//Draw the world
 {
 	//setting up the "walls"
-	for(int i =1; i<=zworldsize; i++)
-	{
-		worldvector[i][0].blocktype=1;
-	}
-	for(int i =1; i<=xworldsize; i++)
-	{
-		worldvector[0][i].blocktype=1;
-	}
-	for(int i =1; i<=zworldsize; i++)
-	{
-		worldvector[i][xworldsize+1].blocktype=1;
-	}
-	for(int i =1; i<=xworldsize; i++)
-	{
-		worldvector[zworldsize+1][i].blocktype=1;
-	}
+//	for(int i =1; i<=zworldsize; i++)
+//	{
+//        worldvector[i][0].blockType=1;
+//	}
+//	for(int i =1; i<=xworldsize; i++)
+//	{
+//        worldvector[0][i].blockType=1;
+//	}
+//	for(int i =1; i<=zworldsize; i++)
+//	{
+//        worldvector[i][xworldsize+1].blockType=1;
+//	}
+//	for(int i =1; i<=xworldsize; i++)
+//	{
+//        worldvector[zworldsize+1][i].blockType=1;
+//	}
 
 
 	glEnable(GL_TEXTURE_2D);

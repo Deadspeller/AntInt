@@ -4,7 +4,7 @@
 #include "vector"
 #include "block.h"
 
-extern vector < vector <worldstruct> > worldvector;
+extern vector < vector <Square> > worldvector;
 
 class LevelManager
 {
@@ -13,11 +13,11 @@ public:
     bool loadFile();
     bool saveFile();
     void update();
-    std::vector<Block*> blockVector();
+    std::vector<Square> blockVector();
 
 private:
-    std::vector<Block*> blockVec;
-    Block* tempBlock;
+    std::vector<Square> blockVec;
+    Square tempBlock;
 
     std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 };

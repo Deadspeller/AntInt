@@ -1,5 +1,6 @@
+#include "block.h"
 
-extern vector < vector <worldstruct> > worldvector;
+extern vector < vector <Square> > worldvector;
 extern int xworldsize, zworldsize;
 
 
@@ -12,14 +13,14 @@ void createBlock(float xwert, float zwert, int blocktype)
 {
 	
 
-				if(worldvector[xwert][zwert].blocktype == 1  || worldvector[xwert][zwert].blocktype == 2)
+                if(worldvector[xwert][zwert].blockType == 1  || worldvector[xwert][zwert].blockType == 2)
 				{
-					worldvector[xwert][zwert].blocktype = 0;	//delete Block
+                    worldvector[xwert][zwert].blockType = 0;	//delete Block
 					cout<<"delete block"<<endl;		
 				}				
 				else
 				{
-        		worldvector[xwert][zwert].blocktype = blocktype;	// add Block
+                worldvector[xwert][zwert].blockType = blocktype;	// add Block
 				cout<<"create block"<<endl;				
 				}
 
