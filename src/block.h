@@ -30,6 +30,8 @@ public:
             case 3: //ant
 
                     break;
+            default:
+                    break;
         }
 
 	}

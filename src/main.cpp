@@ -258,12 +258,10 @@ int main (int argc, char **argv) {
 						break;
 				case 2: 
 						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 1);
-						//BlockHandler("bspawn");
-						break;
+                        break;
 				case 3:
 						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 2);
-						//BlockHandler("fspawn");
-						break;
+                        break;
 				case 4:
 						objectcreator1.createHill(round(xpos+1), round(zpos+1));
 						antHill1.spawnHill(round(xpos)+1, round(zpos)+1);
