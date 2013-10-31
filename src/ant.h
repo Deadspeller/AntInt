@@ -197,10 +197,10 @@ switch(status)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
         glBegin(GL_POLYGON); //ground
-        glTexCoord2d(1,0);  glVertex3f(-1, 0.1, -1);
-        glTexCoord2d(1,1);  glVertex3f(1, 0.1, -1);
-        glTexCoord2d(0,1);  glVertex3f(1, 0.1, 1);
-        glTexCoord2d(0,0);  glVertex3f(-1, 0.1, 1);
+        glTexCoord2d(1,0);  glVertex3f(-1, 0.01, -1);
+        glTexCoord2d(1,1);  glVertex3f(1, 0.01, -1);
+        glTexCoord2d(0,1);  glVertex3f(1, 0.01, 1);
+        glTexCoord2d(0,0);  glVertex3f(-1, 0.01, 1);
         glEnd();
         glDisable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);

@@ -89,20 +89,20 @@ public:
                         case 2: 	//Food
                                 glColor3f(1,1,0);
                                 glBegin(GL_POLYGON);
-                                glVertex3f(-1, 0.1, -1);
-                                glVertex3f(1, 0.1, -1);
-                                glVertex3f(1, 0.1, 1);
-                                glVertex3f(-1, 0.1, 1);
+                                glVertex3f(-1, 0.001, -1);
+                                glVertex3f(1, 0.001, -1);
+                                glVertex3f(1, 0.001, 1);
+                                glVertex3f(-1, 0.01, 1);
                                 glEnd();
                                 break;
 
                         case 4: 	//AntHill
                                 glColor3f(0.8,0.8,0.8);
                                 glBegin(GL_POLYGON);
-                                glVertex3f(-1, 0.1, -1);
-                                glVertex3f(1, 0.1, -1);
-                                glVertex3f(1, 0.1, 1);
-                                glVertex3f(-1, 0.1, 1);
+                                glVertex3f(-1, 0.001, -1);
+                                glVertex3f(1, 0.001, -1);
+                                glVertex3f(1, 0.001, 1);
+                                glVertex3f(-1, 0.001, 1);
                                 glEnd();
                                 break;
 
