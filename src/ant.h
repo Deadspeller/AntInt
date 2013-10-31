@@ -254,29 +254,34 @@ void nearcheck()
 }	//end nearcheck
 
 
-    void antspawn()	//spawn a new ant
-    {
-
-        if(antalive == 0)	//if ant is not already alive
+void antspawn(int x, int z)        //spawn a new ant
         {
 
-            antalive = true;
-            gesTime = 0;
-            yorigin = 0.001;
+                if(antalive == 0)        //if ant is not already alive
+                {
 
-            zAntPosition = round(zpos+1);
-            xAntPosition = round(xpos+1);
+                        antalive = true;
+                        gesTime = 0;
+                        yorigin = 0.0001;
+
+                        //zAntPosition = round(zpos+1);
+                        //xAntPosition = round(xpos+1);
+                        xAntPosition = x;
+                        zAntPosition = z;
+                        yAntPosition = 0.001;
 
 
-            zorigin = zAntPosition;
-            xorigin = xAntPosition;
+                        zorigin = zAntPosition;
+                        xorigin = xAntPosition;
 
-            worldvector[xAntPosition][zAntPosition].blockType = 3;
-            cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
-            cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
+                        //worldvector[xAntPosition][zAntPosition].blocktype = 3;
+                        cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
+                        cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
 
-        }
-    }	//endif antspawn
+                }
+                else
+                        cout<<"ant already alive"<<endl;
+        }        //endif antspawn
 
 };	//end class
 

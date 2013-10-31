@@ -2,6 +2,7 @@
 #include <GL/glew.h> // Include the GLEW header file  
 #include <vector> 
 #include <iostream>
+#include "anthill.h"
 
 using namespace std;
 

@@ -28,7 +28,7 @@ void createBlock(float xwert, float zwert, int blocktype)
 
 void createHill(int x, int z)
 {
-	worldvector[x][z].blocktype = 4;
+    worldvector[x][z].blockType = 4;
 }
 
 void createAnt(float xpos, float zpos)

@@ -12,6 +12,7 @@ set(AntInt_SOURCES
 
 set(AntInt_HEADERS 
 	src/ant.h
+	src/anthill.h
 	src/anthandler.h
 	src/block.h
 	src/blockhandler.h
