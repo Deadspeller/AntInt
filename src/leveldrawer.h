@@ -21,7 +21,7 @@ public:
         for(row = worldvector.begin(); row != worldvector.end(); row++)
             for(col = row->begin(); col != row->end(); col++)
             {
-                if(col->blockType == 1 || col->blockType == 2)
+                if(col->blockType == 1 || col->blockType == 2 || col->blockType == 4)
                 {
                     glPushMatrix();
                     glTranslated(row - worldvector.begin(), 0, col - row->begin());
@@ -89,14 +89,23 @@ public:
                         case 2: 	//Food
                                 glColor3f(1,1,0);
                                 glBegin(GL_POLYGON);
-                                glVertex3f(-1, 1, -1);
-                                glVertex3f(1, 1, -1);
-                                glVertex3f(1, 1, 1);
-                                glVertex3f(-1, 1, 1);
+                                glVertex3f(-1, 0.1, -1);
+                                glVertex3f(1, 0.1, -1);
+                                glVertex3f(1, 0.1, 1);
+                                glVertex3f(-1, 0.1, 1);
                                 glEnd();
-
-
                                 break;
+
+                        case 4: 	//AntHill
+                                glColor3f(0.8,0.8,0.8);
+                                glBegin(GL_POLYGON);
+                                glVertex3f(-1, 0.1, -1);
+                                glVertex3f(1, 0.1, -1);
+                                glVertex3f(1, 0.1, 1);
+                                glVertex3f(-1, 0.1, 1);
+                                glEnd();
+                                break;
+
 
                         default:
                                 break;
