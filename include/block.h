@@ -31,7 +31,7 @@ public:
 		blockType = typeblock;
 			
 		xBlockPosition = round(xposi);
-		yBlockPosition = 0.1;
+		yBlockPosition = 0.0001;
 		zBlockPosition = round(zposi);
 	}
 
