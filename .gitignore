@@ -13,4 +13,12 @@
 *.a
 
 # Other stuff
-*.pro
+*.pro*
+*.user
+*.cbp
+*.old
+*.orig
+*cache.txt
+
+# directories
+*build/
