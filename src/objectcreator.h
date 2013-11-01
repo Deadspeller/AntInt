@@ -1,40 +1,23 @@
+#ifndef OBJECTCREATOR_H
+#define OBJECTCREATOR_H
 
-extern vector < vector <Square> > worldvector;
+#include <vector>
+#include <iostream>
+
+#include "square.h"
+
+extern std::vector < std::vector <Square> > worldvector;
 extern int xworldsize, zworldsize;
 
 
 class ObjectCreator        //class for all classes, Wall-Blocks and Food-Blocks
 {
 
-public:
-        
-void createBlock(float xwert, float zwert, int blocktype)
-{
-	
-
-                if(worldvector[xwert][zwert].blockType == 1  || worldvector[xwert][zwert].blockType == 2)
-				{
-                    worldvector[xwert][zwert].blockType = 0;	//delete Block
-					cout<<"delete block"<<endl;		
-				}				
-				else
-				{
-                worldvector[xwert][zwert].blockType = blocktype;	// add Block
-				cout<<"create block"<<endl;				
-				}
-
-	
-}
-
-void createHill(int x, int z)
-{
-    worldvector[x][z].blockType = 4;
-}
-
-void createAnt(float xpos, float zpos)
-{
-        //worldvector[xpos][zpos];
-}
-
+public:        
+    void createBlock(float xwert, float zwert, int blocktype);
+    void createHill(int x, int z);
+    void createAnt(float xpos, float zpos);
                 
 }; //end Class
+
+#endif

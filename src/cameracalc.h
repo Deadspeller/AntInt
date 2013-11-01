@@ -1,114 +1,46 @@
+#ifndef CAMERACALC_H
+#define CAMERACALC_H
 
+#include <cmath>
 
-int GP_LT = 8,GP_RT = 9, GP_LB = 10, GP_RB = 11, GP_LStick = 1, GP_RStick = 2, GP_Dreieck = 12;
-int GP_Viereck = 15, GP_X = 14, GP_Kreis = 13, GP_DUp = 4, GP_DLeft = 7, GP_DDown = 6, GP_DRight = 5;
-int GP_Select = 0, GP_Start = 3, GP_XBox = 16;
+#include <SFML/Window.hpp>
+#include <GL/glew.h>
+
+extern int GP_LT ,GP_RT, GP_LB, GP_RB, GP_LStick, GP_RStick, GP_Dreieck;
+extern int GP_Viereck, GP_X, GP_Kreis, GP_DUp, GP_DLeft, GP_DDown, GP_DRight;
+extern int GP_Select, GP_Start, GP_XBox;
 
 extern float gesTime;
 extern float difTime;
-extern float sprintpoints;
+extern float sprintPoints;
 extern sf::Window DSWindow;
-extern int leftclickaction;
+extern int leftClickAction;
 extern float roundTime;
 
-bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
-bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
-int MouseScrollValue = 0;
+extern bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
+extern bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
+extern int mouseScrollValue;
 
-	//Movement height
-float camheight = 1.5;
-float walkheight = 1.5;
-float sneakheight = 1.0;
-float layheight = 0.5;
-	//Movement speed
-float actspeed = 8;
-	//Cam speed
-float mousexspeed = 0.1, mouseyspeed = 0.1;
-float joystickxspeed = 0.1, joystickyspeed = 0.1;
-	//Movement scale
+//Movement height
+extern float camHeight;
+extern float walkHeight;
+extern float sneakHeight;
+extern float layHeight;
 
-float upview;	
+//Movement speed
+extern float actspeed;
 
-void cameracalc(float difTime)
-{
+//Cam speed
+extern float mouseXspeed, mouseYspeed;
+extern float joystickXspeed, joystickYspeed;
 
-	if (MoveForwardKey)
-	{	
-		float xrotrad, yrotrad, zrotrad;
-    		yrotrad = (yrot / 180 * 3.141592654f);
-    		xrotrad = (xrot / 180 * 3.141592654f); 
-		upview = float(sin(xrotrad));
+//Position and Direction of Camera
+extern float xpos, ypos, zpos;
+extern float xrot, yrot, zrot;
 
-		//x-richtungsgeschw.
-		xpos += float(sin(yrotrad))*actspeed*difTime ;
+//Movement scale
+extern float upview;
 
-		//z-richtungsgeschw.
-		zpos -= float(cos(yrotrad))*actspeed*difTime ;
+void cameracalc(float difTime);
 
-	}
-
-
-	if (MoveBackwardKey)
-	{	float xrotrad, yrotrad;
-		yrotrad = (yrot / 180 * 3.141592654f);
-		xrotrad = (xrot / 180 * 3.141592654f); 
-		xpos -= float(sin(yrotrad))*actspeed*difTime;
-		zpos += float(cos(yrotrad))*actspeed*difTime;
-	}
-
-	if (MoveRightKey)
-	{	float yrotrad;
-		yrotrad = (yrot / 180 * 3.141592654f);
-		xpos += float(cos(yrotrad)) * actspeed*difTime;
-		zpos += float(sin(yrotrad)) * actspeed*difTime;
-	}
-
-	if (MoveLeftKey)
-	{	float yrotrad;
-		yrotrad = (yrot / 180 * 3.141592654f);
-		xpos -= float(cos(yrotrad)) * actspeed*difTime;
-		zpos -= float(sin(yrotrad)) * actspeed*difTime;
-	}
-
-	if(MouseScrollValue!=0)
-	{
-		//cout<<"Mausrad gedreht";
-		//xpos += MouseScrollValue;
-		MouseScrollValue = 0;
-	}
-	
-	if (Key1)
-	{	
-		leftclickaction = 1;
-	}
-
-	if (Key2)
-	{	
-		leftclickaction = 2;
-	}
-	if(Key3)
-	{
-		leftclickaction = 3;
-	}
-	if(Key4)
-	{
-		leftclickaction = 4;
-	}
-
-	if (KKeyDown)
-	{		
-	}
-
-	if (IKeyDown)
-	{	
-		//roundTime = 0;
-	}
-		
-	if (EscKeyDown)
-	{	 DSWindow.close();
-	}
-
-		glRotatef(xrot,1.0,0.0,0.0);  //rotate our camera on teh x-axis (left and right)
-    	glRotatef(yrot,0.0,1.0,0.0);  //rotate our camera on the y-axis (up and down)
-    	glTranslated(-xpos,-ypos,-zpos); //translate the screen to the position of our camera
-}
+#endif

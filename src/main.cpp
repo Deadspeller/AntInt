@@ -1,38 +1,36 @@
 #include <stdio.h>
+#include <iostream>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
-#include <GL/glew.h> // Include the GLEW header file 
-#include "timer.h"
-#include "texture.h"
-#include "menu.h"
-#include "hud.h"
-#include "block.h"
-#include "objectcreator.h"
-#include "leveldrawer.h"
-#include "levelmanager.h"
+#include <list>
+
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <GL/glew.h>
+
 #include "ant.h"
 #include "anthandler.h"
 #include "cameracalc.h"
+#include "hud.h"
+#include "leveldrawer.h"
+#include "levelmanager.h"
+#include "menu.h"
+#include "objectcreator.h"
+#include "square.h"
+#include "texture.h"
+#include "timer.h"
 #include "world.h"
-#include <iostream>
-#include <stdio.h>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <list>
-
-#include <GL/glew.h> // Include the GLEW header file  
 
 using namespace std;
 
-
 vector <vector <Square> > worldvector(52, vector<Square>(52)); //contains all informations about blocks, ants and food
 
-extern int MouseScrollValue;
+extern int mouseScrollValue;
 
 // Game Configurations
-int leftclickaction = 2;
+int leftClickAction = 2;
 float roundTime = 1;
 
 //world
@@ -46,7 +44,7 @@ const int maxblocks = 100;
 //Classes
 Ant antarray[maxants];
 Square blockarray[maxblocks];
-ObjectCreator objectcreator1;
+ObjectCreator objectCreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
 AntHill antHill1;
@@ -59,43 +57,44 @@ Timer maintimer;
 
 int xres = 640, yres = 480;	//size of the Window
 
-	//Fog
+//Fog
 GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};
 GLfloat density = 0.01;
-	//Light
+
+//Light
 GLfloat qaAmbientLight[] = {0.2,0.2,0.2,1.0};
 GLfloat qaDiffuseLight[] = {0.8,0.8,0.8,1.0};
 GLfloat qaSpecularLight[] = {1,1,1,1.0};
 GLfloat qaLightPosition[] = {50,50,10,1.0};
 GLfloat globalAmbient[] = { 0.2, 0.2, 0.2, 0.0 };
 
-	//Position and Direction of Camera
-float xpos = 0, ypos = 0, zpos = 0; 
+//Position and Direction of Camera
+float xpos = 0, ypos = 0, zpos = 0;
 float xrot = 0, yrot = 0, zrot = 0;
 
-	//Mouse-Help-Variables
+//Mouse-Help-Variables
 int diffx, diffy;
 float lastx, lasty; //position of the mouse-pointer
 sf::Vector2i center(xres/2, yres/2);
 float velocity = 0;
 
 void keyPressed(unsigned char, int, int);
-void keyPressedswitch(unsigned char, int, int);
+void keyPressedswitch (unsigned char, int, int);
 void keyUp(unsigned char, int, int);
-void keyUpswitch(unsigned char, int, int);
-
+void keyUpswitch (unsigned char, int, int);
 
 sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence", sf::Style::Default, sf::ContextSettings(32));
 
-void drawswitch() //change between menu and game  !!NOT IN USE!!
+void drawswitch () //change between menu and game  !!NOT IN USE!!
 {
-	if(menuplay == 1);	// Draw the Game
+    if (menuplay == 1);	// Draw the Game
 	else 
 	DrawMenu();			// Draw the Menu
 }
 
 
-void enableGlOptions (void) {
+void enableGlOptions (void)
+{
 	glEnable (GL_DEPTH_TEST);
    
 	//FOG
@@ -122,12 +121,10 @@ void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFa
     glFrustum( -fW, fW, -fH, fH, zNear, zFar );
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////
 
-
-int main (int argc, char **argv) {
+int main (int argc, char **argv)
+{
 	//Init with start Position
 	xpos=9;
  	ypos=9;
@@ -155,7 +152,7 @@ int main (int argc, char **argv) {
 		//calculate Time
 		maintimer.stop();
 		difTime = maintimer.getElapsedTimeInSec();
-		if(difTime > 0.1) difTime = 0;	//remove first time
+        if (difTime > 0.1) difTime = 0;	//remove first time
 		gesTime += difTime;
 		maintimer.start();
 		
@@ -190,92 +187,96 @@ int main (int argc, char **argv) {
 		MoveJumpKey |= JoystickInput.isButtonPressed(0, GP_LB);
 		//Mouse
 		LeftClickDown = MouseInput.isButtonPressed(sf::Mouse::Left);
-		//Joystick Axis
-		if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) < 0) MoveForwardKey = true;
-		if(JoystickInput.getAxisPosition(0, sf::Joystick::Y) > 0) MoveBackwardKey = true;
-		if(JoystickInput.getAxisPosition(0, sf::Joystick::X) > 0) MoveRightKey = true;
-		if(JoystickInput.getAxisPosition(0, sf::Joystick::X) < 0) MoveLeftKey = true;
+
+        //Joystick Axis
+        if (JoystickInput.getAxisPosition(0, sf::Joystick::Y) < 0) MoveForwardKey = true;
+        if (JoystickInput.getAxisPosition(0, sf::Joystick::Y) > 0) MoveBackwardKey = true;
+        if (JoystickInput.getAxisPosition(0, sf::Joystick::X) > 0) MoveRightKey = true;
+        if (JoystickInput.getAxisPosition(0, sf::Joystick::X) < 0) MoveLeftKey = true;
 	
-
-		if(xrot < -90) xrot = -90;
+        if (xrot < -90)
+            xrot = -90;
 		else
-		yrot = yrot + joystickyspeed * 0.2 * JoystickInput.getAxisPosition(0, sf::Joystick::Z);
+            yrot = yrot + joystickYspeed * 0.2 * JoystickInput.getAxisPosition(0, sf::Joystick::Z);
 
-		if(xrot > 90) xrot = 90;
+        if (xrot > 90)
+            xrot = 90;
 		else
-		xrot = xrot - joystickxspeed * 0.1 * JoystickInput.getAxisPosition(0, sf::Joystick::R);
-
+            xrot = xrot - joystickXspeed * 0.1 * JoystickInput.getAxisPosition(0, sf::Joystick::R);
 
 		while (DSWindow.pollEvent(Event))
 		{
-			if(Event.type == sf::Event::JoystickButtonPressed)
+            if (Event.type == sf::Event::JoystickButtonPressed)
 			{		
-				if(JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
+                if (JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
 			}
 			DSWindow.setKeyRepeatEnabled(false);
 			if (Event.type == sf::Event::KeyPressed)
 			{
-				if (Event.key.code == sf::Keyboard::K)
+                if (Event.key.code == sf::Keyboard::K)
 				{
                     levelManager1.saveFile();
-					if(roundTime > 0.1)
-					roundTime -= 0.05;
+                    if (roundTime > 0.1)
+                        roundTime -= 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
-				if (Event.key.code == sf::Keyboard::J)
+
+                if (Event.key.code == sf::Keyboard::J)
 				{
                     levelManager1.loadFile();
 					roundTime += 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
-				if (Event.key.code == sf::Keyboard::Z)
+
+                if (Event.key.code == sf::Keyboard::Z)
 				{
-					if(ypos > 4)
-					ypos -= 0.5;
+                    if (ypos > 4)
+                        ypos -= 0.5;
 				}
-				if (Event.key.code == sf::Keyboard::U)
+
+                if (Event.key.code == sf::Keyboard::U)
 				{
 					ypos += 0.5;
 				}
-				if (Event.key.code == sf::Keyboard::T)
+
+                if (Event.key.code == sf::Keyboard::T)
 				{
 					cout<<"Anthill Spawn"<<endl;
 					antHill1.ki();
 				}
-			}
+            }
 
-			// Close window : exit
-          if (Event.type == sf::Event::Closed)
-          	DSWindow.close();
+            // Close window : exit
+            if (Event.type == sf::Event::Closed)
+                DSWindow.close();
 
-		if(Event.type == sf::Event::MouseButtonPressed)	
-		{
-			if(Event.mouseButton.button == sf::Mouse::Left) 
-			switch(leftclickaction)
-			{
-				case 1:	
-						AntHandler("spawn");
-						break;
-				case 2: 
-						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 1);
-                        break;
-				case 3:
-						objectcreator1.createBlock(round(xpos+1), round(zpos+1), 2);
-                        break;
-				case 4:
-						objectcreator1.createHill(round(xpos+1), round(zpos+1));
-						antHill1.spawnHill(round(xpos)+1, round(zpos)+1);
-						break;
-			}
+            if (Event.type == sf::Event::MouseButtonPressed)
+            {
+                if (Event.mouseButton.button == sf::Mouse::Left)
+                switch (leftClickAction)
+                {
+                    case 1:
+                            AntHandler("spawn");
+                            break;
+                    case 2:
+                            objectCreator1.createBlock(round(xpos+1), round(zpos+1), 1);
+                            break;
+                    case 3:
+                            objectCreator1.createBlock(round(xpos+1), round(zpos+1), 2);
+                            break;
+                    case 4:
+                            objectCreator1.createHill(round(xpos+1), round(zpos+1));
+                            antHill1.spawnHill(round(xpos)+1, round(zpos)+1);
+                            break;
+                }
+            }
+
+            if (Event.type = sf::Event::MouseWheelMoved)
+                mouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
+            else
+                mouseScrollValue = 0;
 		}
 
-		if(Event.type = sf::Event::MouseWheelMoved)
-		{
-			MouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
-		}
-		else
-			MouseScrollValue = 0;
-		}
 ///////////////////End Input////////////////
 
      	//Clear Screen and set OpenGL Settings
@@ -299,6 +300,5 @@ int main (int argc, char **argv) {
      	// Finally, display the rendered frame on screen
      	DSWindow.display();
 	}
-
 return EXIT_SUCCESS;
 }

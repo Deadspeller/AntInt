@@ -8,14 +8,26 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 set(AntInt_SOURCES 
 	src/main.cpp
+
+	src/ant.cpp
+	src/anthill.cpp
+	src/anthandler.cpp
+	src/square.cpp
+	src/cameracalc.cpp
+	src/hud.cpp
+	src/leveldrawer.cpp
+	src/menu.cpp
+	src/objectcreator.cpp
+	src/texture.cpp
+	src/timer.cpp
+	src/world.cpp
 	src/levelmanager.cpp)
 
 set(AntInt_HEADERS 
 	src/ant.h
 	src/anthill.h
 	src/anthandler.h
-	src/block.h
-	src/blockhandler.h
+	src/square.h
 	src/cameracalc.h
 	src/hud.h
 	src/leveldrawer.h

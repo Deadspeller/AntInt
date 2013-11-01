@@ -1,10 +1,15 @@
 #ifndef LEVELMANAGER_H
 #define LEVELMANAGER_H
 
-#include "vector"
-#include "block.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <vector>
 
-extern vector < vector <Square> > worldvector;
+#include "square.h"
+
+extern std::vector < std::vector <Square> > worldvector;
 
 class LevelManager
 {
