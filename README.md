@@ -25,11 +25,9 @@ And following programms:
 Compiling:
 -------
 
-- `make install` to compile the game
 - `mkdir build && cd build/` to create a build directory and step into it
 - `cmake ..` to run cmake with the CMakeLists.txt from the folder above
 - `make` to compile
-- `make run` to start the game
 
 
 Controlls in the Game:
@@ -41,10 +39,13 @@ Controlls in the Game:
 - `U` - zoom out
 - `F`  -  faster Simulation
 - `G`  -  slower Simulation
+- `T`  -  spawn Ant on Hill
+- `L`  -  load Map
 - `ESC`  -  Exit-Game
 - `1`  -  Ant-Mode
 - `2`  -  Block-Mode
 - `3`  -  Food-Mode
+- `4`  -  AntHill-Mode
 - `LMouse`  -  Place something (Ant-Mode, Block-Mode, Food-Mode)
 - `RMouse`  -	
 
