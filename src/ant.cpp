@@ -12,6 +12,12 @@ void Ant::ki()
             cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;
         }
     }
+    if(antworldarray[1][1] ==2)
+    {
+        cout<<"Food left: "<<worldvector[xAntPosition][zAntPosition].food<<endl;
+
+        takeFood();
+    }
 
     switch (status)
     {
@@ -83,6 +89,18 @@ void Ant::ki()
                     status = 1;
                     break;
     }
+}
+
+int Ant::takeFood()
+{
+    if(foodbag < 10 && worldvector[xAntPosition][zAntPosition].food > 0)
+    {
+        foodbag += 1;
+        worldvector[xAntPosition][zAntPosition].food -= 1;
+        return 1;
+    }
+    else
+        return 0;
 }
 
 int Ant::antmove(int a)	//move the ant
@@ -212,6 +230,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
     if (antalive == 0) //if ant is not already alive
     {
         antalive = true;
+        foodbag = 0;
         gesTime = 0;
         yorigin = 0.0001;
 

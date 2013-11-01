@@ -76,6 +76,10 @@ bool LevelManager::loadFile()
         {
             istringstream (*itStr) >> tmpSquare.blockType; // convert to int and assign to blocktype
             tmpRow.push_back(tmpSquare);
+            if(tmpSquare.blockType == 2)    //set food to 100
+            {
+                tmpSquare.food = 100;
+            }
         }
         worldvector.push_back(tmpRow);
         tmpRow.clear();

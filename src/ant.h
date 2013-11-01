@@ -29,6 +29,7 @@ public:
     bool collision;
     float difTime, gesTime;
     bool antalive;
+    int foodbag;
     float yorigin, zorigin, xorigin; //where the ant started
 
     int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
@@ -43,6 +44,7 @@ public:
     void antcollision();
     void nearcheck();
     void antspawn(int x, int z);
+    int takeFood();
 
 };	//end class
 

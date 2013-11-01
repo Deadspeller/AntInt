@@ -11,7 +11,7 @@ void AntHill::ki()
     if(hillTime >= 3 && antVec.size() < 5)
     {
         hillTime = 0;
-        spawnAnt();
+        //spawnAnt();
     }
 
 
