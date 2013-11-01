@@ -72,6 +72,7 @@ GLfloat globalAmbient[] = { 0.2, 0.2, 0.2, 0.0 };
 //Position and Direction of Camera
 float xpos = 0, ypos = 0, zpos = 0;
 float xrot = 0, yrot = 0, zrot = 0;
+float xlook, zlook;
 
 //Mouse-Help-Variables
 int diffx, diffy;
@@ -130,8 +131,8 @@ int main (int argc, char **argv)
 	xpos=9;
  	ypos=9;
  	zpos=9;
-	xrot=80; //80°
-	yrot=135;	//135°
+    xrot=80; //80°
+    yrot=135;//135;	//135°
 
    // Set the color and depth clear values
    glClearDepth(1.f);
@@ -204,6 +205,10 @@ int main (int argc, char **argv)
 		else
             xrot = xrot - joystickXspeed * 0.1 * JoystickInput.getAxisPosition(0, sf::Joystick::R);
 
+        //calculate where the user is looking at
+        xlook = round ( xpos + (abs(cos(yrot*3.14/180))) * (tan((90-xrot)*3.14/180)*ypos) );
+        zlook = round ( zpos + (abs(cos(yrot*3.14/180))) * (tan((90-xrot)*3.14/180)*ypos) );
+
 		while (DSWindow.pollEvent(Event))
 		{
             if (Event.type == sf::Event::JoystickButtonPressed)
@@ -263,14 +268,14 @@ int main (int argc, char **argv)
                             AntHandler("spawn");
                             break;
                     case 2:
-                            objectCreator1.createBlock(round(xpos+1), round(zpos+1), 1);
+                            objectCreator1.createBlock(xlook, zlook, 1);
                             break;
                     case 3:
-                            objectCreator1.createBlock(round(xpos+1), round(zpos+1), 2);
+                            objectCreator1.createBlock(xlook, zlook, 2);
                             break;
                     case 4:
                             //objectCreator1.createHill(round(xpos+1), round(zpos+1));
-                            antHill1.setHill(round(xpos)+1, round(zpos)+1);
+                            antHill1.setHill(xlook, zlook);
                             objectCreator1.createHill(antHill1.xposition, antHill1.zposition);
                             break;
                 }
@@ -292,7 +297,7 @@ int main (int argc, char **argv)
  		glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
  		enableGlOptions();	//enable graphic-settings
 
-		cameracalc(difTime);	//move the camera
+        inputmanager(difTime);	//move camera etc
 		
 		world();		//draw the "World
 

@@ -24,7 +24,7 @@ float joystickXspeed = 0.1, joystickYspeed = 0.1;
 //Movement scale
 float upview;
 
-void cameracalc(float difTime)
+void inputmanager(float difTime)
 {
 
     if (MoveForwardKey)

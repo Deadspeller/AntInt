@@ -1,5 +1,7 @@
 #include "anthandler.h"
 
+extern float xlook, zlook;
+
 void AntHandler(string action)
 {
     if (action == "move")	//move the existing Ants
@@ -23,7 +25,7 @@ void AntHandler(string action)
         {
             if (antarray[antcounter].antalive == 0)
             {
-            antarray[antcounter].antspawn(xpos+1, zpos+1);
+            antarray[antcounter].antspawn(xlook, zlook);
             cout<<"antcounter "<<antcounter<<endl;
             antcounter = maxants;
 

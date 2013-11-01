@@ -41,6 +41,6 @@ extern float xrot, yrot, zrot;
 //Movement scale
 extern float upview;
 
-void cameracalc(float difTime);
+void inputmanager(float difTime);
 
 #endif
