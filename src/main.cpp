@@ -47,7 +47,8 @@ Square blockarray[maxblocks];
 ObjectCreator objectCreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
-AntHill antHill1;
+AntHill antHill1(round(xpos)+1, round(zpos)+1);
+//AntHill antHill1;
 float gesTime;
 float difTime;
 
@@ -146,7 +147,6 @@ int main (int argc, char **argv)
     perspectiveGL(90.f, 1.f, 1.f, 500.f);
 	LoadTextures();
 
-    
 	while (DSWindow.isOpen()) // Game loop
 	{		
 		//calculate Time
@@ -265,8 +265,9 @@ int main (int argc, char **argv)
                             objectCreator1.createBlock(round(xpos+1), round(zpos+1), 2);
                             break;
                     case 4:
-                            objectCreator1.createHill(round(xpos+1), round(zpos+1));
-                            antHill1.spawnHill(round(xpos)+1, round(zpos)+1);
+                            //objectCreator1.createHill(round(xpos+1), round(zpos+1));
+                            antHill1.setHill(round(xpos)+1, round(zpos)+1);
+                            objectCreator1.createHill(antHill1.xposition, antHill1.zposition);
                             break;
                 }
             }

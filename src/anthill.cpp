@@ -11,8 +11,17 @@ void AntHill::spawnAnt()
     antVec[antVec.size()-1].antspawn(xposition, zposition);
 }
 
-void AntHill::spawnHill(int x, int z)
+void AntHill::setHill(int x, int z)
 {
     xposition = x;
     zposition = z;
 }
+
+AntHill::AntHill(float x, float z)
+{
+    xposition = x;
+    zposition = z;
+
+}
+
+

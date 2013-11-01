@@ -14,9 +14,10 @@ public:
 	Ant tempAnt;
 	int xposition, zposition;
 
-    void spawnHill(int x, int z);
+    void setHill(int x, int z);
     void spawnAnt();
     void ki();
+    AntHill(float, float);
 };
 
 #endif
