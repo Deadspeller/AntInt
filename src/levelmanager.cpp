@@ -1,5 +1,7 @@
 #include "levelmanager.h"
 
+//extern std::vector < std::vector <Square> > worldvector;
+
 LevelManager::LevelManager()
 {
 //    std::vector< std::vector<worldstruct> >::iterator row;
@@ -44,6 +46,8 @@ bool LevelManager::loadFile()
 {
     std::ifstream mapFile;
     mapFile.open ("example.map");
+    if (!mapFile)
+        return 0;
 
     std::vector<std::string> lines;
     std::string str;
@@ -65,34 +69,18 @@ bool LevelManager::loadFile()
     worldvector.clear();
     for (it = lines.begin() + 4; it != lines.end(); it++)
     {
+        number.clear();
         split(*it,',' , number);
+
         for (itStr = number.begin(); itStr != number.end(); itStr++)
         {
-            std::stringstream out(*itStr);
-            out >> tmpSquare.blockType;
-//            cout << tmpSquare.blocktype << "+";
+            istringstream (*itStr) >> tmpSquare.blockType; // convert to int and assign to blocktype
             tmpRow.push_back(tmpSquare);
-
-//            out >> col->blocktype;
-//            if (col != row->end()-1)
-//                col++;
-//            else if (row != worldvector.end()-1)
-//            {
-//                row++;
-//                tmpRow.clear();
-//            }
-//            cout << *itStr << " + ";
         }
         worldvector.push_back(tmpRow);
         tmpRow.clear();
     }
 
-//    for (row = worldvector.begin(); row != worldvector.end(); row++)
-//    {
-//        mapFile << endl;
-//        for (col = row->begin(); col != row->end(); col++)
-//            mapFile << col->blocktype << ",";
-//    }
     mapFile.close();
 }
 

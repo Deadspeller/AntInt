@@ -9,7 +9,7 @@
 
 #include "square.h"
 
-extern std::vector < std::vector <Square> > worldvector;
+//extern std::vector < std::vector <Square> > worldvector;
 
 class LevelManager
 {
