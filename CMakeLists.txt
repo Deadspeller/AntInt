@@ -13,7 +13,7 @@ set(AntInt_SOURCES
 	src/anthill.cpp
 	src/anthandler.cpp
 	src/square.cpp
-	src/cameracalc.cpp
+        src/inputmanager.cpp
 	src/hud.cpp
 	src/leveldrawer.cpp
 	src/menu.cpp
@@ -28,7 +28,7 @@ set(AntInt_HEADERS
 	src/anthill.h
 	src/anthandler.h
 	src/square.h
-	src/cameracalc.h
+        src/inputmanager.h
 	src/hud.h
 	src/leveldrawer.h
 	src/menu.h

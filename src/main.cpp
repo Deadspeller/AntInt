@@ -12,7 +12,7 @@
 
 #include "ant.h"
 #include "anthandler.h"
-#include "cameracalc.h"
+#include "inputmanager.h"
 #include "hud.h"
 #include "leveldrawer.h"
 #include "levelmanager.h"
@@ -244,6 +244,10 @@ int main (int argc, char **argv)
 					cout<<"Anthill Spawn"<<endl;
 					antHill1.ki();
 				}
+                if (Event.key.code == sf::Keyboard::L)
+                {
+                    levelManager1.loadFile();
+                }
             }
 
             // Close window : exit

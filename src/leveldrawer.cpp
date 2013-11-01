@@ -20,8 +20,9 @@ void LevelDrawer::drawBlocks()
                 glTranslated(row - worldvector.begin(), 0, col - row->begin());
                 glScalef(0.5,0.5,0.5);
 
-                if(col->antHill)
+                if(col->antHill && false)
                 {
+                    cout<<"anthill"<<endl;
                     glColor3f(0.8,0.8,0.8);
                     glBegin(GL_POLYGON);
                     glVertex3f(-1, 0.001, -1);
