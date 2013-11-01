@@ -215,7 +215,7 @@ int main (int argc, char **argv)
 			{
                 if (Event.key.code == sf::Keyboard::K)
 				{
-                    levelManager1.saveFile();
+//                    levelManager1.saveFile();
                     if (roundTime > 0.1)
                         roundTime -= 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
@@ -223,7 +223,7 @@ int main (int argc, char **argv)
 
                 if (Event.key.code == sf::Keyboard::J)
 				{
-                    levelManager1.loadFile();
+//                    levelManager1.loadFile();
 					roundTime += 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
