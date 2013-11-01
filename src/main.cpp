@@ -298,6 +298,8 @@ int main (int argc, char **argv)
 
 		levelDrawer1.drawBlocks();
 
+        antHill1.ki();
+
 		AntHandler("move");	//move the Ants
 
 		DrawHUD();		//draw the HUD

@@ -7,8 +7,7 @@
 #include "ant.h"
 
 class AntHill
-{
-
+{    
 public:
     std::vector <Ant> antVec;
 	Ant tempAnt;

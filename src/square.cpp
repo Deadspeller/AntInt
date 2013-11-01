@@ -19,6 +19,7 @@ Square::Square(int typeblock, float xposi, float zposi)
         default:
                 blockType = 0;
                 food = 0;
+                antHill = 0;
                 break;
     }
 
@@ -28,5 +29,5 @@ Square::Square()
 {
     blockType = 0;
     food = 0;
-
+    antHill = 0;
 }
