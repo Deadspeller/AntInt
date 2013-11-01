@@ -18,7 +18,8 @@ void ObjectCreator::createBlock(float xwert, float zwert, int blocktype)
 
 void ObjectCreator::createHill(int x, int z)
 {
-    worldvector[x][z].blockType = 4;
+    worldvector[x][z].antHill = 1;
+    cout<<"should be 1: "<<worldvector[x][z].antHill<<endl;
 }
 
 void ObjectCreator::createAnt(float xpos, float zpos)

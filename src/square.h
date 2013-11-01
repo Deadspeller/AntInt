@@ -13,9 +13,10 @@ class Square
 {
 
 public:
-    int blockType;	// 0 = none, 1 = block, 2 = food
+    int blockType;	// 0 = none, 1 = block, 2 = food, 3 = anthill
     int food;
     int smell;
+    int antHill;
 //    Ant* ant;
 
     Square();

@@ -14,11 +14,22 @@ void LevelDrawer::drawBlocks()
     for (row = worldvector.begin(); row != worldvector.end(); row++)
         for (col = row->begin(); col != row->end(); col++)
         {
-            if (col->blockType == 1 || col->blockType == 2 || col->blockType == 4)
+            if (col->blockType == 1 || col->blockType == 2 || col->antHill == 1)
             {
                 glPushMatrix();
                 glTranslated(row - worldvector.begin(), 0, col - row->begin());
                 glScalef(0.5,0.5,0.5);
+
+                if(col->antHill)
+                {
+                    glColor3f(0.8,0.8,0.8);
+                    glBegin(GL_POLYGON);
+                    glVertex3f(-1, 0.001, -1);
+                    glVertex3f(1, 0.001, -1);
+                    glVertex3f(1, 0.001, 1);
+                    glVertex3f(-1, 0.001, 1);
+                    glEnd();
+                }
 
                 switch (col->blockType)
                 {
@@ -88,17 +99,6 @@ void LevelDrawer::drawBlocks()
                             glVertex3f(-1, 0.01, 1);
                             glEnd();
                             break;
-
-                    case 4: 	//AntHill
-                            glColor3f(0.8,0.8,0.8);
-                            glBegin(GL_POLYGON);
-                            glVertex3f(-1, 0.001, -1);
-                            glVertex3f(1, 0.001, -1);
-                            glVertex3f(1, 0.001, 1);
-                            glVertex3f(-1, 0.001, 1);
-                            glEnd();
-                            break;
-
 
                     default:
                             break;
