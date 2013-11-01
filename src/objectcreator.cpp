@@ -12,6 +12,7 @@ void ObjectCreator::createBlock(float xwert, float zwert, int blocktype)
     else
     {
     worldvector[xwert][zwert].blockType = blocktype;	// add Block
+    if(blocktype = 2)worldvector[xwert][zwert].food = 100;
     cout<<"create block"<<endl;
     }
 }

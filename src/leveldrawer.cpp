@@ -91,13 +91,20 @@ void LevelDrawer::drawBlocks()
 
                             break;
                     case 2: 	//Food
-                            glColor3f(1,1,0);
-                            glBegin(GL_POLYGON);
-                            glVertex3f(-1, 0.001, -1);
-                            glVertex3f(1, 0.001, -1);
-                            glVertex3f(1, 0.001, 1);
-                            glVertex3f(-1, 0.01, 1);
-                            glEnd();
+                            if(col->food > 0)
+                            {
+                                glColor3f(1,1,0);
+                                glBegin(GL_POLYGON);
+                                glVertex3f(-1, 0.001, -1);
+                                glVertex3f(1, 0.001, -1);
+                                glVertex3f(1, 0.001, 1);
+                                glVertex3f(-1, 0.01, 1);
+                                glEnd();
+                            }
+                            else
+                            {
+                                col->blockType = 0;
+                            }
                             break;
 
                     default:

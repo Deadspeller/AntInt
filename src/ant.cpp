@@ -14,8 +14,6 @@ void Ant::ki()
     }
     if(antworldarray[1][1] ==2)
     {
-        cout<<"Food left: "<<worldvector[xAntPosition][zAntPosition].food<<endl;
-
         takeFood();
     }
 
