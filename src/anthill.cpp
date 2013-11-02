@@ -20,11 +20,21 @@ void AntHill::ki()
 
 void AntHill::spawnAnt()
 {
-    antVec.push_back(tempAnt);
-    antVec[antVec.size()-1].antspawn(xposition, zposition);
-    antVec[antVec.size()-1].xhillorigin = &xposition;
-    antVec[antVec.size()-1].zhillorigin = &zposition;
-    cout<<"Ants: "<<antVec.size()<<endl;
+    if(food > 0)
+    {
+        food -= 5;
+        antVec.push_back(tempAnt);
+        antVec[antVec.size()-1].antspawn(xposition, zposition);
+        antVec[antVec.size()-1].xhillorigin = &xposition;
+        antVec[antVec.size()-1].zhillorigin = &zposition;
+        antVec[antVec.size()-1].anthillpointer = this;
+        cout<<"Ants: "<<antVec.size()<<endl;
+    }
+    else
+    {
+        cout<<"Not enough food"<<endl;
+    }
+
 }
 
 void AntHill::setHill(int x, int z)
@@ -37,7 +47,7 @@ AntHill::AntHill(float x, float z)
 {
     xposition = x;
     zposition = z;
-
+    food = 100;
 }
 
 

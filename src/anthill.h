@@ -12,6 +12,7 @@ public:
     std::vector <Ant> antVec;
 	Ant tempAnt;
 	int xposition, zposition;
+    int food;
 
     void setHill(int x, int z);
     void spawnAnt();

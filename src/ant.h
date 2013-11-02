@@ -10,13 +10,14 @@
 #include "timer.h"
 #include "square.h"
 
+
 class Square;
 extern std::vector < std::vector <Square> > worldvector;
+class AntHill;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
-
 extern float roundTime;
 
 using namespace std;
@@ -26,6 +27,8 @@ class Ant
 public:
     vector <vector <int> > antworldvector;
     int *xhillorigin, *zhillorigin;
+
+    AntHill *anthillpointer;
     int antworldarray[3][3];
     bool collision;
     float difTime, gesTime;
