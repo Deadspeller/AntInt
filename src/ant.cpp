@@ -11,6 +11,7 @@ void Ant::ki()
         {
             cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;
         }
+        cout<<"hillposition x: "<<*xhillorigin<<" z: "<<*zhillorigin<<endl;
     }
     if(antworldarray[1][1] ==2)
     {

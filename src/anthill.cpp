@@ -11,7 +11,7 @@ void AntHill::ki()
     if(hillTime >= 3 && antVec.size() < 5)
     {
         hillTime = 0;
-        //spawnAnt();
+        spawnAnt();
     }
 
 
@@ -22,6 +22,8 @@ void AntHill::spawnAnt()
 {
     antVec.push_back(tempAnt);
     antVec[antVec.size()-1].antspawn(xposition, zposition);
+    antVec[antVec.size()-1].xhillorigin = &xposition;
+    antVec[antVec.size()-1].zhillorigin = &zposition;
     cout<<"Ants: "<<antVec.size()<<endl;
 }
 

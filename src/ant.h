@@ -25,6 +25,7 @@ class Ant
 {
 public:
     vector <vector <int> > antworldvector;
+    int *xhillorigin, *zhillorigin;
     int antworldarray[3][3];
     bool collision;
     float difTime, gesTime;
