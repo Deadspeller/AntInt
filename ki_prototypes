@@ -91,3 +91,137 @@ nearcheck();
                     status = 1;
                     break;
     }
+
+
+
+//simple wayfinding
+
+    nearcheck();
+
+    if (done)
+    {
+        cout<<"lastmove: "<<lastmove<<endl;
+            if(i<5) status = 1;
+            else if(i<10) status = 3;
+            else if(i<15) status = 1;
+            else //find way back
+            {
+                if(*xhillorigin==xAntPosition && *zhillorigin==zAntPosition)
+                {
+                    i = 0;
+                    status = 1;
+                }
+                if(*xhillorigin<xAntPosition)    //hill is south
+                {
+                    if (antworldarray[1][2]==1) //south is block
+                    {
+                        if(*zhillorigin<zAntPosition)
+                        {
+                            status = 4;
+                        }
+                        else
+                        {
+                            status = 3;
+                        }
+                    }
+                    else
+                    if(lastmove != 1)
+                    {
+                        cout<<"lastmove != 1"<<lastmove<<endl;
+                        status = 2;
+                    }
+                }
+                if(*xhillorigin>xAntPosition)    //hill is north
+                {
+                    if (antworldarray[1][0]==1) //north is block
+                    {
+                        if(*zhillorigin<zAntPosition)
+                        {
+                            status = 4;
+                        }
+                        else
+                        {
+                            status = 3;
+                        }
+                    }
+                    else
+                    if(lastmove != 2)
+                    {
+                        cout<<"lastmove != 2"<<lastmove<<endl;
+                        status = 1;
+                    }
+                }
+                if(*zhillorigin<zAntPosition)    //hill is west
+                {
+                    if (antworldarray[0][1]==1) //west is block
+                    {
+                        if(*xhillorigin<xAntPosition)
+                        {
+                            status = 2;
+                        }
+                        else
+                        {
+                            status = 1;
+                        }
+                    }
+                    else
+                    if(lastmove != 3)
+                    {
+                        cout<<"lastmove != 3"<<lastmove<<endl;
+                        status = 4;
+                    }
+
+                }
+                if(*zhillorigin>zAntPosition)    //hill is east
+                {
+                    if (antworldarray[2][1]==1) //east is block
+                    {
+                        if(*xhillorigin<xAntPosition)
+                        {
+                            status = 2;
+                        }
+                        else
+                        {
+                            status = 1;
+                        }
+                    }
+                    else
+                    if(lastmove != 4)
+                    {
+                        cout<<"lastmove != 4"<<lastmove<<endl;
+                        status = 3;
+                    }
+                }
+            }
+            lastmove = status;
+            cout<<"newmove: "<<lastmove<<endl;
+
+        if(i<15)i++;
+
+    }
+
+
+    switch (status)
+    {
+        case 1:
+                done = antmove(1);
+                break;
+
+        case 2:
+                done = antmove(2);
+                break;
+
+        case 3:
+                done = antmove(3);
+                break;
+
+        case 4:
+                done = antmove(4);
+                break;
+
+        default:
+                    status = 1;
+                    break;
+    }
+
+
