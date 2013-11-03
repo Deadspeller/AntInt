@@ -30,6 +30,10 @@ public:
 
     AntHill *anthillpointer;
     int antworldarray[3][3];
+    vector <vector <Square> > antWorldVec;
+
+    int antViewRows, antViewColumns;
+
     bool collision;
     float difTime, gesTime;
     bool antalive;
