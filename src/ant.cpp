@@ -8,10 +8,16 @@ void Ant::ki()
 
             if (done)
             {
-                cout<<"Vector: "<<endl;
-                cout<<antWorldVec[0][0].blockType<<" "<<antWorldVec[0][1].blockType<<" "<<antWorldVec[0][2].blockType<<endl;
-                cout<<antWorldVec[1][0].blockType<<" "<<antWorldVec[1][1].blockType<<" "<<antWorldVec[1][2].blockType<<endl;
-                cout<<antWorldVec[2][0].blockType<<" "<<antWorldVec[2][1].blockType<<" "<<antWorldVec[2][2].blockType<<endl;
+                cout<<"Vector"<<endl;
+                for(int a = 0; a < antViewRows; a++)
+                {
+                    for(int b = 0; b <antViewColumns; b++)
+                    {
+                        cout<<antWorldVec[a][b].blockType<<" ";
+                    }
+                    cout<<endl;
+
+                }
             }
             if(antworldarray[1][1] ==2)
             {
@@ -281,15 +287,15 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         zorigin = zAntPosition;
         xorigin = xAntPosition;
 
-        antViewRows = 3;
-        antViewColumns = 3;
+        antViewRows = 5;
+        antViewColumns = 5;
 
         Square tmpSquare;
         vector <Square> tmprow;
 
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < antViewRows; i++)
         {
-            for(int b = 0; b < 3; b++)
+            for(int b = 0; b < antViewColumns; b++)
             {
                 tmprow.push_back(tmpSquare);
             }
