@@ -1,0 +1,93 @@
+Einfacher Algorithmus
+laufe rechts bei wand
+laufe links/rechts wenn futter nebenan
+nehme futter auf wenn man drauf steht
+////////////////////////////////
+
+
+nearcheck();
+
+    if (done)
+    {
+        cout<<"antarray"<<endl;
+        for (int a = 0; a < 3; a++)
+        {
+            cout<<antworldarray[0][a]<<antworldarray[1][a]<<antworldarray[2][a]<<endl;
+        }
+       //cout<<"pointer xpos: "<<anthillpointer->xposition<<endl;
+    }
+    if(antworldarray[1][1] ==2)
+    {
+        takeFood();
+    }
+
+    switch (status)
+    {
+        case 1:
+                if (antworldarray[1][0]==1) //front is block
+                {
+                    status = 3;
+                }
+                if (antworldarray[2][1]==2) //right is food
+                {
+                    status = 3;
+                }
+                if (antworldarray[0][1]==2) //left is food
+                {
+                    status = 4;
+                }
+                done = antmove(1);
+                break;
+
+        case 2:
+                if (antworldarray[1][2]==1) //front is block
+                {
+                    status = 4;
+                }
+                if (antworldarray[0][1]==2) //right is food
+                {
+                    status = 4;
+                }
+                if (antworldarray[2][1]==2) //left is food
+                {
+                    status = 3;
+                }
+                done = antmove(2);
+                break;
+
+        case 3:
+                if (antworldarray[2][1]==1) //front is block
+                {
+                    status = 2;
+                }
+                if (antworldarray[1][2]==2) //right is food
+                {
+                    status = 2;
+                }
+                if (antworldarray[1][0]==2) //left is food
+                {
+                    status = 1;
+                }
+                done = antmove(3);
+                break;
+
+        case 4:
+                if (antworldarray[0][1]==1) //front is block
+                {
+                    status = 1;
+                }
+                if (antworldarray[1][0]==2) //right is food
+                {
+                    status = 1;
+                }
+                if (antworldarray[1][2]==2) //left is food
+                {
+                    status = 2;
+                }
+                done = antmove(4);
+                break;
+
+        default:
+                    status = 1;
+                    break;
+    }

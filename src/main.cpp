@@ -47,7 +47,7 @@ Square blockarray[maxblocks];
 ObjectCreator objectCreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
-AntHill antHill1(round(xpos)+1, round(zpos)+1);
+AntHill antHill1(15, 15);
 
 //AntHill antHill1;
 float gesTime;
