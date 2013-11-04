@@ -14,8 +14,12 @@ void AntHill::ki()
         spawnAnt();
     }
 
-
-    hillTimer.start();
+    if(hillTime >= 1)
+    {
+        hillTime = 0;
+        cout<<"HilFood: "<<food<<endl;
+    }
+        hillTimer.start();
 }
 
 void AntHill::spawnAnt()
@@ -27,6 +31,7 @@ void AntHill::spawnAnt()
         antVec[antVec.size()-1].antspawn(xposition, zposition);
         antVec[antVec.size()-1].xhillorigin = &xposition;
         antVec[antVec.size()-1].zhillorigin = &zposition;
+        antVec[antVec.size()-1].hillfood = &food;
         antVec[antVec.size()-1].anthillpointer = this;
         cout<<"Ants: "<<antVec.size()<<endl;
     }

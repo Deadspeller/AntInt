@@ -2,130 +2,188 @@
 
 int i = 0;
 int lastmove = 0;
+int foodfound = 0;
+int done = 1;
+int status = 0;
 void Ant::ki()
 {
-        nearcheck();
+    nearcheck();
 
-            if (done)
+        if (done)
+        {
+            if(!foodfound)
             {
-                cout<<"Vector"<<endl;
-                for(int a = 0; a < antViewRows; a++)
-                {
-                    for(int b = 0; b <antViewColumns; b++)
-                    {
-                        cout<<antWorldVec[a][b].blockType<<" ";
-                    }
-                    cout<<endl;
-
-                }
-            }
-            if(antworldarray[1][1] ==2)
-            {
-                takeFood();
-            }
-
-            switch (status)
-            {
-                case 1:
-                        if (antworldarray[1][0]==1) //front is block
-                        {
-                            status = 3;
-                        }
-                        if (antworldarray[2][1]==2) //right is food
-                        {
-                            status = 3;
-                        }
-                        if (antworldarray[0][1]==2) //left is food
-                        {
-                            status = 4;
-                        }
-                        done = antmove(1);
-                        break;
-
-                case 2:
-                        if (antworldarray[1][2]==1) //front is block
-                        {
-                            status = 4;
-                        }
-                        if (antworldarray[0][1]==2) //right is food
-                        {
-                            status = 4;
-                        }
-                        if (antworldarray[2][1]==2) //left is food
-                        {
-                            status = 3;
-                        }
-                        done = antmove(2);
-                        break;
-
-                case 3:
-                        if (antworldarray[2][1]==1) //front is block
-                        {
-                            status = 2;
-                        }
-                        if (antworldarray[1][2]==2) //right is food
-                        {
-                            status = 2;
-                        }
-                        if (antworldarray[1][0]==2) //left is food
-                        {
-                            status = 1;
-                        }
-                        done = antmove(3);
-                        break;
-
-                case 4:
-                        if (antworldarray[0][1]==1) //front is block
-                        {
-                            status = 1;
-                        }
-                        if (antworldarray[1][0]==2) //right is food
-                        {
-                            status = 1;
-                        }
-                        if (antworldarray[1][2]==2) //left is food
-                        {
-                            status = 2;
-                        }
-                        done = antmove(4);
-                        break;
-
-                default:
-                            status = 1;
-                            break;
-            }
-
-
-    switch (status)
-    {
-        case 1:
-                done = antmove(1);
-                break;
-
-        case 2:
-                done = antmove(2);
-                break;
-
-        case 3:
-                done = antmove(3);
-                break;
-
-        case 4:
-                done = antmove(4);
-                break;
-
-        default:
+                if(i==0)
                     status = 1;
+                else if(i>0 && i<5)
+                    status = 4;
+                else if(i==5)
+                    status = 1;
+                else if(i>5 && i<15)
+                    status = 3;
+                else if(i==15)
+                    status = 1;
+                else if(i>15 && i<25)
+                    status = 4;
+                else if(i==25)
+                    status = 1;
+                else if(i>25 && i<35)
+                    status = 3;
+                else if(i==35)
+                    status = 1;
+                else if(i>35 && i<45)
+                    status = 4;
+
+            }
+
+                if(antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)].food > 0)
+                {
+                    takeFood();
+                    foodfound = 1;
+                }
+
+                if(foodfound)
+                {
+                    if(*xhillorigin==xAntPosition && *zhillorigin==zAntPosition)
+                    {
+                        i = 0;
+                        status = 1;
+                        if(bringFood())
+                            cout<<"food zurückgebracht"<<endl;
+                        foodfound = 0;
+                    }
+                    if(*xhillorigin<xAntPosition)    //hill is south
+                    {
+                        if (antworldarray[1][2]==1) //south is block
+                        {
+                            if(*zhillorigin<zAntPosition)
+                            {
+                                status = 4;
+                            }
+                            else
+                            {
+                                status = 3;
+                            }
+                        }
+                        else
+                        if(lastmove != 1)
+                        {
+                            status = 2;
+                        }
+                    }
+                    if(*xhillorigin>xAntPosition)    //hill is north
+                    {
+                        if (antworldarray[1][0]==1) //north is block
+                        {
+                            if(*zhillorigin<zAntPosition)
+                            {
+                                status = 4;
+                            }
+                            else
+                            {
+                                status = 3;
+                            }
+                        }
+                        else
+                        if(lastmove != 2)
+                        {
+                            status = 1;
+                        }
+                    }
+                    if(*zhillorigin<zAntPosition)    //hill is west
+                    {
+                        if (antworldarray[0][1]==1) //west is block
+                        {
+                            if(*xhillorigin<xAntPosition)
+                            {
+                                status = 2;
+                            }
+                            else
+                            {
+                                status = 1;
+                            }
+                        }
+                        else
+                        if(lastmove != 3)
+                        {
+                            status = 4;
+                        }
+
+                    }
+                    if(*zhillorigin>zAntPosition)    //hill is east
+                    {
+                        if (antworldarray[2][1]==1) //east is block
+                        {
+                            if(*xhillorigin<xAntPosition)
+                            {
+                                status = 2;
+                            }
+                            else
+                            {
+                                status = 1;
+                            }
+                        }
+                        else
+                        if(lastmove != 4)
+                        {
+                            status = 3;
+                        }
+                    }
+                }
+                lastmove = status;
+
+            if(i<24)i++;
+            else i = 5;
+
+        }
+
+
+        switch (status)
+        {
+            case 1:
+                    done = antmove(1);
                     break;
-    }
+
+            case 2:
+                    done = antmove(2);
+                    break;
+
+            case 3:
+                    done = antmove(3);
+                    break;
+
+            case 4:
+                    done = antmove(4);
+                    break;
+
+            default:
+                        status = 1;
+                        break;
+        }
 }
 
 int Ant::takeFood()
 {
     if(foodbag < 10 && worldvector[xAntPosition][zAntPosition].food > 0)
     {
-        foodbag += 1;
-        worldvector[xAntPosition][zAntPosition].food -= 1;
+        while(foodbag < 10)
+        {
+            foodbag += 1;
+            worldvector[xAntPosition][zAntPosition].food -= 1;
+        }
+
+        return 1;
+    }
+    else
+        return 0;
+}
+
+int Ant::bringFood()
+{
+    if(foodbag > 0 && xAntPosition == *xhillorigin && zAntPosition == *zhillorigin)
+    {
+        *hillfood += foodbag;
+        foodbag = 0;
         return 1;
     }
     else
@@ -139,7 +197,6 @@ int Ant::antmove(int a)	//move the ant
 
         if (gesTime >= roundTime)
         {
-            cout<<"Ant Status: "<<a<<endl;
             oldxAntPosition = xAntPosition;
             oldzAntPosition = zAntPosition;
 
@@ -287,8 +344,8 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         zorigin = zAntPosition;
         xorigin = xAntPosition;
 
-        antViewRows = 5;
-        antViewColumns = 5;
+        antViewRows = 3;
+        antViewColumns = 3;
 
         Square tmpSquare;
         vector <Square> tmprow;

@@ -22,7 +22,7 @@ void LevelDrawer::drawBlocks()
 
                 if(col->antHill)
                 {
-                    glColor3f(0.8,0.8,0.8);
+                    glColor3f(0.7,0.6,0.6);
                     glBegin(GL_POLYGON);
                     glVertex3f(-1, 0.001, -1);
                     glVertex3f(1, 0.001, -1);
@@ -93,12 +93,13 @@ void LevelDrawer::drawBlocks()
                     case 2: 	//Food
                             if(col->food > 0)
                             {
+                                float foodsize = (col->food)*0.005+0.5;
                                 glColor3f(1,1,0);
                                 glBegin(GL_POLYGON);
-                                glVertex3f(-1, 0.001, -1);
-                                glVertex3f(1, 0.001, -1);
-                                glVertex3f(1, 0.001, 1);
-                                glVertex3f(-1, 0.01, 1);
+                                glVertex3f(-foodsize, 0.001, -foodsize);
+                                glVertex3f(foodsize, 0.001, -foodsize);
+                                glVertex3f(foodsize, 0.001, foodsize);
+                                glVertex3f(-foodsize, 0.01, foodsize);
                                 glEnd();
                             }
                             else

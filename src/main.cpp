@@ -25,17 +25,19 @@
 
 using namespace std;
 
-vector <vector <Square> > worldvector(52, vector<Square>(52)); //contains all informations about blocks, ants and food
+
 
 extern int mouseScrollValue;
 
 // Game Configurations
 int leftClickAction = 2;
-float roundTime = 1;
+float roundTime = 0.7;
 
 //world
 int xworldsize = 30;
 int zworldsize = 30;
+
+vector <vector <Square> > worldvector(xworldsize, vector<Square>(zworldsize)); //contains all informations about blocks, ants and food
 
 //Ants
 const int maxants = 100;
@@ -48,6 +50,7 @@ ObjectCreator objectCreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
 AntHill antHill1(15, 15);
+
 
 //AntHill antHill1;
 float gesTime;
@@ -134,6 +137,8 @@ int main (int argc, char **argv)
  	zpos=9;
     xrot=80; //80°
     yrot=135;//135;	//135°
+
+    objectCreator1.createHill(15, 15);
 
    // Set the color and depth clear values
    glClearDepth(1.f);

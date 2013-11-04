@@ -26,7 +26,7 @@ class Ant
 {
 public:
     vector <vector <int> > antworldvector;
-    int *xhillorigin, *zhillorigin;
+    int *xhillorigin, *zhillorigin, *hillfood;
 
     AntHill *anthillpointer;
     int antworldarray[3][3];
@@ -44,8 +44,8 @@ public:
     int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
     Timer AntTimer;
 
-    int status;
-    int done ;
+    //int status;
+    //int done ;
 
     void ki();
     int antmove(int a);
@@ -53,6 +53,7 @@ public:
     void nearcheck();
     void antspawn(int x, int z);
     int takeFood();
+    int bringFood();
 
 };	//end class
 
