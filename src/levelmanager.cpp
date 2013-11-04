@@ -14,19 +14,6 @@ LevelManager::LevelManager()
 //        }
 }
 
-void LevelManager::update()
-{
-    std::vector< std::vector<Square> >::iterator row;
-    std::vector<Square>::iterator col;
-    for (row = worldvector.begin(); row != worldvector.end(); row++)
-        for (col = row->begin(); col != row->end(); col++)
-        {
-            tempBlock = *new Square(col->block, row - worldvector.begin(), col - row->begin());
-//            cout << col->blocktype << "-";
-            blockVec.push_back(tempBlock);
-        }
-}
-
 std::vector<Square> LevelManager::blockVector()
 {
     return blockVec;
