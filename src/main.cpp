@@ -37,7 +37,7 @@ float roundTime = 0.7;
 int xworldsize = 30;
 int zworldsize = 30;
 
-vector <vector <Square> > worldvector(xworldsize, vector<Square>(zworldsize)); //contains all informations about blocks, ants and food
+vector <vector <Square> > worldvector(xworldsize+1, vector<Square>(zworldsize+1)); //contains all informations about blocks, ants and food
 
 //Ants
 const int maxants = 100;
