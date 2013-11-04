@@ -1,6 +1,28 @@
 #include "ant.h"
 #include <stdlib.h>
 
+Ant::Ant():
+    foodbag(0),
+    gesTime(0),
+    antViewRows(3),
+    antViewColumns(3)
+{
+    //initialization stuff here
+
+    Square tmp;
+    tmp.block = -1; //set to 'unseen by ant'
+    std::vector <Square> tmpRow;
+
+    for (size_t x = 0; x < xworldsize; x++)
+    {
+        tmpRow.clear();
+        for (size_t y = 0; y < zworldsize; y++)
+            tmpRow.push_back(tmp);
+        antMapVec.push_back(tmpRow);
+    }
+
+}
+
 void Ant::ki()
 {
 
@@ -160,7 +182,7 @@ void Ant::ki()
                     }
                     if(*xhillorigin<xAntPosition)    //hill is south
                     {
-                        if (antworldarray[1][2]==1) //south is block
+                        if (antWorldVec.at(1).at(2).block == 1) //south is block
                         {
                             if(*zhillorigin<zAntPosition)
                             {
@@ -179,7 +201,7 @@ void Ant::ki()
                     }
                     if(*xhillorigin>xAntPosition)    //hill is north
                     {
-                        if (antworldarray[1][0]==1) //north is block
+                        if (antWorldVec.at(1).at(0).block == 1) //north is block
                         {
                             if(*zhillorigin<zAntPosition)
                             {
@@ -198,7 +220,7 @@ void Ant::ki()
                     }
                     if(*zhillorigin<zAntPosition)    //hill is west
                     {
-                        if (antworldarray[0][1]==1) //west is block
+                        if (antWorldVec.at(0).at(1).block == 1) //west is block
                         {
                             if(*xhillorigin<xAntPosition)
                             {
@@ -218,7 +240,7 @@ void Ant::ki()
                     }
                     if(*zhillorigin>zAntPosition)    //hill is east
                     {
-                        if (antworldarray[2][1]==1) //east is block
+                        if (antWorldVec.at(2).at(1).block == 1) //east is block
                         {
                             if(*xhillorigin<xAntPosition)
                             {
@@ -410,25 +432,28 @@ void Ant::nearcheck()
     {
         for (int c = 0-floor(antViewColumns/2); c <= floor(antViewColumns/2); c++)
         {
-            tmpRow.push_back(worldvector[xAntPosition+r][zAntPosition+c]);
+            tmpRow.push_back(worldvector.at(xAntPosition+r).at(zAntPosition+c));
+            antMapVec.at(xAntPosition + r).at(zAntPosition + c) = worldvector[xAntPosition+r][zAntPosition+c];
+            //std::cout << antMapVec.at(xAntPosition + r).at(zAntPosition + c).block << " ";
         }
+        //std::cout << std::endl;
         antWorldVec.push_back(tmpRow);
         tmpRow.clear();
     }
 
+    //test output of created map (spaw only one ant!)
 
-    antworldarray[0][0] = worldvector[xAntPosition+1][zAntPosition-1].block;
-    antworldarray[0][1] = worldvector[xAntPosition][zAntPosition-1].block;
-    antworldarray[0][2] = worldvector[xAntPosition-1][zAntPosition-1].block;
+//    std::vector< std::vector<Square> >::iterator row;
+//    std::vector<Square>::iterator col;
 
-    antworldarray[1][0] = worldvector[xAntPosition+1][zAntPosition].block;
-    antworldarray[1][1] = worldvector[xAntPosition][zAntPosition].block;
-    antworldarray[1][2] = worldvector[xAntPosition-1][zAntPosition].block;
-
-    antworldarray[2][0] = worldvector[xAntPosition+1][zAntPosition+1].block;
-    antworldarray[2][1] = worldvector[xAntPosition][zAntPosition+1].block;
-    antworldarray[2][2] = worldvector[xAntPosition-1][zAntPosition+1].block;
-
+//    for (row = antMapVec.begin(); row != antMapVec.end(); row++)
+//    {
+//        cout << std::endl;
+//        for (col = row->begin(); col != row->end(); col++)
+//            cout << col->block << ",";
+//    }
+//    cout << std::endl;
+//    cout << std::endl;
 }
 
 void Ant::antspawn(int x, int z) //spawn a new ant
@@ -454,8 +479,8 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         zorigin = zAntPosition;
         xorigin = xAntPosition;
 
-        antViewRows = 3;
-        antViewColumns = 3;
+        antViewRows = 5;
+        antViewColumns = 5;
         i = 0;
         lastmove = 0;
         foodfound = 0;
@@ -473,7 +498,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
             }
             antWorldVec.push_back(tmprow);
         }
-
 
         //worldvector[xAntPosition][zAntPosition].block = 3;
         cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
