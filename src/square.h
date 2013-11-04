@@ -22,7 +22,7 @@ public:
     Ant* ant;
 
     Square();
-    Square(int typeblock, float xposi, float zposi);
+    Square(int typeblock);
 };
 
 #endif
