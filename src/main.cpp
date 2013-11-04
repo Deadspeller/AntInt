@@ -316,7 +316,7 @@ int main (int argc, char **argv)
 
 		AntHandler("move");	//move the Ants
 
-		DrawHUD();		//draw the HUD
+        DrawHUD();		//draw the HUD
 
      	// Finally, display the rendered frame on screen
      	DSWindow.display();

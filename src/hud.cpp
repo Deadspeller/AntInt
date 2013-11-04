@@ -29,13 +29,13 @@ void DrawHUD()
 
     glPushMatrix(); 	//map
     glLoadIdentity();
-    glColor3f( 1.0f, 1.0f, 0.0f );
-    glBegin( GL_LINE_LOOP);
-    glVertex2f( -95.0f, 95.0f );
-    glVertex2f( -95.0f, 50.0f );
-    glVertex2f( -50.0f, 50.0f );
-    glVertex2f( -50.0f, 95.0f );
-    glEnd();
+//    glColor3f( 1.0f, 1.0f, 0.0f );
+//    glBegin( GL_LINE_LOOP);
+//    glVertex2f( -95.0f, 95.0f );
+//    glVertex2f( -95.0f, 50.0f );
+//    glVertex2f( -50.0f, 50.0f );
+//    glVertex2f( -50.0f, 95.0f );
+//    glEnd();
 
     //aim
     glColor3f( 0.0f, 1.0f, 0.0f );
