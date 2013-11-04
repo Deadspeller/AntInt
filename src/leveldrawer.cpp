@@ -107,7 +107,6 @@ void LevelDrawer::drawBlocks()
                                 col->block = 0;
                             }
                             break;
-
                     default:
                             break;
 

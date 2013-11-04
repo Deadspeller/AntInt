@@ -75,11 +75,22 @@ bool LevelManager::loadFile()
         for (itStr = number.begin(); itStr != number.end(); itStr++)
         {
             istringstream (*itStr) >> tmpSquare.block; // convert to int and assign to blocktype
-            tmpRow.push_back(tmpSquare);
+
+            //0 = nothing, 1 = block, 2 = food, 3 = wood, 4 = hill
             if(tmpSquare.block == 2)    //set food to 100
             {
                 tmpSquare.food = 100;
             }
+            if(tmpSquare.block == 4)    //hill
+            {
+                tmpSquare.antHill = 1;
+            }
+            else
+                tmpSquare.antHill = 0;
+
+            tmpRow.push_back(tmpSquare);
+
+
         }
         worldvector.push_back(tmpRow);
         tmpRow.clear();

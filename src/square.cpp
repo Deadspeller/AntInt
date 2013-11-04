@@ -16,6 +16,10 @@ Square::Square(int typeblock, float xposi, float zposi)
         case 3: //ant
 
                 break;
+        case 4:
+                block = 0;
+                food = 0;
+                break;
         default:
                 block = 0;
                 food = 0;
@@ -30,4 +34,5 @@ Square::Square()
     block = 0;
     food = 0;
     antHill = 0;
+
 }
