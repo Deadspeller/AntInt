@@ -1,7 +1,13 @@
 #include "square.h"
 
-Square::Square(int typeblock, float xposi, float zposi)
+Square::Square(int typeblock, float xposi, float zposi):
+    block(0),
+    food(0),
+    smell(0),
+    antHill(0),
+    ant(0)
 {
+
     switch (typeblock)
     {
         case 1: //block
