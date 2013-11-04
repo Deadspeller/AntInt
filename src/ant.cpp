@@ -1,5 +1,5 @@
 #include "ant.h"
-
+#include <stdlib.h>
 
 void Ant::ki()
 {
@@ -9,7 +9,101 @@ void Ant::ki()
 
         if (done)
         {
+
+            cout<<"startdirection: "<<startdirection<<endl;
+            if(sqrt(pow(abs(*xhillorigin-xAntPosition),2) + pow(abs(*zhillorigin-zAntPosition),2)) >= 13)
+            {
+                foodfound = 1; //too far away, go back
+            }
+
             if(!foodfound)
+            {
+                switch(startdirection)
+                {
+                    case 1:
+                            if(i>=0 && i<=1)
+                                status = 1;
+                            else if(i>1 && i<6)
+                                status = 4;
+                            else if(i>=6 && i<=8)
+                                status = 1;
+                            else if(i>8 && i<18)
+                                status = 3;
+                            else if(i>=18 && i<=20)
+                                status = 1;
+                            else if(i>20 && i<30)
+                                status = 4;
+                            break;
+                    case 2:
+                            if(i>=0 && i<=1)
+                                status = 2;
+                            else if(i>1 && i<6)
+                                status = 4;
+                            else if(i>=6 && i<=8)
+                                status = 2;
+                            else if(i>8 && i<18)
+                                status = 3;
+                            else if(i>=18 && i<=20)
+                                status = 2;
+                            else if(i>20 && i<30)
+                                status = 4;
+                            break;
+                    case 3:
+                            if(i>=0 && i<=1)
+                                status = 3;
+                            else if(i>1 && i<6)
+                                status = 2;
+                            else if(i>=6 && i<=8)
+                                status = 3;
+                            else if(i>8 && i<18)
+                                status = 1;
+                            else if(i>=18 && i<=20)
+                                status = 3;
+                            else if(i>20 && i<30)
+                                status = 2;
+                            break;
+                    case 4:
+                            if(i>=0 && i<=1)
+                                status = 4;
+                            else if(i>1 && i<6)
+                                status = 1;
+                            else if(i>=6 && i<=8)
+                                status = 4;
+                            else if(i>8 && i<18)
+                                status = 2;
+                            else if(i>=18 && i<=20)
+                                status = 4;
+                            else if(i>20 && i<30)
+                                status = 1;
+                            break;
+                }
+
+
+
+                if (antWorldVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
+                {
+                    cout<<"north"<<endl;
+                    status = 1;
+                }
+                if (antWorldVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
+                {
+                    cout<<"south"<<endl;
+                    status = 2;
+                }
+                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
+                {
+                    cout<<"west"<<endl;
+                    status = 4;
+                }
+                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
+                {
+                    cout<<"east"<<endl;
+                    status = 3;
+                }
+
+            }
+
+            /*if(!foodfound)
             {
                 if(i>=0 && i<=1)
                     status = 1;
@@ -46,7 +140,7 @@ void Ant::ki()
                     status = 3;
                 }
 
-            }
+            }*/
 
                 if(antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)].food > 0)
                 {
@@ -347,8 +441,12 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         gesTime = 0;
         yorigin = 0.0001;
 
-        //zAntPosition = round(zpos+1);
-        //xAntPosition = round(xpos+1);
+        /* initialize random seed: */
+        srand (time(NULL));
+
+        /* generate secret number between 1 and 10: */
+        startdirection = rand() % 4 + 1;
+
         xAntPosition = x;
         zAntPosition = z;
         yAntPosition = 0.001;

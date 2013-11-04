@@ -39,6 +39,7 @@ public:
     int foodfound;
     int done;
     int status;
+    int startdirection;
 
 
 
