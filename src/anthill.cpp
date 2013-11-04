@@ -14,11 +14,6 @@ void AntHill::ki()
         spawnAnt();
     }
 
-    if(hillTime >= 1)
-    {
-        hillTime = 0;
-        cout<<"HilFood: "<<food<<endl;
-    }
         hillTimer.start();
 }
 

@@ -1,29 +1,27 @@
 #include "ant.h"
 
-int i = 0;
-int lastmove = 0;
-int foodfound = 0;
-int done = 1;
-int status = 0;
+
 void Ant::ki()
 {
+
+
     nearcheck();
 
         if (done)
         {
             if(!foodfound)
             {
-                if(i==0)
+                if(i>=0 && i<=1)
                     status = 1;
-                else if(i>0 && i<5)
+                else if(i>1 && i<6)
                     status = 4;
-                else if(i==5)
+                else if(i>=6 && i<=8)
                     status = 1;
-                else if(i>5 && i<15)
+                else if(i>8 && i<18)
                     status = 3;
-                else if(i==15)
+                else if(i>=18 && i<=20)
                     status = 1;
-                else if(i>15 && i<25)
+                else if(i>20 && i<30)
                     status = 4;
                 else if(i==25)
                     status = 1;
@@ -33,6 +31,27 @@ void Ant::ki()
                     status = 1;
                 else if(i>35 && i<45)
                     status = 4;
+
+                if (antWorldVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
+                {
+                    cout<<"north"<<endl;
+                    status = 1;
+                }
+                if (antWorldVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
+                {
+                    cout<<"south"<<endl;
+                    status = 2;
+                }
+                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
+                {
+                    cout<<"west"<<endl;
+                    status = 4;
+                }
+                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
+                {
+                    cout<<"east"<<endl;
+                    status = 3;
+                }
 
             }
 
@@ -132,8 +151,8 @@ void Ant::ki()
                 }
                 lastmove = status;
 
-            if(i<24)i++;
-            else i = 5;
+            if(i<29)i++;
+            else i = 6;
 
         }
 
@@ -346,6 +365,11 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         antViewRows = 3;
         antViewColumns = 3;
+        i = 0;
+        lastmove = 0;
+        foodfound = 0;
+        done = 1;
+        status = 0;
 
         Square tmpSquare;
         vector <Square> tmprow;

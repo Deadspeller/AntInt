@@ -34,6 +34,14 @@ public:
 
     int antViewRows, antViewColumns;
 
+    int i;
+    int lastmove;
+    int foodfound;
+    int done;
+    int status;
+
+
+
     bool collision;
     float difTime, gesTime;
     bool antalive;
