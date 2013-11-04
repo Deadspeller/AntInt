@@ -23,14 +23,7 @@ void Ant::ki()
                     status = 1;
                 else if(i>20 && i<30)
                     status = 4;
-                else if(i==25)
-                    status = 1;
-                else if(i>25 && i<35)
-                    status = 3;
-                else if(i==35)
-                    status = 1;
-                else if(i>35 && i<45)
-                    status = 4;
+
 
                 if (antWorldVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
                 {

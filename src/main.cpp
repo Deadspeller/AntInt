@@ -136,9 +136,9 @@ int main (int argc, char **argv)
 {
 	//Init with start Position
     xpos=9;
-    ypos=12;
+    ypos=18;
     zpos=9;
-    xrot=80; //80°
+    xrot=50; //80°
     yrot=135; //135°
 
     objectCreator1.createHill(15, 15);
@@ -154,7 +154,7 @@ int main (int argc, char **argv)
     // Setup a perspective projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    perspectiveGL(60.f, (1.f * xres / yres), 1.f, 500.f);
+    perspectiveGL(40.f, (1.f * xres / yres), 1.f, 500.f);
 	LoadTextures();
 
 	while (DSWindow.isOpen()) // Game loop
