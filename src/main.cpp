@@ -60,7 +60,10 @@ Timer maintimer;
 
 //--OpenGL Variables--
 
-int xres = 640, yres = 480;	//size of the Window
+//int xres = 640, yres = 480;	//size of the Window
+int xres = 800, yres = 600;	//size of the Window
+//int xres = 1280, yres = 1024;	//size of the Window
+//int xres = 1920, yres = 1080;	//size of the Window
 
 //Fog
 GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};
@@ -132,26 +135,26 @@ void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFa
 int main (int argc, char **argv)
 {
 	//Init with start Position
-	xpos=9;
- 	ypos=9;
- 	zpos=9;
+    xpos=9;
+    ypos=12;
+    zpos=9;
     xrot=80; //80°
-    yrot=135;//135;	//135°
+    yrot=135; //135°
 
     objectCreator1.createHill(15, 15);
 
-   // Set the color and depth clear values
-   glClearDepth(1.f);
-   glClearColor(0.f, 0.f, 0.f, 0.f);
+    // Set the color and depth clear values
+    glClearDepth(1.f);
+    glClearColor(0.f, 0.f, 0.f, 0.f);
 
-    // Enable Z-buffer read and write
+    // Enable Z-buffer read and writeca
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
 
     // Setup a perspective projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    perspectiveGL(90.f, 1.f, 1.f, 500.f);
+    perspectiveGL(60.f, (1.f * xres / yres), 1.f, 500.f);
 	LoadTextures();
 
 	while (DSWindow.isOpen()) // Game loop
