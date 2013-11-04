@@ -21,7 +21,7 @@ void LevelManager::update()
     for (row = worldvector.begin(); row != worldvector.end(); row++)
         for (col = row->begin(); col != row->end(); col++)
         {
-            tempBlock = *new Square(col->blockType, row - worldvector.begin(), col - row->begin());
+            tempBlock = *new Square(col->block, row - worldvector.begin(), col - row->begin());
 //            cout << col->blocktype << "-";
             blockVec.push_back(tempBlock);
         }
@@ -74,9 +74,9 @@ bool LevelManager::loadFile()
 
         for (itStr = number.begin(); itStr != number.end(); itStr++)
         {
-            istringstream (*itStr) >> tmpSquare.blockType; // convert to int and assign to blocktype
+            istringstream (*itStr) >> tmpSquare.block; // convert to int and assign to blocktype
             tmpRow.push_back(tmpSquare);
-            if(tmpSquare.blockType == 2)    //set food to 100
+            if(tmpSquare.block == 2)    //set food to 100
             {
                 tmpSquare.food = 100;
             }
@@ -103,7 +103,7 @@ bool LevelManager::saveFile()
     {
         mapFile << std::endl;
         for (col = row->begin(); col != row->end(); col++)
-            mapFile << col->blockType << ",";
+            mapFile << col->block << ",";
     }
     mapFile.close();
 }

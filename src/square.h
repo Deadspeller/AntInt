@@ -9,15 +9,17 @@ extern float colobjects[6][4];
 
 using namespace std;
 
+class Ant;
+
 class Square
 {
 
 public:
-    int blockType;	// 0 = none, 1 = block, 2 = food, 3 = anthill
+    int block;	// 0 = none, 1 = block
     int food;
     int smell;
     int antHill;
-//    Ant* ant;
+    Ant* ant;
 
     Square();
     Square(int typeblock, float xposi, float zposi);

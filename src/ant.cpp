@@ -243,8 +243,8 @@ int Ant::antmove(int a)	//move the ant
                 zAntPosition = oldzAntPosition;
             }
 
-            //worldvector[oldxAntPosition][oldzAntPosition].blockType = 0;
-            //worldvector[xAntPosition][zAntPosition].blockType = 3;
+            //worldvector[oldxAntPosition][oldzAntPosition].block = 0;
+            //worldvector[xAntPosition][zAntPosition].block = 3;
             gesTime = 0;
 
             return 1;
@@ -307,7 +307,7 @@ void Ant::antcollision()
 
     if (xAntPosition < 50 && zAntPosition < 50)
     if (xAntPosition > 0 && zAntPosition > 0)
-    if (worldvector[xAntPosition][zAntPosition].blockType == 1)
+    if (worldvector[xAntPosition][zAntPosition].block == 1)
     {
         collision = true;
     }
@@ -330,17 +330,17 @@ void Ant::nearcheck()
     }
 
 
-    antworldarray[0][0] = worldvector[xAntPosition+1][zAntPosition-1].blockType;
-    antworldarray[0][1] = worldvector[xAntPosition][zAntPosition-1].blockType;
-    antworldarray[0][2] = worldvector[xAntPosition-1][zAntPosition-1].blockType;
+    antworldarray[0][0] = worldvector[xAntPosition+1][zAntPosition-1].block;
+    antworldarray[0][1] = worldvector[xAntPosition][zAntPosition-1].block;
+    antworldarray[0][2] = worldvector[xAntPosition-1][zAntPosition-1].block;
 
-    antworldarray[1][0] = worldvector[xAntPosition+1][zAntPosition].blockType;
-    antworldarray[1][1] = worldvector[xAntPosition][zAntPosition].blockType;
-    antworldarray[1][2] = worldvector[xAntPosition-1][zAntPosition].blockType;
+    antworldarray[1][0] = worldvector[xAntPosition+1][zAntPosition].block;
+    antworldarray[1][1] = worldvector[xAntPosition][zAntPosition].block;
+    antworldarray[1][2] = worldvector[xAntPosition-1][zAntPosition].block;
 
-    antworldarray[2][0] = worldvector[xAntPosition+1][zAntPosition+1].blockType;
-    antworldarray[2][1] = worldvector[xAntPosition][zAntPosition+1].blockType;
-    antworldarray[2][2] = worldvector[xAntPosition-1][zAntPosition+1].blockType;
+    antworldarray[2][0] = worldvector[xAntPosition+1][zAntPosition+1].block;
+    antworldarray[2][1] = worldvector[xAntPosition][zAntPosition+1].block;
+    antworldarray[2][2] = worldvector[xAntPosition-1][zAntPosition+1].block;
 
 }
 
@@ -384,7 +384,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         }
 
 
-        //worldvector[xAntPosition][zAntPosition].blocktype = 3;
+        //worldvector[xAntPosition][zAntPosition].block = 3;
         cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
         cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
     }

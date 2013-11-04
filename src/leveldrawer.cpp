@@ -14,7 +14,7 @@ void LevelDrawer::drawBlocks()
     for (row = worldvector.begin(); row != worldvector.end(); row++)
         for (col = row->begin(); col != row->end(); col++)
         {
-            if (col->blockType == 1 || col->blockType == 2 || col->antHill == 1)
+            if (col->block == 1 || col->block == 2 || col->antHill == 1)
             {
                 glPushMatrix();
                 glTranslated(row - worldvector.begin(), 0, col - row->begin());
@@ -31,7 +31,7 @@ void LevelDrawer::drawBlocks()
                     glEnd();
                 }
 
-                switch (col->blockType)
+                switch (col->block)
                 {
                     case 1: 	//Block
                             glColor3f(0.8,0.8,0.8);
@@ -104,7 +104,7 @@ void LevelDrawer::drawBlocks()
                             }
                             else
                             {
-                                col->blockType = 0;
+                                col->block = 0;
                             }
                             break;
 

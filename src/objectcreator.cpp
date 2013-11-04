@@ -4,14 +4,14 @@ using namespace std;
 
 void ObjectCreator::createBlock(float xwert, float zwert, int blocktype)
 {
-    if (worldvector[xwert][zwert].blockType == 1  || worldvector[xwert][zwert].blockType == 2)
+    if (worldvector[xwert][zwert].block == 1  || worldvector[xwert][zwert].block == 2)
     {
-        worldvector[xwert][zwert].blockType = 0;	//delete Block
+        worldvector[xwert][zwert].block = 0;	//delete Block
         cout<<"delete block"<<endl;
     }
     else
     {
-    worldvector[xwert][zwert].blockType = blocktype;	// add Block
+    worldvector[xwert][zwert].block = blocktype;	// add Block
     if(blocktype = 2)worldvector[xwert][zwert].food = 100;
     cout<<"create block"<<endl;
     }
