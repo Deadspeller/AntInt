@@ -19,7 +19,7 @@ void Ant::ki()
                     status = 1;
                 else if(i>8 && i<18)
                     status = 3;
-                else if(i>=18 && i<=20)
+                else if(i>s=18 && i<=20)
                     status = 1;
                 else if(i>20 && i<30)
                     status = 4;

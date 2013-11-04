@@ -5,7 +5,7 @@ Square::Square(int typeblock, float xposi, float zposi)
     switch (typeblock)
     {
         case 1: //block
-                blockType = 1;
+                block = 1;
                 food = 0;
                 break;
 
@@ -17,7 +17,7 @@ Square::Square(int typeblock, float xposi, float zposi)
 
                 break;
         default:
-                blockType = 0;
+                block = 0;
                 food = 0;
                 antHill = 0;
                 break;
@@ -27,7 +27,7 @@ Square::Square(int typeblock, float xposi, float zposi)
 
 Square::Square()
 {
-    blockType = 0;
+    block = 0;
     food = 0;
     antHill = 0;
 }

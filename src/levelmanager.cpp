@@ -74,9 +74,9 @@ bool LevelManager::loadFile()
 
         for (itStr = number.begin(); itStr != number.end(); itStr++)
         {
-            istringstream (*itStr) >> tmpSquare.blockType; // convert to int and assign to blocktype
+            istringstream (*itStr) >> tmpSquare.block; // convert to int and assign to blocktype
             tmpRow.push_back(tmpSquare);
-            if(tmpSquare.blockType == 2)    //set food to 100
+            if(tmpSquare.block == 2)    //set food to 100
             {
                 tmpSquare.food = 100;
             }
