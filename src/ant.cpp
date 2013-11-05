@@ -479,8 +479,8 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         zorigin = zAntPosition;
         xorigin = xAntPosition;
 
-        antViewRows = 5;
-        antViewColumns = 5;
+        antViewRows = 3;
+        antViewColumns = 3;
         i = 0;
         lastmove = 0;
         foodfound = 0;

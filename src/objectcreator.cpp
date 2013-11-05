@@ -22,8 +22,11 @@ void ObjectCreator::createBlock(size_t xwert, size_t zwert, int blocktype)
 
 void ObjectCreator::createHill(size_t x, size_t z)
 {
-    worldvector.at(x).at(z).antHill = 1;
-    cout<<"should be 1: "<<worldvector.at(x).at(z).antHill<<endl;
+    if (x < worldvector.size() && z < worldvector.at(0).size()) // check if in vector
+    {
+        worldvector.at(x).at(z).antHill = 1;
+        cout<<"should be 1: "<<worldvector.at(x).at(z).antHill<<endl;
+    }
 }
 
 void ObjectCreator::createAnt(size_t xpos, size_t zpos)
