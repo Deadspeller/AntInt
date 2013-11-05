@@ -7,8 +7,6 @@ LevelDrawer::LevelDrawer()
 
 void LevelDrawer::drawBlocks()
 {
-//        levelManager1.update(); // nur test! sollte eigtl dort aufgerufen werden wo dem worldvec ein neuer block hinzugefügt wird!
-
     std::vector< std::vector<Square> >::iterator row;
     std::vector<Square>::iterator col;
     for (row = worldvector.begin(); row != worldvector.end(); row++)
