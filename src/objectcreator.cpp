@@ -2,28 +2,31 @@
 
 using namespace std;
 
-void ObjectCreator::createBlock(float xwert, float zwert, int blocktype)
+void ObjectCreator::createBlock(size_t xwert, size_t zwert, int blocktype)
 {
-    if (worldvector[xwert][zwert].block == 1  || worldvector[xwert][zwert].block == 2)
+    if (xwert < worldvector.size() && zwert < worldvector.at(0).size()) // check if in vector
     {
-        worldvector[xwert][zwert].block = 0;	//delete Block
-        cout<<"delete block"<<endl;
-    }
-    else
-    {
-    worldvector[xwert][zwert].block = blocktype;	// add Block
-    if(blocktype = 2)worldvector[xwert][zwert].food = 100;
-    cout<<"create block"<<endl;
+        if (worldvector.at(xwert).at(zwert).block == 1  || worldvector.at(xwert).at(zwert).block == 2)
+        {
+            worldvector.at(xwert).at(zwert).block = 0;	//delete Block
+            cout<<"delete block"<<endl;
+        }
+        else
+        {
+            worldvector.at(xwert).at(zwert).block = blocktype;	// add Block
+            if(blocktype = 2)worldvector.at(xwert).at(zwert).food = 100;
+                cout<<"create block"<<endl;
+        }
     }
 }
 
-void ObjectCreator::createHill(int x, int z)
+void ObjectCreator::createHill(size_t x, size_t z)
 {
-    worldvector[x][z].antHill = 1;
-    cout<<"should be 1: "<<worldvector[x][z].antHill<<endl;
+    worldvector.at(x).at(z).antHill = 1;
+    cout<<"should be 1: "<<worldvector.at(x).at(z).antHill<<endl;
 }
 
-void ObjectCreator::createAnt(float xpos, float zpos)
+void ObjectCreator::createAnt(size_t xpos, size_t zpos)
 {
 //    worldvector[xpos][zpos];
 }
