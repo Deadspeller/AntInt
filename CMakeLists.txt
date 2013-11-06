@@ -10,6 +10,7 @@ set(AntInt_SOURCES
 	src/main.cpp
 
 	src/ant.cpp
+	src/antki.cpp
 	src/anthill.cpp
 	src/anthandler.cpp
 	src/square.cpp
