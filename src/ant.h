@@ -37,10 +37,11 @@ public:
 
     void antspawn(int x, int z);
     void ki();
+vector <vector <Square> > antMapVec;
+vector <vector <Square> > antViewVec;
 
-private:
-    vector <vector <Square> > antWorldVec;
-    vector <vector <Square> > antMapVec;
+
+
 
     int antViewRows, antViewColumns;
 
@@ -50,6 +51,7 @@ private:
     int done;
     int status;
     int startdirection;
+private:
 
     bool collision;
     float difTime, gesTime;

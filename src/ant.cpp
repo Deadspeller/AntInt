@@ -10,7 +10,7 @@ Ant::Ant():
     //initialization stuff here
 
     Square tmp;
-    tmp.block = -1; //set to 'unseen by ant'
+    tmp.block = 0; //set to 'unseen by ant'
     std::vector <Square> tmpRow;
 
     for (size_t x = 0; x < xworldsize; x++)
@@ -20,6 +20,7 @@ Ant::Ant():
             tmpRow.push_back(tmp);
         antMapVec.push_back(tmpRow);
     }
+    cout<<"zWorldsize: "<<zworldsize<<endl;
 
 }
 
@@ -162,7 +163,7 @@ void Ant::nearcheck()
 {
 
     std::vector<Square> tmpRow;
-    antWorldVec.clear();
+    antViewVec.clear();
     for (int r = floor(antViewRows/2); r >= 0-floor(antViewRows/2); r--)
     {
         for (int c = 0-floor(antViewColumns/2); c <= floor(antViewColumns/2); c++)
@@ -172,7 +173,7 @@ void Ant::nearcheck()
             //std::cout << antMapVec.at(xAntPosition + r).at(zAntPosition + c).block << " ";
         }
         //std::cout << std::endl;
-        antWorldVec.push_back(tmpRow);
+        antViewVec.push_back(tmpRow);
         tmpRow.clear();
     }
 
@@ -231,7 +232,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
             {
                 tmprow.push_back(tmpSquare);
             }
-            antWorldVec.push_back(tmprow);
+            antViewVec.push_back(tmprow);
         }
 
         //worldvector[xAntPosition][zAntPosition].block = 3;

@@ -262,6 +262,26 @@ int main (int argc, char **argv)
                 {
                     levelManager1.loadFile();
                 }
+                if (Event.key.code == sf::Keyboard::O)
+                {
+                    levelManager1.saveFile();
+                }
+                if(Event.key.code == sf::Keyboard::P)
+                {
+                    std::ofstream antViewFile;
+                    cout<<"File Output"<<endl;
+                    antViewFile.open ("antview.txt");
+                    antViewFile << "Ant Mind Map" << std::endl;
+                    antViewFile << "Map size: " << antHill1.antVec[0].antMapVec.size() << " X " << antHill1.antVec[0].antMapVec[0].size() << std::endl;
+
+                    for (int a = 0; a < antHill1.antVec[0].antMapVec.size(); a++)
+                    {
+                        antViewFile << std::endl;
+                        for (int b = 0; b < antHill1.antVec[0].antMapVec[0].size(); b++)
+                            antViewFile << antHill1.antVec[0].antMapVec[a][b].block << "|";
+                    }
+                    antViewFile.close();
+                }
             }
 
             // Close window : exit
