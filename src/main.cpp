@@ -318,6 +318,8 @@ int main (int argc, char **argv)
 
         DrawHUD();		//draw the HUD
 
+        if(1/difTime > 40)cout<<"difTime: "<<difTime<<" FPS: "<<1/difTime<<endl;
+
      	// Finally, display the rendered frame on screen
      	DSWindow.display();
 	}

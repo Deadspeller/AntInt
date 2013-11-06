@@ -3,14 +3,10 @@
 
 void Ant::ki()
 {
-
-
     nearcheck();
 
         if (done)
         {
-
-            cout<<"startdirection: "<<startdirection<<endl;
             if(sqrt(pow(abs(*xhillorigin-xAntPosition),2) + pow(abs(*zhillorigin-zAntPosition),2)) >= 13)
             {
                 foodfound = 1; //too far away, go back
@@ -103,44 +99,6 @@ void Ant::ki()
 
             }
 
-            /*if(!foodfound)
-            {
-                if(i>=0 && i<=1)
-                    status = 1;
-                else if(i>1 && i<6)
-                    status = 4;
-                else if(i>=6 && i<=8)
-                    status = 1;
-                else if(i>8 && i<18)
-                    status = 3;
-                else if(i>=18 && i<=20)
-                    status = 1;
-                else if(i>20 && i<30)
-                    status = 4;
-
-
-                if (antWorldVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
-                {
-                    cout<<"north"<<endl;
-                    status = 1;
-                }
-                if (antWorldVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
-                {
-                    cout<<"south"<<endl;
-                    status = 2;
-                }
-                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
-                {
-                    cout<<"west"<<endl;
-                    status = 4;
-                }
-                if (antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
-                {
-                    cout<<"east"<<endl;
-                    status = 3;
-                }
-
-            }*/
 
                 if(antWorldVec[floor(antViewRows/2)][floor(antViewColumns/2)].food > 0)
                 {
