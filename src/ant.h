@@ -20,17 +20,27 @@ extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 extern float roundTime;
 
+extern int xworldsize, zworldsize;
+
 using namespace std;
 
 class Ant
 {
+
 public:
+    Ant();
+    AntHill *anthillpointer;
     vector <vector <int> > antworldvector;
     int *xhillorigin, *zhillorigin, *hillfood;
 
-    AntHill *anthillpointer;
-    int antworldarray[3][3];
+    bool antalive;
+
+    void antspawn(int x, int z);
+    void ki();
+
+private:
     vector <vector <Square> > antWorldVec;
+    vector <vector <Square> > antMapVec;
 
     int antViewRows, antViewColumns;
 
@@ -41,11 +51,9 @@ public:
     int status;
     int startdirection;
 
-
-
     bool collision;
     float difTime, gesTime;
-    bool antalive;
+
     int foodbag;
     float yorigin, zorigin, xorigin; //where the ant started
 
@@ -53,14 +61,11 @@ public:
     int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
     Timer AntTimer;
 
-    //int status;
-    //int done ;
-
-    void ki();
     int antmove(int a);
     void antcollision();
     void nearcheck();
-    void antspawn(int x, int z);
+    void updateMap();
+
     int takeFood();
     int bringFood();
 

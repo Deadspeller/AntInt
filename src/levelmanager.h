@@ -17,7 +17,6 @@ public:
     LevelManager();
     bool loadFile();
     bool saveFile();
-    void update();
     std::vector<Square> blockVector();
 
 private:

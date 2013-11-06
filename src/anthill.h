@@ -17,7 +17,7 @@ public:
     void setHill(int x, int z);
     void spawnAnt();
     void ki();
-    AntHill(float, float);
+    AntHill(int, int);
 };
 
 #endif

@@ -14,19 +14,6 @@ LevelManager::LevelManager()
 //        }
 }
 
-void LevelManager::update()
-{
-    std::vector< std::vector<Square> >::iterator row;
-    std::vector<Square>::iterator col;
-    for (row = worldvector.begin(); row != worldvector.end(); row++)
-        for (col = row->begin(); col != row->end(); col++)
-        {
-            tempBlock = *new Square(col->block, row - worldvector.begin(), col - row->begin());
-//            cout << col->blocktype << "-";
-            blockVec.push_back(tempBlock);
-        }
-}
-
 std::vector<Square> LevelManager::blockVector()
 {
     return blockVec;
@@ -90,11 +77,26 @@ bool LevelManager::loadFile()
 
             tmpRow.push_back(tmpSquare);
 
-
         }
         worldvector.push_back(tmpRow);
         tmpRow.clear();
     }
+
+    xworldsize = worldvector.size();
+    zworldsize = worldvector.at(0).size();
+
+    //setting up the "walls"
+    for (size_t i = 1; i < zworldsize; i++)
+        worldvector.at(i).at(0).block = 1;
+
+    for (size_t i = 1; i < xworldsize; i++)
+        worldvector.at(0).at(i).block = 1;
+
+    for (size_t i = 1; i < zworldsize; i++)
+        worldvector.at(i).at(xworldsize - 1).block = 1;
+
+    for (size_t i = 1; i < xworldsize; i++)
+        worldvector.at(zworldsize - 1).at(i).block = 1;
 
     mapFile.close();
 }

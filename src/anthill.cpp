@@ -39,14 +39,16 @@ void AntHill::spawnAnt()
 
 void AntHill::setHill(int x, int z)
 {
-    xposition = x;
-    zposition = z;
+    if (x < worldvector.size() && z < worldvector.at(0).size())
+    {
+        xposition = x;
+        zposition = z;
+    }
 }
 
-AntHill::AntHill(float x, float z)
+AntHill::AntHill(int x, int z)
 {
-    xposition = x;
-    zposition = z;
+    setHill(x,z);
     food = 100;
 }
 

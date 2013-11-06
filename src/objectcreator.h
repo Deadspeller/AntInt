@@ -14,9 +14,9 @@ class ObjectCreator        //class for all classes, Wall-Blocks and Food-Blocks
 {
 
 public:        
-    void createBlock(float xwert, float zwert, int blocktype);
-    void createHill(int x, int z);
-    void createAnt(float xpos, float zpos);
+    void createBlock(size_t xwert, size_t zwert, int blocktype);
+    void createHill(size_t x, size_t z);
+    void createAnt(size_t xpos, size_t zpos);
                 
 }; //end Class
 

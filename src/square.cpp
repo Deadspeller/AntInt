@@ -1,6 +1,6 @@
 #include "square.h"
 
-Square::Square(int typeblock, float xposi, float zposi):
+Square::Square(int typeblock):
     block(0),
     food(0),
     smell(0),
