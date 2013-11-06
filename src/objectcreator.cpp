@@ -13,9 +13,12 @@ void ObjectCreator::createBlock(size_t xwert, size_t zwert, int blocktype)
         }
         else
         {
+            if(blocktype == 1)
             worldvector.at(xwert).at(zwert).block = blocktype;	// add Block
-            if(blocktype = 2)worldvector.at(xwert).at(zwert).food = 100;
-                cout<<"create block"<<endl;
+            if(blocktype == 2)
+            worldvector.at(xwert).at(zwert).food = 100;
+
+            cout<<"create block"<<endl;
         }
     }
 }

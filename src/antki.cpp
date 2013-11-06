@@ -96,18 +96,22 @@ void Ant::ki()
 
                 if (antViewVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
                 {
+                    cout<<"food found"<<endl;
                     status = 1;
                 }
                 if (antViewVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
                 {
+                    cout<<"food found"<<endl;
                     status = 2;
                 }
                 if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
                 {
+                    cout<<"food found"<<endl;
                     status = 4;
                 }
                 if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
                 {
+                    cout<<"food found"<<endl;
                     status = 3;
                 }
 

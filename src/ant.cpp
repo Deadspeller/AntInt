@@ -20,7 +20,6 @@ Ant::Ant():
             tmpRow.push_back(tmp);
         antMapVec.push_back(tmpRow);
     }
-    cout<<"zWorldsize: "<<zworldsize<<endl;
 
 }
 

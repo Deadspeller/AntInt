@@ -68,6 +68,7 @@ bool LevelManager::loadFile()
             {
                 tmpSquare.food = 100;
             }
+            else tmpSquare.food = 0;
             if(tmpSquare.block == 4)    //hill
             {
                 tmpSquare.antHill = 1;
