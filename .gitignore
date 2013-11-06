@@ -19,6 +19,7 @@
 *.old
 *.orig
 *cache.txt
+*antview.txt
 
 # directories
 *build/
