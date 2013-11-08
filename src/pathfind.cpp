@@ -1,9 +1,8 @@
 #include "pathfind.h"
 #include <queue>
 #include "node.h"
-#include <QString>
-#include <QDebug>
 #include <iostream>
+#include <stdlib.h>
 
 /** Pathfinding (A* algo) using Manhatten heuristics and assuming a monotonic, consistent
 *   heuristic (the enemies do not change position)
@@ -55,23 +54,23 @@ pathFind::pathFind(){
     xB = 14;
     yB = 12;
 
-    qDebug() <<"Map Size (X,Y): "<<n<<","<<m<<endl;
-    qDebug()<<"Start: "<<xA<<","<<yA<<endl;
-    qDebug()<<"Finish: "<<xB<<","<<yB<<endl;
+    std::cout <<"Map Size (X,Y): "<<n<<","<<m<<std::endl;
+    std::cout<<"Start: "<<xA<<","<<yA<<std::endl;
+    std::cout<<"Finish: "<<xB<<","<<yB<<std::endl;
 
 
     // get the route
     clock_t start = clock();
-    QString route=calculatePath(xA, yA, xB, yB);
-    if(route=="") qDebug() <<"An empty route generated!"<<endl;
+    string route=calculatePath(xA, yA, xB, yB);
+    if(route=="") std::cout <<"An empty route generated!"<<std::endl;
     clock_t end = clock();
     double time_elapsed = double(end - start);
-    qDebug()<<"Time to calculate the route (ms): "<<time_elapsed<<endl;
-    qDebug()<<"Route:"<<endl;
-    qDebug()<<route<<endl<<endl;
+    std::cout<<"Time to calculate the route (ms): "<<time_elapsed<<std::endl;
+    std::cout<<"Route:"<<std::endl;
+    std::cout<<route<<std::endl<<std::endl;
 }
 
-QString pathFind::calculatePath(const int & xStart, const int & yStart,const int & xFinish, const int & yFinish){
+string pathFind::calculatePath(const int & xStart, const int & yStart,const int & xFinish, const int & yFinish){
     /** why do we maintain a priority queue?
     *   it's for maintaining the open list: everytime we acces the open list we need to find the node with the lowest
     *   fscore. A priority queue is a sorted list so we simply have to grab (pop) the first item of the list everytime
@@ -116,7 +115,7 @@ QString pathFind::calculatePath(const int & xStart, const int & yStart,const int
         if (currentNode->getxPos()==xFinish && currentNode->getyPos()==yFinish){
             //quit searching if goal is reached
             //return generated path from finish to start
-            QString path="";
+            string path="";
             int x,y,direction; //in cpp you don't need to declare variables at the top compared to c
             //currentNode is now the goalNode
             x=currentNode->getxPos();

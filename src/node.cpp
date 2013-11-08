@@ -72,6 +72,6 @@ const int & node::estimateDistance(const int & xDest, const int & yDest) const{
 *   argument; it advantage is that because of the friend function the operand order can be reversed
 *   this doesn't really looks to favor our application; so should I use it or not?
 **/
-bool operator<(const node & a, const node & b){
+bool operator(const node & a, const node & b){
     return a.getPriority() > b.getPriority();
 }
