@@ -10,7 +10,6 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
     if (done)
     {
-
         if(sqrt(pow(abs(*xhillorigin-xAntPosition),2) + pow(abs(*zhillorigin-zAntPosition),2)) >= 13)
         {
             foodfound = 1; //too far away, go back
@@ -18,63 +17,62 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
         if(!foodfound)
         {
-
             switch(startdirection)
             {
                 case 1:
-                        if(i>=0 && i<=1)
+                        if(waytick>=0 && waytick<=1)
                             status = 1;
-                        else if(i>1 && i<6)
+                        else if(waytick>1 && waytick<6)
                             status = 4;
-                        else if(i>=6 && i<=8)
+                        else if(waytick>=6 && waytick<=8)
                             status = 1;
-                        else if(i>8 && i<18)
+                        else if(waytick>8 && waytick<18)
                             status = 3;
-                        else if(i>=18 && i<=20)
+                        else if(waytick>=18 && waytick<=20)
                             status = 1;
-                        else if(i>20 && i<30)
+                        else if(waytick>20 && waytick<30)
                             status = 4;
                         break;
                 case 2:
-                        if(i>=0 && i<=1)
+                        if(waytick>=0 && waytick<=1)
                             status = 2;
-                        else if(i>1 && i<6)
+                        else if(waytick>1 && waytick<6)
                             status = 4;
-                        else if(i>=6 && i<=8)
+                        else if(waytick>=6 && waytick<=8)
                             status = 2;
-                        else if(i>8 && i<18)
+                        else if(waytick>8 && waytick<18)
                             status = 3;
-                        else if(i>=18 && i<=20)
+                        else if(waytick>=18 && waytick<=20)
                             status = 2;
-                        else if(i>20 && i<30)
+                        else if(waytick>20 && waytick<30)
                             status = 4;
                         break;
                 case 3:
-                        if(i>=0 && i<=1)
+                        if(waytick>=0 && waytick<=1)
                             status = 3;
-                        else if(i>1 && i<6)
+                        else if(waytick>1 && waytick<6)
                             status = 2;
-                        else if(i>=6 && i<=8)
+                        else if(waytick>=6 && waytick<=8)
                             status = 3;
-                        else if(i>8 && i<18)
+                        else if(waytick>8 && waytick<18)
                             status = 1;
-                        else if(i>=18 && i<=20)
+                        else if(waytick>=18 && waytick<=20)
                             status = 3;
-                        else if(i>20 && i<30)
+                        else if(waytick>20 && waytick<30)
                             status = 2;
                         break;
                 case 4:
-                        if(i>=0 && i<=1)
+                        if(waytick>=0 && waytick<=1)
                             status = 4;
-                        else if(i>1 && i<6)
+                        else if(waytick>1 && waytick<6)
                             status = 1;
-                        else if(i>=6 && i<=8)
+                        else if(waytick>=6 && waytick<=8)
                             status = 4;
-                        else if(i>8 && i<18)
+                        else if(waytick>8 && waytick<18)
                             status = 2;
-                        else if(i>=18 && i<=20)
+                        else if(waytick>=18 && waytick<=20)
                             status = 4;
-                        else if(i>20 && i<30)
+                        else if(waytick>20 && waytick<30)
                             status = 1;
                         break;
             }
@@ -119,25 +117,31 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
                     followingPath = true;
                 }
 
-                static size_t i;
-                if (i < path.length())
+                if(followingPath)
                 {
-                    size_t direction =  path.at(i) - '0';
-                    if (direction <= 3)
-                        if (antmove(direction))
-                            i++;
-                    status = 99;
+                    static size_t i;
+                    if (i < path.length())
+                    {
+                        size_t direction =  path.at(i) - '0';
+                        if (direction <= 3)
+                            if (antmove(direction))
+                                i++;
+                        status = 99;
+                    }
+                    else
+                        i=0;
                 }
 
 
                 if(*xhillorigin==xAntPosition && *zhillorigin==zAntPosition)
                 {
-                    i = 0;
-                    status = 1;
+
+                    status = 99;
                     if(bringFood())
                         cout<<"food zurückgebracht"<<endl;
                     foodfound = 0;
                     followingPath = false;
+                    waytick = 0;
                 }
                 /*
                 if(*xhillorigin<xAntPosition)    //hill is south
@@ -220,9 +224,11 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
                 */
             }
             lastmove = status;
-
-        if(i<29)i++;
-        else i = 6;
+                if(!foodfound)
+                {
+                    if(waytick<29)waytick++;
+                    else waytick = 6;
+                }
 
     }
 

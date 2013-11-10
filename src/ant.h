@@ -44,7 +44,7 @@ public:
 
     int antViewRows, antViewColumns;
 
-    int i;
+    int waytick;
     int lastmove;
     int foodfound;
     int done;

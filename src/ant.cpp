@@ -226,7 +226,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         antViewRows = 3;
         antViewColumns = 3;
-        i = 0;
+        waytick = 1;
         lastmove = 0;
         foodfound = 0;
         done = 1;
