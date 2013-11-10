@@ -34,10 +34,9 @@ void AntHill::spawnAnt()
     {
         cout<<"Not enough food"<<endl;
     }
-
 }
 
-void AntHill::setHill(int x, int z)
+void AntHill::setHill(size_t x, size_t z)
 {
     if (x < worldvector.size() && z < worldvector.at(0).size())
     {

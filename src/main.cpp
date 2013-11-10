@@ -25,8 +25,6 @@
 
 using namespace std;
 
-
-
 extern int mouseScrollValue;
 
 // Game Configurations
@@ -34,13 +32,13 @@ int leftClickAction = 2;
 float roundTime = 0.7;
 
 //world
-int xworldsize = 30;
-int zworldsize = 30;
+size_t xworldsize = 30;
+size_t zworldsize = 30;
 
 vector <vector <Square> > worldvector(xworldsize+1, vector<Square>(zworldsize+1)); //contains all informations about blocks, ants and food
 
 //Ants
-const int maxants = 100;
+const int maxants = 0;
 const int maxblocks = 100;
 
 //Classes
@@ -229,7 +227,6 @@ int main (int argc, char **argv)
 			{
                 if (Event.key.code == sf::Keyboard::K)
 				{
-//                    levelManager1.saveFile();
                     if (roundTime > 0.1)
                         roundTime -= 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
@@ -237,7 +234,6 @@ int main (int argc, char **argv)
 
                 if (Event.key.code == sf::Keyboard::J)
 				{
-//                    levelManager1.loadFile();
 					roundTime += 0.05;
 					cout<<"Zeit pro Runde: "<<roundTime<<endl;
 				}
@@ -274,10 +270,10 @@ int main (int argc, char **argv)
                     antViewFile << "Ant Mind Map" << std::endl;
                     antViewFile << "Map size: " << antHill1.antVec[0].antMapVec.size() << " X " << antHill1.antVec[0].antMapVec[0].size() << std::endl;
 
-                    for (int a = 0; a < antHill1.antVec[0].antMapVec.size(); a++)
+                    for (size_t a = 0; a < antHill1.antVec[0].antMapVec.size(); a++)
                     {
                         antViewFile << std::endl;
-                        for (int b = 0; b < antHill1.antVec[0].antMapVec[0].size(); b++)
+                        for (size_t b = 0; b < antHill1.antVec[0].antMapVec[0].size(); b++)
                             antViewFile << antHill1.antVec[0].antMapVec[a][b].block << "|";
                     }
                     antViewFile.close();
@@ -310,7 +306,7 @@ int main (int argc, char **argv)
                 }
             }
 
-            if (Event.type = sf::Event::MouseWheelMoved)
+            if ( (Event.type = sf::Event::MouseWheelMoved) )
                 mouseScrollValue = Event.mouseWheel.x - Event.mouseMove.x;
             else
                 mouseScrollValue = 0;
@@ -338,7 +334,7 @@ int main (int argc, char **argv)
 
         DrawHUD();		//draw the HUD
 
-        if(1/difTime > 40)cout<<"difTime: "<<difTime<<" FPS: "<<1/difTime<<endl;
+//        if(1/difTime > 40)cout<<"difTime: "<<difTime<<" FPS: "<<1/difTime<<endl;
 
      	// Finally, display the rendered frame on screen
      	DSWindow.display();

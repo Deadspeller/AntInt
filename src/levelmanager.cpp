@@ -87,16 +87,16 @@ bool LevelManager::loadFile()
     zworldsize = worldvector.at(0).size();
 
     //setting up the "walls"
-    for (size_t i = 1; i < zworldsize; i++)
+    for (size_t i = 0; i < zworldsize; i++)
         worldvector.at(i).at(0).block = 1;
 
-    for (size_t i = 1; i < xworldsize; i++)
+    for (size_t i = 0; i < xworldsize; i++)
         worldvector.at(0).at(i).block = 1;
 
-    for (size_t i = 1; i < zworldsize; i++)
+    for (size_t i = 0; i < zworldsize; i++)
         worldvector.at(i).at(xworldsize - 1).block = 1;
 
-    for (size_t i = 1; i < xworldsize; i++)
+    for (size_t i = 0; i < xworldsize; i++)
         worldvector.at(zworldsize - 1).at(i).block = 1;
 
     mapFile.close();

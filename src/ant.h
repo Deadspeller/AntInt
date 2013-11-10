@@ -9,18 +9,20 @@
 #include "texture.h"
 #include "timer.h"
 #include "square.h"
+#include "pathfind.h"
 
-
+class PathFind;
 class Square;
-extern std::vector < std::vector <Square> > worldvector;
 class AntHill;
+
+extern std::vector < std::vector <Square> > worldvector;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 extern float roundTime;
 
-extern int xworldsize, zworldsize;
+extern size_t xworldsize, zworldsize;
 
 using namespace std;
 
@@ -37,11 +39,8 @@ public:
 
     void antspawn(int x, int z);
     void ki();
-vector <vector <Square> > antMapVec;
-vector <vector <Square> > antViewVec;
-
-
-
+    vector <vector <Square> > antMapVec;
+    vector <vector <Square> > antViewVec;
 
     int antViewRows, antViewColumns;
 
@@ -51,9 +50,11 @@ vector <vector <Square> > antViewVec;
     int done;
     int status;
     int startdirection;
+
 private:
 
     bool collision;
+    bool followingPath;
     float difTime, gesTime;
 
     int foodbag;
@@ -62,6 +63,9 @@ private:
     int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
     int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
     Timer AntTimer;
+
+    PathFind *pathfinder;
+    std::string path;
 
     int antmove(int a);
     void antcollision();

@@ -2,13 +2,15 @@
 #include <stdlib.h>
 
 Ant::Ant():
-    foodbag(0),
-    gesTime(0),
     antViewRows(3),
-    antViewColumns(3)
+    antViewColumns(3),
+    followingPath(0),
+    gesTime(0),
+    foodbag(0)
+//    pathfinder()
 {
     //initialization stuff here
-
+    pathfinder = 0;
     Square tmp;
     tmp.block = 0; //set to 'unseen by ant'
     std::vector <Square> tmpRow;
@@ -21,9 +23,11 @@ Ant::Ant():
         antMapVec.push_back(tmpRow);
     }
 
+//    cout << "start: " << xAntPosition << ", " << zAntPosition << endl;
+//    string path = pathfinder->calculatePath(xAntPosition,zAntPosition,1,1); // try to find a path to [1,1]
+//    cout << path << endl;
+
 }
-
-
 
 int Ant::takeFood()
 {
@@ -47,6 +51,7 @@ int Ant::bringFood()
     {
         *hillfood += foodbag;
         foodbag = 0;
+        followingPath = false;
         return 1;
     }
     else
@@ -57,24 +62,28 @@ int Ant::antmove(int a)	//move the ant
 {
     if (antalive)	//if the ant is alive
     {
-
         if (gesTime >= roundTime)
         {
+            if (!pathfinder)
+                pathfinder = new PathFind;
             oldxAntPosition = xAntPosition;
             oldzAntPosition = zAntPosition;
 
             switch (a)	//move
             {
-                case 1:	//vor
+                case 0:	//North
                         xAntPosition += 1;
                         break;
-                case 2:	//zurück
-                        xAntPosition -= 1;
-                        break;
-                case 3:	//rechts
+
+                case 1:	//East
                         zAntPosition += 1;
                         break;
-                case 4:	//links
+
+                case 2:	//South
+                        xAntPosition -= 1;
+                        break;
+
+                case 3:	//West
                         zAntPosition -= 1;
                         break;
             }
@@ -82,7 +91,7 @@ int Ant::antmove(int a)	//move the ant
 
             if (collision)
             {
-                cout<<"kollision"<<endl;
+//                cout<<"kollision"<<endl;
                 xAntPosition = oldxAntPosition;
                 zAntPosition = oldzAntPosition;
             }
@@ -94,6 +103,7 @@ int Ant::antmove(int a)	//move the ant
             return 1;
         }
 
+        //TODO: move to leveldrawer/engine
         //draw the ant
         glPushMatrix();
         glTranslated(xAntPosition, yAntPosition, zAntPosition);
@@ -204,7 +214,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         /* initialize random seed: */
         srand (time(NULL));
 
-        /* generate secret number between 1 and 10: */
+        /* generate secret number between 1 and 4: */
         startdirection = rand() % 4 + 1;
 
         xAntPosition = x;

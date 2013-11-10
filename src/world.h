@@ -9,7 +9,7 @@
 #include "texture.h"
 
 extern std::vector < std::vector <Square> > worldvector;
-extern int xworldsize, zworldsize;
+extern size_t xworldsize, zworldsize;
 
 void world();
 

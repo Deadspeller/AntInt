@@ -1,34 +1,33 @@
 #include "node.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /** constructor **/
-node::node(int x,int y, int d,int p)
+Node::Node(int x,int y, int d,int p):
+    xPos(x),
+    yPos(y),
+    distance(d),
+    priority(p)
 {
-    xPos=x;
-    yPos=y;
-    distance=d;
-    priority=p;
+
 }
 
 /** getters for variables **/
 //current node xPosition
-int node::getxPos() const {
+int Node::getxPos() const {
     return xPos;
 }
 
 //current node yPosition
-int node::getyPos() const {
+int Node::getyPos() const {
     return yPos;
 }
 
 //gscore
-int node::getDistance() const {
+int Node::getDistance() const {
     return distance;
 }
 
 //fscore
-int node::getPriority() const {
+int Node::getPriority() const {
     return priority;
 }
 
@@ -38,21 +37,20 @@ int node::getPriority() const {
  *  -heuristic estimate (hscore) (which is an estimate of the distance from the current node to the destination node)
  *
 **/
-void node::updatePriority(const int & xDest, const int & yDest){
+void Node::updatePriority(const int & xDest, const int & yDest){
     priority = distance + estimateDistance(xDest,yDest)*10;
 }
 
-void node::updateDistance(){//const int & direction
+void Node::updateDistance(){//const int & direction
     distance +=10;
 }
-
 
 /** Estimate function for the remaining distance to the goal
 *   here it's based on the Manhattan distance;
 *   which is the distance between two points in a grid based on a strictly horizontal & veritcal path;
 *   => sum of vertical & horizontal components
 **/
-const int & node::estimateDistance(const int & xDest, const int & yDest) const{
+const int & Node::estimateDistance(const int & xDest, const int & yDest) const{
     static int xDistance,yDistance,totalDistance;
     xDistance=xDest-xPos;
     yDistance=yDest-yPos;
@@ -72,6 +70,6 @@ const int & node::estimateDistance(const int & xDest, const int & yDest) const{
 *   argument; it advantage is that because of the friend function the operand order can be reversed
 *   this doesn't really looks to favor our application; so should I use it or not?
 **/
-bool operator(const node & a, const node & b){
+bool operator<(const Node & a, const Node & b){
     return a.getPriority() > b.getPriority();
 }

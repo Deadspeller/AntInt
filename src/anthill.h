@@ -14,7 +14,7 @@ public:
 	int xposition, zposition;
     int food;
 
-    void setHill(int x, int z);
+    void setHill(size_t x, size_t z);
     void spawnAnt();
     void ki();
     AntHill(int, int);

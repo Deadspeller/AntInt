@@ -6,6 +6,10 @@ cmake_minimum_required (VERSION 2.6)
 project (AntInt) 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+if(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++0x")
+endif()
+
 set(AntInt_SOURCES 
 	src/main.cpp
 
@@ -22,8 +26,8 @@ set(AntInt_SOURCES
 	src/texture.cpp
 	src/timer.cpp
 	src/world.cpp
-        #src/pathfind.cpp
-        #src/node.cpp
+        src/pathfind.cpp
+        src/node.cpp
 	src/levelmanager.cpp)
 
 set(AntInt_HEADERS 
@@ -38,8 +42,8 @@ set(AntInt_HEADERS
 	src/objectcreator.h
 	src/texture.h
 	src/timer.h
-        #src/node.h
-        #src/pathfind.h
+        src/node.h
+        src/pathfind.h
 	src/world.h)
 
 add_executable(AntInt ${AntInt_SOURCES}
