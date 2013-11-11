@@ -33,6 +33,7 @@ set(AntInt_SOURCES
 set(AntInt_HEADERS 
 	src/ant.h
 	src/anthill.h
+        src/antki.h
 	src/anthandler.h
 	src/square.h
         src/inputmanager.h

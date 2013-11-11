@@ -43,18 +43,16 @@ public:
     vector <vector <Square> > antViewVec;
 
     int antViewRows, antViewColumns;
-
-    int i;
+    int followingPath;
+    int waytick;
     int lastmove;
     int foodfound;
-    int done;
-    int status;
+
     int startdirection;
 
 private:
 
     bool collision;
-    bool followingPath;
     float difTime, gesTime;
 
     int foodbag;
@@ -67,6 +65,7 @@ private:
     PathFind *pathfinder;
     std::string path;
 
+
     int antmove(int a);
     void antcollision();
     void nearcheck();
@@ -74,6 +73,9 @@ private:
 
     int takeFood();
     int bringFood();
+
+    void searchfood();
+    void findWayBack();
 
 };	//end class
 

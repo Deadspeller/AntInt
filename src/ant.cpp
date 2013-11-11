@@ -179,7 +179,6 @@ void Ant::nearcheck()
         {
             tmpRow.push_back(worldvector.at(xAntPosition+r).at(zAntPosition+c));
             antMapVec.at(xAntPosition + r).at(zAntPosition + c) = worldvector[xAntPosition+r][zAntPosition+c];
-            //std::cout << antMapVec.at(xAntPosition + r).at(zAntPosition + c).block << " ";
         }
         //std::cout << std::endl;
         antViewVec.push_back(tmpRow);
@@ -214,8 +213,9 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         /* initialize random seed: */
         srand (time(NULL));
 
-        /* generate secret number between 1 and 4: */
-        startdirection = rand() % 4 + 1;
+        /* generate secret number between 0 and 3: */
+        startdirection = rand() % 3;
+        startdirection = 0;
 
         xAntPosition = x;
         zAntPosition = z;
@@ -226,11 +226,9 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         antViewRows = 3;
         antViewColumns = 3;
-        i = 0;
+        waytick = 1;
         lastmove = 0;
         foodfound = 0;
-        done = 1;
-        status = 0;
 
         Square tmpSquare;
         vector <Square> tmprow;

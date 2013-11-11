@@ -2,7 +2,10 @@
 #define CAMERACALC_H
 
 #include <cmath>
-
+#include <iostream>
+#include "anthandler.h"
+#include "objectcreator.h"
+#include "levelmanager.h"
 #include <SFML/Window.hpp>
 #include <GL/glew.h>
 
@@ -10,12 +13,18 @@ extern int GP_LT ,GP_RT, GP_LB, GP_RB, GP_LStick, GP_RStick, GP_Dreieck;
 extern int GP_Viereck, GP_X, GP_Kreis, GP_DUp, GP_DLeft, GP_DDown, GP_DRight;
 extern int GP_Select, GP_Start, GP_XBox;
 
+class LevelManager;
+class ObjectCreator;
+extern ObjectCreator objectCreator1;
+extern LevelManager levelManager1;
 extern float gesTime;
 extern float difTime;
 extern float sprintPoints;
 extern sf::Window DSWindow;
 extern int leftClickAction;
 extern float roundTime;
+extern float xlook, zlook;
+extern bool gameStart;
 
 extern bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
 extern bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;

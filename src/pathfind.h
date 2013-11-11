@@ -14,6 +14,9 @@
 
 class Square;
 class Node;
+class AntHill;
+class Ant;
+extern AntHill antHill1;
 extern std::vector < std::vector <Square> > worldvector;
 
 using std::string;
@@ -22,7 +25,7 @@ class PathFind
 {
 public:
     PathFind();
-    void updateMap();
+    void updateMap(Ant *);
     void resetMaps();
 
     string calculatePath(const int &, const int & ,const int & , const int & );
