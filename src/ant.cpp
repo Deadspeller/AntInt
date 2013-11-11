@@ -179,7 +179,6 @@ void Ant::nearcheck()
         {
             tmpRow.push_back(worldvector.at(xAntPosition+r).at(zAntPosition+c));
             antMapVec.at(xAntPosition + r).at(zAntPosition + c) = worldvector[xAntPosition+r][zAntPosition+c];
-            //std::cout << antMapVec.at(xAntPosition + r).at(zAntPosition + c).block << " ";
         }
         //std::cout << std::endl;
         antViewVec.push_back(tmpRow);
@@ -216,6 +215,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         /* generate secret number between 1 and 4: */
         startdirection = rand() % 4 + 1;
+        startdirection = 1;
 
         xAntPosition = x;
         zAntPosition = z;

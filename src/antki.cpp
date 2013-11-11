@@ -23,15 +23,15 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
                         if(waytick>=0 && waytick<=1)
                             status = 1;
                         else if(waytick>1 && waytick<6)
-                            status = 4;
+                            status = 3;
                         else if(waytick>=6 && waytick<=8)
                             status = 1;
                         else if(waytick>8 && waytick<18)
-                            status = 3;
+                            status = 4;
                         else if(waytick>=18 && waytick<=20)
                             status = 1;
                         else if(waytick>20 && waytick<30)
-                            status = 4;
+                            status = 3;
                         break;
                 case 2:
                         if(waytick>=0 && waytick<=1)
@@ -111,7 +111,7 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
                 if (!followingPath)
                 {
-                    pathfinder->updateMap();
+                    pathfinder->updateMap(this);
                     path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
                     cout << "weg: " << path << endl;
                     followingPath = true;

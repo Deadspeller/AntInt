@@ -43,7 +43,8 @@ PathFind::PathFind(){
     for (int y=0;y<verticalSize;y++){
         for (int x=0;x<horizontalSize;x++)
         {
-            map[x][y] = worldvector[x][y].block;
+            //map[x][y] = worldvector[x][y].block;
+            //map[x][y] = antpointer->antMapVec[x][y].block;
             dir_map[x][y] = 4;
         }
     }
@@ -75,12 +76,16 @@ PathFind::PathFind(){
 //    std::cout<<route<<std::endl<<std::endl;
 }
 
-void PathFind::updateMap()
+void PathFind::updateMap(Ant *antpointer)
 {
     for (int y=0;y<verticalSize;y++){
         for (int x=0;x<horizontalSize;x++)
-        map[x][y] = worldvector[x][y].block;
-    }
+        {
+           map[x][y] = antpointer->antMapVec[x][y].block;
+        }
+        //map[x][y] = worldvector[x][y].block;
+
+        }
 }
 
 string PathFind::calculatePath(const int & xStart, const int & yStart,const int & xFinish, const int & yFinish){
