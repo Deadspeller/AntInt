@@ -70,29 +70,7 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
         }
     }
 
-        switch (nextmove)
-        {
-            case 0:     //move north
-                    done = antmove(0);
-                    break;
-
-            case 1:     //move east
-                    done = antmove(1);
-                    break;
-
-            case 2:     //move south
-                    done = antmove(2);
-                    break;
-
-            case 3:     //move west
-                    done = antmove(3);
-                    break;
-
-            default:
-                    //nextmove = 0;
-                    break;
-        }
-
+    done = antmove(nextmove);
 }
 
 void Ant::searchfood()
@@ -197,8 +175,7 @@ void Ant::findWayBack()
         cout << "weg: " << path << endl;
         followingPath = true;
     }
-
-    if(followingPath)
+    else
     {
         pathfinder->updateMap(this);
         path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
@@ -212,7 +189,6 @@ void Ant::findWayBack()
                nextmove = direction;
                i++;
             }
-            //status = 99;
         }
         else
             i=0;

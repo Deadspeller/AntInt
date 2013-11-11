@@ -58,8 +58,11 @@ int Ant::bringFood()
         return 0;
 }
 
-int Ant::antmove(int a)	//move the ant
+int Ant::antmove(size_t a)	//move the ant
 {
+    if (a > 3) //check for valid movement
+        return 0;
+
     if (antalive)	//if the ant is alive
     {
         if (gesTime >= roundTime)
