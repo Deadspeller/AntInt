@@ -213,9 +213,9 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         /* initialize random seed: */
         srand (time(NULL));
 
-        /* generate secret number between 1 and 4: */
-        startdirection = rand() % 4 + 1;
-        startdirection = 1;
+        /* generate secret number between 0 and 3: */
+        startdirection = rand() % 3;
+        startdirection = 0;
 
         xAntPosition = x;
         zAntPosition = z;

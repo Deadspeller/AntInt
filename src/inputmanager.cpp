@@ -144,7 +144,7 @@ void inputmanager(float difTime)
                 {
                     antViewFile << std::endl;
                     for (size_t b = 0; b < antHill1.antVec[0].antMapVec[0].size(); b++)
-                        antViewFile << antHill1.antVec[0].antMapVec[a][b].block << "|";
+                        antViewFile << antHill1.antVec[0].antMapVec[a][b].food << "|";
                 }
                 antViewFile.close();
             }

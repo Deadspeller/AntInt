@@ -65,6 +65,7 @@ private:
     PathFind *pathfinder;
     std::string path;
 
+
     int antmove(int a);
     void antcollision();
     void nearcheck();
@@ -72,6 +73,9 @@ private:
 
     int takeFood();
     int bringFood();
+
+    void searchfood();
+    void findWayBack();
 
 };	//end class
 
