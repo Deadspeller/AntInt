@@ -16,13 +16,12 @@ class Square;
 class AntHill;
 
 extern std::vector < std::vector <Square> > worldvector;
+extern size_t xworldsize, zworldsize;
 
 extern float antspeed;
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 extern float roundTime;
-
-extern size_t xworldsize, zworldsize;
 
 using namespace std;
 
@@ -43,14 +42,16 @@ public:
     vector <vector <Square> > antViewVec;
 
     int antViewRows, antViewColumns;
-    int followingPath;
-    int waytick;
-    int lastmove;
     int foodfound;
-
     int startdirection;
 
 private:
+    bool done;
+    int status;
+    int waytick;
+    int lastmove;
+    int nextmove;
+    int followingPath;
 
     bool collision;
     float difTime, gesTime;
@@ -64,7 +65,6 @@ private:
 
     PathFind *pathfinder;
     std::string path;
-
 
     int antmove(size_t a);
     void antcollision();

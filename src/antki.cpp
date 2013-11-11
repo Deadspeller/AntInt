@@ -5,17 +5,7 @@
 #include <stdio.h>
 #include <fstream>
 
-bool done = false;
-int status = 0;
-int waytick = 1;
-int nextmove = 0;
-bool followingPath = 0;
-
 extern int startdirection,antViewRows, antViewColumns;
-class PathFind;
-extern PathFind *pathfinder;
-//extern vector <vector <Square> > antViewVec;
-extern string path;
 
 void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer)
 {
@@ -23,8 +13,10 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
     if(done)    //ant was moved, now calculate new.
     {
+
         switch (status)
         {
+
             case 0:     //suche futter
                     searchfood();
                     if(antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)].food >= 1 )
@@ -43,7 +35,7 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
                     if(*xhillorigin==xAntPosition && *zhillorigin==zAntPosition)
                     {
                         status = 3;
-                        nextmove = 4;
+                        nextmove = 9;
                     }
                     break;
 
@@ -163,25 +155,22 @@ void Ant::searchfood()
 
 }
 
-
-
-
 void Ant::findWayBack()
 {
     if (!followingPath)
     {
         pathfinder->updateMap(this);
         path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
-        cout << "weg: " << path << endl;
+//        cout << "weg: " << path << endl;
         followingPath = true;
     }
     else
     {
         pathfinder->updateMap(this);
         path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
-        cout << "weg neu: " << path << endl;
+//        cout << "länge: "<< path.length() << " weg neu: " << path << endl;
         static size_t i;
-        if ( path.length())
+        if (path.length())
         {
             size_t direction =  path.at(0) - '0';
             if (direction <= 3)
@@ -193,5 +182,4 @@ void Ant::findWayBack()
         else
             i=0;
     }
-
 }

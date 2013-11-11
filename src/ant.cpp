@@ -5,14 +5,18 @@ Ant::Ant():
     antViewRows(3),
     antViewColumns(3),
     followingPath(0),
+    done(false),
+    status(0),
+    waytick(1),
+    nextmove(0),
+    lastmove(0),
     gesTime(0),
-    foodbag(0)
-//    pathfinder()
+    foodbag(0),
+    pathfinder(0)
 {
-    //initialization stuff here
-    pathfinder = 0;
+
     Square tmp;
-    tmp.block = 0; //set to 'unseen by ant'
+    tmp.block = 9; //set to 'unseen by ant'
     std::vector <Square> tmpRow;
 
     for (size_t x = 0; x < xworldsize; x++)
@@ -22,10 +26,6 @@ Ant::Ant():
             tmpRow.push_back(tmp);
         antMapVec.push_back(tmpRow);
     }
-
-//    cout << "start: " << xAntPosition << ", " << zAntPosition << endl;
-//    string path = pathfinder->calculatePath(xAntPosition,zAntPosition,1,1); // try to find a path to [1,1]
-//    cout << path << endl;
 
 }
 
@@ -61,7 +61,7 @@ int Ant::bringFood()
 int Ant::antmove(size_t a)	//move the ant
 {
     if (a > 3) //check for valid movement
-        return 0;
+        return 1;
 
     if (antalive)	//if the ant is alive
     {
@@ -226,12 +226,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         zorigin = zAntPosition;
         xorigin = xAntPosition;
-
-        antViewRows = 3;
-        antViewColumns = 3;
-        waytick = 1;
-        lastmove = 0;
-        foodfound = 0;
 
         Square tmpSquare;
         vector <Square> tmprow;

@@ -29,8 +29,15 @@ public:
     void resetMaps();
 
     string calculatePath(const int &, const int & ,const int & , const int & );
-private:
 
+private:
+    const int dir;
+    std::vector<int> dirX;
+    std::vector<int> dirY;
+    std::vector< std::vector<int> > closedNodes; //the set of nodes already evaluated
+    std::vector< std::vector<int> > openNodes; // the set of nodes to be evaluated; initialy only containing start node
+    std::vector< std::vector<int> > map; //map of navigated nodes
+    std::vector< std::vector<int> > dir_map; //map of directions (contains parents-children connection)
 };
 
 #endif

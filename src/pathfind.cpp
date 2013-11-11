@@ -3,92 +3,31 @@
 /** Pathfinding (A* algo) using Manhatten heuristics and assuming a monotonic, consistent
 *   heuristic (the enemies do not change position)
 *
-*   TODO: add variable terrain cost
 **/
 
-//dimensions
-const int horizontalSize = 30;
-const int verticalSize = 30;
+PathFind::PathFind():
+    dir(4),
+    dirX {1,0,-1,0},
+    dirY {0,1,0,-1},
+    closedNodes (xworldsize, std::vector<int> (zworldsize, 0)),
+    openNodes   (xworldsize, std::vector<int> (zworldsize, 0)),
+    map         (xworldsize, std::vector<int> (zworldsize, 0)),
+    dir_map     (xworldsize, std::vector<int> (zworldsize, 9))
+{
 
-//nodes sets
-static int closedNodes[horizontalSize][verticalSize]; //the set of nodes already evaluated
-static int openNodes[horizontalSize][verticalSize]; // the set of nodes to be evaluated; initialy only containing start node
-static int dir_map[horizontalSize][verticalSize]; //map of directions (contains parents-children connection)
-
-//directions
-const int dir = 4;
-static int dirX[dir]={1,0,-1,0};
-static int dirY[dir]={0,1,0,-1};
-
-//test class
-static int map[horizontalSize][verticalSize]; //map of navigated nodes
-PathFind::PathFind(){
-    //test
-    srand(time(NULL));
-    //create empty map
-//    for (int y=0;y<verticalSize;y++){
-//        for (int x=0;x<horizontalSize;x++){
-//            map[x][y]=0;
-//        }
-//    }
-    //fillout matrix
-//    for (int x=horizontalSize/8;x<horizontalSize*7/8;x++){
-//        map[x][verticalSize/2]=1;
-//    }
-//    for (int y=verticalSize/8;y<verticalSize*7/8;y++){
-//        map[horizontalSize/2][y]=1;
-//    }
-
-    //fill with walls
-    for (int y=0;y<verticalSize;y++){
-        for (int x=0;x<horizontalSize;x++)
-        {
-            //map[x][y] = worldvector[x][y].block;
-            //map[x][y] = antpointer->antMapVec[x][y].block;
-            dir_map[x][y] = 4;
-        }
-    }
-
-    //select start and finish locations
-    int xA,yA,xB,yB;
-    int n = horizontalSize;
-    int m = verticalSize;
-
-    xA = 6;
-    yA = 5;
-
-    xB = 14;
-    yB = 12;
-
-    std::cout <<"Map Size (X,Y): "<<n<<","<<m<<std::endl;
-    std::cout<<"Start: "<<xA<<","<<yA<<std::endl;
-    std::cout<<"Finish: "<<xB<<","<<yB<<std::endl;
-
-
-    // get the route
-//    clock_t start = clock();
-//    string route=calculatePath(xA, yA, xB, yB);
-//    if(route=="") std::cout <<"An empty route generated!"<<std::endl;
-//    clock_t end = clock();
-//    double time_elapsed = double(end - start);
-//    std::cout<<"Time to calculate the route (ms): "<<time_elapsed<<std::endl;
-//    std::cout<<"Route:"<<std::endl;
-//    std::cout<<route<<std::endl<<std::endl;
 }
 
 void PathFind::updateMap(Ant *antpointer)
 {
-    for (int y=0;y<verticalSize;y++){
-        for (int x=0;x<horizontalSize;x++)
-        {
+    for (size_t y = 0; y < zworldsize-1; y++)
+    {
+        for (size_t x=0; x < xworldsize-1; x++)
            map[x][y] = antpointer->antMapVec[x][y].block;
-        }
-        //map[x][y] = worldvector[x][y].block;
-
-        }
+    }
 }
 
-string PathFind::calculatePath(const int & xStart, const int & yStart,const int & xFinish, const int & yFinish){
+string PathFind::calculatePath(const int & xStart, const int & yStart,const int & xFinish, const int & yFinish)
+{
     /** why do we maintain a priority queue?
     *   it's for maintaining the open list: everytime we acces the open list we need to find the node with the lowest
     *   fscore. A priority queue is a sorted list so we simply have to grab (pop) the first item of the list everytime
@@ -117,7 +56,8 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
 
     //A* search
     //while priority queue is not empty; continue
-    while(!pq[index].empty()){
+    while(!pq[index].empty())
+    {
         //get current node with the higest priority from the priority list
         //in first instance this is the start node
         currentNode = new Node(pq[index].top().getxPos(),
@@ -139,7 +79,8 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
             //currentNode is now the goalNode
             x=currentNode->getxPos();
             y=currentNode->getyPos();
-            while (!(x==xStart && y==yStart)){
+            while (!(x==xStart && y==yStart))
+            {
                 /** We start at goal and work backwards moving from node to parent
                  *  which will take us to the starting node
                 **/
@@ -172,7 +113,7 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                 //check boundaries
                 //ignore if on closed list (was already evaluted) or if unwalkable (currently -n-o-t- implemented)
 
-                if (!(neighborX < 0 || neighborY < 0 || neighborX > horizontalSize || neighborY > verticalSize ||
+                if (!(neighborX < 0 || neighborY < 0 || neighborX > xworldsize || neighborY > zworldsize ||
                       closedNodes[neighborX][neighborY]==1 || map[neighborX][neighborY] == 1))
                 {
                     //ok -> generate neighbor node
@@ -183,7 +124,8 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
 
 
                     //if neighbor not in openset => add it
-                    if(openNodes[neighborX][neighborY]==0){
+                    if(openNodes[neighborX][neighborY]==0)
+                    {
                         //add it to open set
                         openNodes[neighborX][neighborY]=neighborNode->getPriority();
 
@@ -217,7 +159,9 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
 
                     //if neighbor is already on open set
                     //check if path to that node is a better one (=lower gscore) if we use the current node to get there
-                    } else if(openNodes[neighborX][neighborY]>neighborNode->getPriority()) {
+                    }
+                    else if(openNodes[neighborX][neighborY]>neighborNode->getPriority())
+                    {
                         /** lower gscore: change parent of the neighbore node to the select square
                         *   recalculate fscore
                         *   the value of the fscore should also be changed inside the node which resides inside our priority queue
@@ -241,7 +185,8 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                         pq[index].pop(); //remove the -old-current node
 
                         /** ?? **/
-                        if(pq[index].size()>pq[1-index].size()){ //??? is this extra check necessary?
+                        if(pq[index].size()>pq[1-index].size())
+                        { //??? is this extra check necessary?
                             index=1-index; //index switch 1->0 or 0->1
                         }
 
@@ -251,12 +196,14 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                         }
                         /** ?? **/
 
-
                         index=1-index; //index switch 1->0 or 0->1
                         pq[index].push(*neighborNode); //and the -new-current node will be pushed in instead
-                    } else delete neighborNode;
+                    }
+                    else delete neighborNode;
 
-                }else {
+                }
+                else
+                {
 //                    cout << "ignored: "<< map[neighborX][neighborY] << endl;
                 }
             }
@@ -267,12 +214,15 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
     } return ""; //no path found
 }
 
-void PathFind::resetMaps(){
-    for (int y=0;y<horizontalSize;y++){
-        for (int x=0;x<verticalSize;x++){
-            closedNodes[x][y]=0;
-            openNodes[x][y]=0;
-            dir_map[x][y]=4;
+void PathFind::resetMaps()
+{
+    for (size_t y = 0; y < xworldsize; y++)
+    {
+        for (size_t x=0; x < zworldsize; x++)
+        {
+            closedNodes[x][y] = 0;
+            openNodes[x][y] = 0;
+            dir_map[x][y] = 9; //set to non valid direction
         }
     }
 }
