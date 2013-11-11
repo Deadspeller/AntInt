@@ -66,7 +66,7 @@ private:
     std::string path;
 
 
-    int antmove(int a);
+    int antmove(size_t a);
     void antcollision();
     void nearcheck();
     void updateMap();

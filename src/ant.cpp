@@ -90,11 +90,11 @@ int Ant::antmove(size_t a)	//move the ant
                         zAntPosition -= 1;
                         break;
             }
+
             antcollision();	//check if collision
 
             if (collision)
             {
-//                cout<<"kollision"<<endl;
                 xAntPosition = oldxAntPosition;
                 zAntPosition = oldzAntPosition;
             }
