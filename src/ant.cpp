@@ -229,8 +229,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         waytick = 1;
         lastmove = 0;
         foodfound = 0;
-        done = 1;
-        status = 0;
 
         Square tmpSquare;
         vector <Square> tmprow;

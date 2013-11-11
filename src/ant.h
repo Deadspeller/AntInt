@@ -43,18 +43,16 @@ public:
     vector <vector <Square> > antViewVec;
 
     int antViewRows, antViewColumns;
-
+    int followingPath;
     int waytick;
     int lastmove;
     int foodfound;
-    int done;
-    int status;
+
     int startdirection;
 
 private:
 
     bool collision;
-    bool followingPath;
     float difTime, gesTime;
 
     int foodbag;
