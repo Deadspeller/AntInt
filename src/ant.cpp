@@ -67,6 +67,7 @@ int Ant::antmove(size_t a)	//move the ant
     if (a > 3) //check for valid movement
         return 1;
 
+    movedirection = a;
     if (antalive)	//if the ant is alive
     {
         if (gesTime >= roundTime)
@@ -117,16 +118,16 @@ int Ant::antmove(size_t a)	//move the ant
 
         switch (a)
         {
-            case 1:	//vor
+            case 0:	//vor
                     glRotatef(0,0.0,1.0,0.0);
                     break;
-            case 2:	//zurück
+            case 1:	//zurück
                     glRotatef(180,0.0,1.0,0.0);
                     break;
-            case 3:	//rechts
+            case 2:	//rechts
                     glRotatef(-90,0.0,1.0,0.0);
                     break;
-            case 4:	//links
+            case 3:	//links
                     glRotatef(90,0.0,1.0,0.0);
                     break;
         }

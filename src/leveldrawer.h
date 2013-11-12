@@ -6,6 +6,7 @@
 #include <SFML/System.hpp>
 #include "SOIL/SOIL.h"
 
+#include "anthill.h"
 #include "levelmanager.h"
 #include "texture.h"
 

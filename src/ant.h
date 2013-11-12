@@ -44,6 +44,8 @@ public:
     int antViewRows, antViewColumns;
     int foodfound;
     int startdirection;
+    int movedirection;
+    int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
 
 private:
     bool done;
@@ -61,7 +63,7 @@ private:
     int foodbag;
     float yorigin, zorigin, xorigin; //where the ant started
 
-    int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
+
     int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
     Timer AntTimer;
 

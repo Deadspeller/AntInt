@@ -11,6 +11,7 @@
 #include <GL/glew.h>
 
 #include "ant.h"
+#include "anthill.h"
 #include "inputmanager.h"
 #include "hud.h"
 #include "leveldrawer.h"
@@ -183,7 +184,6 @@ int main (int argc, char **argv)
         if(gameStart)
         {
             antHill1.ki();
-            //AntHandler("move");	//move the Ants
         }
 
         DrawHUD();		//draw the HUD

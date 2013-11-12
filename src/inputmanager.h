@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include "anthandler.h"
+#include "anthill.h"
 #include "objectcreator.h"
 #include "levelmanager.h"
 #include <SFML/Window.hpp>
