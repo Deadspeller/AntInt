@@ -17,6 +17,7 @@ class LevelManager;
 class ObjectCreator;
 extern ObjectCreator objectCreator1;
 extern LevelManager levelManager1;
+extern AntHill antHill1;
 extern float gesTime;
 extern float difTime;
 extern float sprintPoints;

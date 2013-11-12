@@ -85,7 +85,8 @@ void inputmanager(float difTime)
     {
         if (Event.type == sf::Event::JoystickButtonPressed)
         {
-            if (JoystickInput.isButtonPressed(0, GP_RT)) AntHandler("handle");
+            if (JoystickInput.isButtonPressed(0, GP_RT))
+                ;
         }
         DSWindow.setKeyRepeatEnabled(false);
         if (Event.type == sf::Event::KeyPressed)
@@ -154,7 +155,7 @@ void inputmanager(float difTime)
             switch (leftClickAction)
             {
                 case 1:
-                        AntHandler("spawn");
+
                         break;
                 case 2:
                         objectCreator1.createBlock(xlook, zlook, 1);

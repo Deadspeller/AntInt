@@ -11,7 +11,6 @@
 #include <GL/glew.h>
 
 #include "ant.h"
-#include "anthandler.h"
 #include "inputmanager.h"
 #include "hud.h"
 #include "leveldrawer.h"

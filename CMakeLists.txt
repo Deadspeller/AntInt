@@ -15,8 +15,7 @@ set(AntInt_SOURCES
 
 	src/ant.cpp
 	src/antki.cpp
-	src/anthill.cpp
-	src/anthandler.cpp
+        src/anthill.cpp
 	src/square.cpp
         src/inputmanager.cpp
 	src/hud.cpp
@@ -34,7 +33,6 @@ set(AntInt_HEADERS
 	src/ant.h
 	src/anthill.h
         src/antki.h
-	src/anthandler.h
 	src/square.h
         src/inputmanager.h
 	src/hud.h
