@@ -14,7 +14,9 @@ void AntHill::ki()
         spawnAnt();
     }
 
-        hillTimer.start();
+    moveAnts();
+
+    hillTimer.start();
 }
 
 void AntHill::spawnAnt()
@@ -35,6 +37,17 @@ void AntHill::spawnAnt()
         cout<<"Not enough food"<<endl;
     }
 }
+
+void AntHill::moveAnts()
+{
+    for (size_t i=0; i<antVec.size(); i++)
+    {
+        antVec[i].ki();
+    }
+}
+
+
+
 
 void AntHill::setHill(size_t x, size_t z)
 {

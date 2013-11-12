@@ -17,6 +17,7 @@ public:
     void setHill(size_t x, size_t z);
     void spawnAnt();
     void ki();
+    void moveAnts();
     AntHill(int, int);
 };
 

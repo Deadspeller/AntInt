@@ -179,21 +179,15 @@ int main (int argc, char **argv)
 
         world();		//draw the "World
 
-levelDrawer1.drawBlocks();
+        levelDrawer1.drawBlocks();
 
         if(gameStart)
         {
-
-
-
             antHill1.ki();
-
-            AntHandler("move");	//move the Ants
+            //AntHandler("move");	//move the Ants
         }
 
         DrawHUD();		//draw the HUD
-
-//        if(1/difTime > 40)cout<<"difTime: "<<difTime<<" FPS: "<<1/difTime<<endl;
 
      	// Finally, display the rendered frame on screen
      	DSWindow.display();

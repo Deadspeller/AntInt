@@ -113,12 +113,6 @@ void inputmanager(float difTime)
             {
                 ypos += 0.5;
             }
-
-            if (Event.key.code == sf::Keyboard::T)
-            {
-                cout<<"Anthill Spawn"<<endl;
-                antHill1.ki();
-            }
             if (Event.key.code == sf::Keyboard::L)
             {
                 levelManager1.loadFile();
