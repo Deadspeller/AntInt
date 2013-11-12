@@ -17,47 +17,52 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
         switch (status)
         {
 
-            case 0:     //suche futter
+            case SEARCH:     //suche futter
                     searchfood();
-                    if(antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)].food >= 1 )
+                    if(antMapVec[xAntPosition][zAntPosition].food > 0 )
                     {
-                        status = 1;
-                    }
-                    break;
-
-            case 1:     //futter aufnehmen
-                    takeFood();
-                    status = 2;
-                    break;
-
-            case 2:     //A* zum Bau
-                    findWayBack();
-                    if(*xhillorigin==xAntPosition && *zhillorigin==zAntPosition)
-                    {
-                        status = 3;
+                        status = TAKE;
                         nextmove = 9;
                     }
                     break;
 
-            case 3:     //Futter ablegen
+            case TAKE:     //futter aufnehmen
+                    if (takeFood())
+                        status = GOHOME;
+                    else
+                        status = SEARCH;
+                    break;
+
+            case GOHOME:     //A* zum Bau
+                    findWayTo(*xhillorigin, *zhillorigin);
+                    if(*xhillorigin == xAntPosition && *zhillorigin == zAntPosition)
+                    {
+                        status = PUT;
+                        nextmove = 9;
+                    }
+                    break;
+
+            case PUT:     //Futter ablegen
                     if(bringFood())
                     {
                         cout<<"food zurückgebracht"<<endl;
-                        status = 0;
+                        status = GOFOOD;
                         waytick = 0;
                     }
                     break;
 
-            case 4:     //A* zum Futter
-
-                    break;
-
-            case 5:     //Futter ablegen
-                    bringFood();
+            case GOFOOD:     //A* zum Futter
+                    findWayTo(xFoodPos, yFoodpos);
+                    if(xFoodPos == xAntPosition && yFoodpos == zAntPosition)
+                    {
+                        status = TAKE;
+                        nextmove = 9;
+                    }
                     break;
 
             default:
-                    status = 0;
+                    status = SEARCH;
+                    cout << "default state, shouldnt happen!" << endl;
                     break;
         }
     }
@@ -67,8 +72,10 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
 void Ant::searchfood()
 {
-    if(waytick<29)waytick++;
-    else waytick = 6;
+    if(waytick<29)
+        waytick++;
+    else
+        waytick = 6;
 
     switch(startdirection)
     {
@@ -134,40 +141,40 @@ void Ant::searchfood()
 
     if (antViewVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
     {
-        cout<<"food found"<<endl;
+        cout<<"food found north"<<endl;
         nextmove = 0;
     }
     if (antViewVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
     {
-        cout<<"food found"<<endl;
+        cout<<"food found south"<<endl;
         nextmove = 2;
     }
     if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
     {
-        cout<<"food found"<<endl;
+        cout<<"food found west"<<endl;
         nextmove = 3;
     }
     if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
     {
-        cout<<"food found"<<endl;
+        cout<<"food found east"<<endl;
         nextmove = 1;
     }
 
 }
 
-void Ant::findWayBack()
+void Ant::findWayTo(size_t xTo, size_t yTo)
 {
     if (!followingPath)
     {
         pathfinder->updateMap(this);
-        path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
+        path = pathfinder->calculatePath(xAntPosition, zAntPosition, xTo, yTo);
 //        cout << "weg: " << path << endl;
         followingPath = true;
     }
     else
     {
         pathfinder->updateMap(this);
-        path = pathfinder->calculatePath(xAntPosition,zAntPosition,*xhillorigin,*zhillorigin);
+        path = pathfinder->calculatePath(xAntPosition, zAntPosition, xTo, yTo);
 //        cout << "länge: "<< path.length() << " weg neu: " << path << endl;
         static size_t i;
         if (path.length())
@@ -180,6 +187,9 @@ void Ant::findWayBack()
             }
         }
         else
-            i=0;
+        {
+            i = 0;
+            followingPath = false;
+        }
     }
 }

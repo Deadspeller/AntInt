@@ -47,11 +47,13 @@ public:
 
 private:
     bool done;
-    int status;
     int waytick;
-    int lastmove;
     int nextmove;
+    int lastmove;
     int followingPath;
+
+    int xFoodPos, yFoodpos;
+    int lastFoodValue;
 
     bool collision;
     float difTime, gesTime;
@@ -75,7 +77,9 @@ private:
     int bringFood();
 
     void searchfood();
-    void findWayBack();
+    void findWayTo(size_t xTo, size_t yTo);
+
+    enum myStati {SEARCH,TAKE,GOHOME,PUT,GOFOOD} status;
 
 };	//end class
 

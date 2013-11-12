@@ -3,13 +3,16 @@
 
 Ant::Ant():
     antViewRows(3),
-    antViewColumns(3),
-    followingPath(0),
+    antViewColumns(3),   
     done(false),
-    status(0),
+    status(SEARCH),
     waytick(1),
     nextmove(0),
     lastmove(0),
+    followingPath(0),
+    xFoodPos(0),
+    yFoodpos(0),
+    lastFoodValue(0),
     gesTime(0),
     foodbag(0),
     pathfinder(0)
@@ -31,14 +34,16 @@ Ant::Ant():
 
 int Ant::takeFood()
 {
-    if(foodbag < 10 && worldvector[xAntPosition][zAntPosition].food > 0)
+    if (foodbag < 10 && worldvector[xAntPosition][zAntPosition].food > 0)
     {
         while(foodbag < 10)
         {
             foodbag += 1;
             worldvector[xAntPosition][zAntPosition].food -= 1;
         }
-
+        xFoodPos = xAntPosition;
+        yFoodpos = zAntPosition;
+        lastFoodValue = worldvector[xAntPosition][zAntPosition].food;
         return 1;
     }
     else
@@ -47,11 +52,10 @@ int Ant::takeFood()
 
 int Ant::bringFood()
 {
-    if(foodbag > 0 && xAntPosition == *xhillorigin && zAntPosition == *zhillorigin)
+    if (foodbag > 0)
     {
         *hillfood += foodbag;
         foodbag = 0;
-        followingPath = false;
         return 1;
     }
     else
