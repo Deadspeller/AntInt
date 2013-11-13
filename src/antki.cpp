@@ -6,6 +6,8 @@
 #include <fstream>
 
 extern int startdirection,antViewRows, antViewColumns;
+extern size_t xworldsize, zworldsize;
+
 
 void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer)
 {
@@ -70,72 +72,73 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
     done = antmove(nextmove);
 }
 
+
+int nextx, nextz;
+
 void Ant::searchfood()
 {
-    if(waytick<29)
-        waytick++;
-    else
-        waytick = 6;
 
-    switch(startdirection)
+    if(waytick>=3 || (xAntPosition == nextx && zAntPosition == nextz))
     {
-        case 0:
-                if(waytick>=0 && waytick<=1)
-                    nextmove = 0;
-                else if(waytick>1 && waytick<6)
-                    nextmove = 1;
-                else if(waytick>=6 && waytick<=8)
-                    nextmove = 0;
-                else if(waytick>8 && waytick<18)
-                    nextmove = 3;
-                else if(waytick>=18 && waytick<=20)
-                    nextmove = 0;
-                else if(waytick>20 && waytick<30)
-                    nextmove = 1;
-                break;
-        case 1:
-                if(waytick>=0 && waytick<=1)
-                    nextmove = 2;
-                else if(waytick>1 && waytick<6)
-                    nextmove = 3;
-                else if(waytick>=6 && waytick<=8)
-                    nextmove = 2;
-                else if(waytick>8 && waytick<18)
-                    nextmove = 1;
-                else if(waytick>=18 && waytick<=20)
-                    nextmove = 2;
-                else if(waytick>20 && waytick<30)
-                    nextmove = 3;
-                break;
-        case 2:
-                if(waytick>=0 && waytick<=1)
-                    nextmove = 0;
-                else if(waytick>1 && waytick<6)
-                    nextmove = 2;
-                else if(waytick>=6 && waytick<=8)
-                    nextmove = 3;
-                else if(waytick>8 && waytick<18)
-                    nextmove = 0;
-                else if(waytick>=18 && waytick<=20)
-                    nextmove = 1;
-                else if(waytick>20 && waytick<30)
-                    nextmove = 2;
-                break;
-        case 3:
-                if(waytick>=0 && waytick<=1)
-                    nextmove = 3;
-                else if(waytick>1 && waytick<6)
-                    nextmove = 0;
-                else if(waytick>=6 && waytick<=8)
-                    nextmove = 3;
-                else if(waytick>8 && waytick<18)
-                    nextmove = 2;
-                else if(waytick>=18 && waytick<=20)
-                    nextmove = 3;
-                else if(waytick>20 && waytick<30)
-                    nextmove = 0;
-                break;
+        /* initialize random seed: */
+        srand (time(NULL));
+        /* generate secret number between -3 and 3: */
+
+        switch(startdirection)
+        {
+            case 0:
+                    nextx = -6 + rand() % 12 + xAntPosition;
+                    cout<<" ";
+                    nextz = -6 + rand() % 12 + zAntPosition;
+                    break;
+            case 1:
+                    nextx = -6 + rand() % 12 + xAntPosition;
+                    nextz = -6 + rand() % 12 + zAntPosition;
+                    break;
+            case 2:
+                    nextx = -6 + rand() % 12 + xAntPosition;
+                    nextz = -6 + rand() % 12 + zAntPosition;
+                    break;
+            case 3:
+                    nextx = -6 + rand() % 12 + xAntPosition;
+                    nextz = -6 + rand() % 12 + zAntPosition;
+                    break;
+        }
+
+        if(nextx > xworldsize) nextx = xworldsize-1;
+        if(nextz > zworldsize) nextz = zworldsize-1;
+
+
+        cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
+        waytick = 0;
     }
+    else
+    {
+        cout<<"tick"<<endl;
+        waytick++;
+    }
+
+
+    findWayTo(nextx, nextz);
+
+//    switch(nextx)
+//    {
+//        case 0:
+//                nextmove = 0;
+//                break;
+//        case 1:
+
+//                nextmove = 1;
+//                break;
+//        case 2:
+
+//                nextmove = 2;
+//                break;
+//        case 3:
+
+//                nextmove = 3;
+//                break;
+//    }
 
 
 

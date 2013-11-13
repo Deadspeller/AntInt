@@ -198,7 +198,7 @@ void Ant::nearcheck()
             if ( (xAntPosition + x) < worldvector.size() && (zAntPosition + y) < worldvector[0].size() )
             {
                 tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y));
-                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector[xAntPosition + x][zAntPosition + y];
+                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector.at(xAntPosition + x).at(zAntPosition + y);
             }
             else
             {
@@ -232,6 +232,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
     if (antalive == 0) //if ant is not already alive
     {
         antalive = true;
+        waytick = 5;
         foodbag = 0;
         gesTime = 0;
         yorigin = 0.0001;
