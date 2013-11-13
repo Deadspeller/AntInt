@@ -21,10 +21,10 @@ Ant::Ant():
     tmpSquare.block = 9; //set to 'unseen by ant'
     std::vector <Square> tmpRow;
 
-    for (size_t x = 0; x < xworldsize; x++)
+    for (size_t x = 0; x <= xworldsize; x++)
     {
         tmpRow.clear();
-        for (size_t y = 0; y < zworldsize; y++)
+        for (size_t y = 0; y <= zworldsize; y++)
             tmpRow.push_back(tmpSquare);
         antMapVec.push_back(tmpRow);
     }

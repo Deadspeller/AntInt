@@ -74,42 +74,60 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 
 
 int nextx, nextz;
-
+int xwalkpos, zwalkpos;
 void Ant::searchfood()
 {
 
     if(waytick>=3 || (xAntPosition == nextx && zAntPosition == nextz))
     {
-        /* initialize random seed: */
+
         srand (time(NULL));
-        /* generate secret number between -3 and 3: */
+
+        if((rand() % 10) > 5) xwalkpos = 1;
+        else xwalkpos = -1;
+
+        if((rand() % 10) > 5) zwalkpos = 1;
+        else zwalkpos = -1;
+
 
         switch(startdirection)
         {
             case 0:
-                    nextx = -6 + rand() % 12 + xAntPosition;
-                    cout<<" ";
-                    nextz = -6 + rand() % 12 + zAntPosition;
+                    srand (time(NULL));
+                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
                     break;
             case 1:
-                    nextx = -6 + rand() % 12 + xAntPosition;
-                    nextz = -6 + rand() % 12 + zAntPosition;
+                    srand (time(NULL));
+                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
                     break;
             case 2:
-                    nextx = -6 + rand() % 12 + xAntPosition;
-                    nextz = -6 + rand() % 12 + zAntPosition;
+                    srand (time(NULL));
+                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
                     break;
             case 3:
-                    nextx = -6 + rand() % 12 + xAntPosition;
-                    nextz = -6 + rand() % 12 + zAntPosition;
+                    srand (time(NULL));
+                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
                     break;
         }
 
-        if(nextx > xworldsize) nextx = xworldsize-1;
-        if(nextz > zworldsize) nextz = zworldsize-1;
-
+        if(nextx >= xworldsize-1)
+        {
+            nextx = xworldsize-2;
+        }
+        if(nextz >= zworldsize-1)
+        {
+            nextz = zworldsize-2;
+        }
+        if(nextx <= 1) nextx = 2;
+        if(nextz <= 1) nextz = 2;
 
         cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
+        if(worldvector[nextx][nextz].block)
+        cout<<"Block:"<<endl;
         waytick = 0;
     }
     else
