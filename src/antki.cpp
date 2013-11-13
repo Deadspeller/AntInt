@@ -114,7 +114,6 @@ void Ant::searchfood()
     }
     else
     {
-        cout<<"tick"<<endl;
         waytick++;
     }
 
