@@ -119,47 +119,6 @@ int Ant::antmove(size_t a)	//move the ant
             return 1;
         }
 
-        //TODO: move to leveldrawer/engine
-        //draw the ant
-        glPushMatrix();
-        glTranslated(xAntPosition, yAntPosition, zAntPosition);
-
-        switch (a)
-        {
-            case 0:	//vor
-                    glRotatef(0,0.0,1.0,0.0);
-                    break;
-            case 1:	//zurück
-                    glRotatef(180,0.0,1.0,0.0);
-                    break;
-            case 2:	//rechts
-                    glRotatef(-90,0.0,1.0,0.0);
-                    break;
-            case 3:	//links
-                    glRotatef(90,0.0,1.0,0.0);
-                    break;
-        }
-
-        glScalef(0.5,0.5,0.5);
-        glColor3f(1,0.1,0.1);
-        glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glBindTexture(GL_TEXTURE_2D, tex_ant);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
-        glBegin(GL_POLYGON); //ground
-        glTexCoord2d(1,0);  glVertex3f(-1, 0.01, -1);
-        glTexCoord2d(1,1);  glVertex3f(1, 0.01, -1);
-        glTexCoord2d(0,1);  glVertex3f(1, 0.01, 1);
-        glTexCoord2d(0,0);  glVertex3f(-1, 0.01, 1);
-        glEnd();
-        glDisable(GL_BLEND);
-        glDisable(GL_TEXTURE_2D);
-        glEnd();
-        glPopMatrix();
-
         AntTimer.stop();
         difTime = AntTimer.getElapsedTimeInSec();
         if (difTime > 0.1) difTime = 0;	//remove first time

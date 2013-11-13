@@ -72,9 +72,6 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
     done = antmove(nextmove);
 }
 
-
-int nextx, nextz;
-int xwalkpos, zwalkpos;
 void Ant::searchfood()
 {
 
@@ -125,9 +122,13 @@ void Ant::searchfood()
         if(nextx <= 1) nextx = 2;
         if(nextz <= 1) nextz = 2;
 
-        cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
+//        cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
         if(worldvector[nextx][nextz].block)
-        cout<<"Block:"<<endl;
+        {
+            cout<<"Block:"<<endl;
+            nextx = xAntPosition;
+            nextz = zAntPosition;
+        }
         waytick = 0;
     }
     else
@@ -209,6 +210,7 @@ void Ant::findWayTo(size_t xTo, size_t yTo)
         else
         {
             i = 0;
+            nextmove = 9;
             followingPath = false;
         }
     }

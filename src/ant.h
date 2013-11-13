@@ -54,6 +54,9 @@ private:
     int lastmove;
     int followingPath;
 
+    int nextx, nextz;
+    int xwalkpos, zwalkpos;
+
     int xFoodPos, yFoodpos;
     int lastFoodValue;
 
