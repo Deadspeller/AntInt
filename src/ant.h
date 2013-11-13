@@ -41,7 +41,7 @@ public:
     vector <vector <Square> > antMapVec;
     vector <vector <Square> > antViewVec;
 
-    int antViewRows, antViewColumns;
+    int antViewRadius;
     int foodfound;
     int startdirection;
     int movedirection;

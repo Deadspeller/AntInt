@@ -12,14 +12,14 @@ void world()	//Draw the world
     glTexCoord2d(0,0);
     glVertex3f(0.5, 0, 0.5);
 
-    glTexCoord2d(xworldsize-2,0);
-    glVertex3f(0.5, 0, xworldsize-1.5);
+    glTexCoord2d(zworldsize-2,0);
+    glVertex3f(0.5, 0, zworldsize-1.5);
 
-    glTexCoord2d(xworldsize-2,zworldsize-2);
-    glVertex3f(zworldsize-1.5, 0, xworldsize-1.5);
+    glTexCoord2d(zworldsize-2,xworldsize-2);
+    glVertex3f(xworldsize-1.5, 0, zworldsize-1.5);
 
-    glTexCoord2d(0,zworldsize-2);
-    glVertex3f(zworldsize-1.5, 0, 0.5);
+    glTexCoord2d(0,xworldsize-2);
+    glVertex3f(xworldsize-1.5, 0, 0.5);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);

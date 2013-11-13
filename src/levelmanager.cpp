@@ -68,7 +68,8 @@ bool LevelManager::loadFile()
             {
                 tmpSquare.food = 100;
             }
-            else tmpSquare.food = 0;
+            else
+                tmpSquare.food = 0;
             if(tmpSquare.block == 4)    //hill
             {
                 tmpSquare.antHill = 1;
@@ -86,20 +87,23 @@ bool LevelManager::loadFile()
     xworldsize = worldvector.size();
     zworldsize = worldvector.at(0).size();
 
+    cout << "Level loaded - Size: " << xworldsize << " x " << zworldsize << endl;
     //setting up the "walls"
-    for (size_t i = 0; i < zworldsize; i++)
-        worldvector.at(i).at(0).block = 1;
+//    for (size_t i = 0; i < zworldsize; i++)
+//        worldvector.at(i).at(0).block = 1;
 
-    for (size_t i = 0; i < xworldsize; i++)
-        worldvector.at(0).at(i).block = 1;
+//    for (size_t i = 0; i < xworldsize; i++)
+//        worldvector.at(0).at(i).block = 1;
 
-    for (size_t i = 0; i < zworldsize; i++)
-        worldvector.at(i).at(xworldsize - 1).block = 1;
+//    for (size_t i = 0; i < zworldsize; i++)
+//        worldvector.at(i).at(xworldsize - 1).block = 1;
 
-    for (size_t i = 0; i < xworldsize; i++)
-        worldvector.at(zworldsize - 1).at(i).block = 1;
+//    for (size_t i = 0; i < xworldsize; i++)
+//        worldvector.at(zworldsize - 1).at(i).block = 1;
+
 
     mapFile.close();
+    return true;
 }
 
 bool LevelManager::saveFile()
@@ -120,4 +124,5 @@ bool LevelManager::saveFile()
             mapFile << col->block << ",";
     }
     mapFile.close();
+    return true;
 }

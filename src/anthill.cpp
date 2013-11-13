@@ -40,14 +40,11 @@ void AntHill::spawnAnt()
 
 void AntHill::moveAnts()
 {
-    for (size_t i=0; i<antVec.size(); i++)
+    for (size_t i=0; i < antVec.size(); i++)
     {
         antVec[i].ki();
     }
 }
-
-
-
 
 void AntHill::setHill(size_t x, size_t z)
 {

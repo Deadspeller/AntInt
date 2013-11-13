@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 Ant::Ant():
-    antViewRows(3),
-    antViewColumns(3),   
+    antViewRadius(1),
     done(false),
     status(SEARCH),
     waytick(1),
@@ -18,16 +17,25 @@ Ant::Ant():
     pathfinder(0)
 {
 
-    Square tmp;
-    tmp.block = 9; //set to 'unseen by ant'
+    Square tmpSquare;
+    tmpSquare.block = 9; //set to 'unseen by ant'
     std::vector <Square> tmpRow;
 
     for (size_t x = 0; x < xworldsize; x++)
     {
         tmpRow.clear();
         for (size_t y = 0; y < zworldsize; y++)
-            tmpRow.push_back(tmp);
+            tmpRow.push_back(tmpSquare);
         antMapVec.push_back(tmpRow);
+    }
+
+    for(int i = 0; i < antViewRadius; i++)
+    {
+        for(int b = 0; b < antViewRadius; b++)
+        {
+            tmpRow.push_back(tmpSquare);
+        }
+        antViewVec.push_back(tmpRow);
     }
 
 }
@@ -181,14 +189,14 @@ void Ant::nearcheck()
 
     std::vector<Square> tmpRow;
     antViewVec.clear();
-    for (int r = floor(antViewRows/2); r >= 0-floor(antViewRows/2); r--)
+
+    for (int x = -antViewRadius; x <= antViewRadius; x++)
     {
-        for (int c = 0-floor(antViewColumns/2); c <= floor(antViewColumns/2); c++)
+        for (int y = -antViewRadius; y <= antViewRadius; y++)
         {
-            tmpRow.push_back(worldvector.at(xAntPosition+r).at(zAntPosition+c));
-            antMapVec.at(xAntPosition + r).at(zAntPosition + c) = worldvector[xAntPosition+r][zAntPosition+c];
+            tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y));
+            antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector[xAntPosition + x][zAntPosition + y];
         }
-        //std::cout << std::endl;
         antViewVec.push_back(tmpRow);
         tmpRow.clear();
     }
@@ -231,18 +239,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         zorigin = zAntPosition;
         xorigin = xAntPosition;
-
-        Square tmpSquare;
-        vector <Square> tmprow;
-
-        for(int i = 0; i < antViewRows; i++)
-        {
-            for(int b = 0; b < antViewColumns; b++)
-            {
-                tmprow.push_back(tmpSquare);
-            }
-            antViewVec.push_back(tmprow);
-        }
 
         //worldvector[xAntPosition][zAntPosition].block = 3;
         cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;

@@ -139,22 +139,22 @@ void Ant::searchfood()
 
 
 
-    if (antViewVec[floor(antViewRows/2)-1][floor(antViewColumns/2)].food > 0) //north is block
+    if (antViewVec[antViewRadius+1][antViewRadius].food > 0) //north is block
     {
         cout<<"food found north"<<endl;
         nextmove = 0;
     }
-    if (antViewVec[floor(antViewRows/2)+1][floor(antViewColumns/2)].food > 0) //south is block
+    if (antViewVec[antViewRadius-1][antViewRadius].food > 0) //south is block
     {
         cout<<"food found south"<<endl;
         nextmove = 2;
     }
-    if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)-1].food > 0) //west is block
+    if (antViewVec[antViewRadius][antViewRadius-1].food > 0) //west is block
     {
         cout<<"food found west"<<endl;
         nextmove = 3;
     }
-    if (antViewVec[floor(antViewRows/2)][floor(antViewColumns/2)+1].food > 0) //east is block
+    if (antViewVec[antViewRadius][antViewRadius+1].food > 0) //east is block
     {
         cout<<"food found east"<<endl;
         nextmove = 1;

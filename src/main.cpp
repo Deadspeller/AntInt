@@ -33,8 +33,8 @@ float roundTime = 0.7;
 bool gameStart = false;
 
 //world
-size_t xworldsize = 30;
-size_t zworldsize = 30;
+size_t xworldsize = 31;
+size_t zworldsize = 31;
 
 vector <vector <Square> > worldvector(xworldsize+1, vector<Square>(zworldsize+1)); //contains all informations about blocks, ants and food
 

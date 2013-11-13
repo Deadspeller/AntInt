@@ -14,15 +14,34 @@ PathFind::PathFind():
     map         (xworldsize, std::vector<int> (zworldsize, 0)),
     dir_map     (xworldsize, std::vector<int> (zworldsize, 9))
 {
-
 }
 
 void PathFind::updateMap(Ant *antpointer)
 {
+
+//    if (closedNodes.size() != xworldsize || closedNodes.at(0).size() != zworldsize) //if the world size changed
+//    {
+//        closedNodes.resize(xworldsize);
+//        openNodes.resize(xworldsize);
+//        map.resize(xworldsize);
+//        dir_map.resize(xworldsize);
+
+//        for (size_t i = 0; i < xworldsize; ++i)
+//        {
+//            closedNodes.at(i).resize(zworldsize);
+//            openNodes.at(i).resize(zworldsize);
+//            map.at(i).resize(zworldsize);
+//            dir_map.at(i).resize(zworldsize);
+//        }
+//    }
+
     for (size_t y = 0; y < zworldsize-1; y++)
     {
         for (size_t x=0; x < xworldsize-1; x++)
-           map[x][y] = antpointer->antMapVec[x][y].block;
+        {
+//            if (x < antpointer->antMapVec.size() && y < antpointer->antMapVec[0].size())
+                map[x][y] = antpointer->antMapVec[x][y].block;
+        }
     }
 }
 
