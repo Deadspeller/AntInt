@@ -186,7 +186,8 @@ void Ant::antcollision()
 
 void Ant::nearcheck()
 {
-
+    Square outSquare;
+    outSquare.block = 1;
     std::vector<Square> tmpRow;
     antViewVec.clear();
 
@@ -194,8 +195,17 @@ void Ant::nearcheck()
     {
         for (int y = -antViewRadius; y <= antViewRadius; y++)
         {
-            tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y));
-            antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector[xAntPosition + x][zAntPosition + y];
+            if ( (xAntPosition + x) < worldvector.size() && (zAntPosition + y) < worldvector[0].size() )
+            {
+                tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y));
+                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector[xAntPosition + x][zAntPosition + y];
+            }
+            else
+            {
+                cout << "debug: view out of map" << endl;
+                tmpRow.push_back(outSquare);
+                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = outSquare;
+            }
         }
         antViewVec.push_back(tmpRow);
         tmpRow.clear();
