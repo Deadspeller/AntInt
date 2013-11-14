@@ -123,7 +123,7 @@ void Ant::searchfood()
         if(nextz <= 1) nextz = 2;
 
 //        cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
-        if(worldvector[nextx][nextz].block)
+        if(antMapVec[nextx][nextz].block==1)
         {
             cout<<"Block:"<<endl;
             nextx = xAntPosition;
