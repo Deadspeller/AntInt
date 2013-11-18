@@ -113,39 +113,36 @@ void LevelDrawer::drawBlocks()
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-                    switch(col->food)
+                    if(col->food > 90)
                     {
-                    case 100:
-                            glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
-                            break;
-                    case 90:
-                            glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
-                            break;
-                    case 80:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
-                            break;
-                    case 70:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
-                            break;
-                    case 60:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb60);
-                            break;
-                    case 50:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
-                            break;
-                    case 40:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
-                            break;
-                    case 30:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb30);
-                            break;
-                    case 20:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb10);
-                            break;
-                    case 10:
-                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb5);
-                            break;
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
                     }
+                    else if(col->food >= 80)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
+                    }
+                    else if(col->food >= 60)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb60);
+                    }
+                    else if(col->food >= 50)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
+                    }
+                    else if(col->food >= 30)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb30);
+                    }
+                    else if(col->food >= 20)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb10);
+                    }
+                    else if(col->food > 0)
+                    {
+                         glBindTexture(GL_TEXTURE_2D, tex_honeycomb5);
+                    }
+
+
 
 //                    glEnable(GL_TEXTURE_2D);
 //                    glEnable(GL_BLEND);

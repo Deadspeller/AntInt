@@ -121,7 +121,7 @@ int Ant::antmove(size_t a)	//move the ant
 
         AntTimer.stop();
         difTime = AntTimer.getElapsedTimeInSec();
-        if (difTime > 0.1) difTime = 0;	//remove first time
+//        if (difTime > 0.1) difTime = 0;	//remove first time
         gesTime += difTime;
         AntTimer.start();
     }

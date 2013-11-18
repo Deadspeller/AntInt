@@ -108,7 +108,10 @@ void inputmanager(float difTime)
             if (Event.key.code == sf::Keyboard::Z)
             {
                 if (ypos > 4)
+                {
                     ypos -= 0.5;
+                }
+
             }
 
             if (Event.key.code == sf::Keyboard::U)
