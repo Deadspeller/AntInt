@@ -192,7 +192,7 @@ void LevelDrawer::drawBlocks()
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glBindTexture(GL_TEXTURE_2D, tex_ant);
+        glBindTexture(GL_TEXTURE_2D, tex_antfeet);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
