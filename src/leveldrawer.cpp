@@ -20,22 +20,44 @@ void LevelDrawer::drawBlocks()
 
                 if(col->antHill)
                 {
-                    glColor3f(0.7,0.6,0.6);
+                    glEnable(GL_TEXTURE_2D);
+                    glBindTexture(GL_TEXTURE_2D, tex_hill);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                    glColor3f(1,1,1);
+
                     glBegin(GL_POLYGON);
+                    glTexCoord2d(0,0);
                     glVertex3f(-1, 0.001, -1);
+                    glTexCoord2d(1,0);
                     glVertex3f(1, 0.001, -1);
+                    glTexCoord2d(1,1);
                     glVertex3f(1, 0.001, 1);
+                    glTexCoord2d(0,1);
                     glVertex3f(-1, 0.001, 1);
                     glEnd();
                 }
 
                 if(col->block == 1)
                 {
-                    glColor3f(0.8,0.8,0.8);
-                    glBegin(GL_POLYGON);
+
+                    glEnable(GL_TEXTURE_2D);
+                    glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                    glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
+
+                    glBegin(GL_POLYGON); //top
+                    glTexCoord2d(0,0);
                     glVertex3f(-1, 1, -1);
+
+                    glTexCoord2d(1,0);
                     glVertex3f(1, 1, -1);
+
+                    glTexCoord2d(1,1);
                     glVertex3f(1, 1, 1);
+
+                    glTexCoord2d(0,1);
                     glVertex3f(-1, 1, 1);
                     glEnd();
 
@@ -44,7 +66,7 @@ void LevelDrawer::drawBlocks()
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                     glColor3f(1,1,1);
-                    glBegin(GL_POLYGON); //ground
+                    glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
                     glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
@@ -55,7 +77,7 @@ void LevelDrawer::drawBlocks()
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                     glColor3f(1,1,1);
-                    glBegin(GL_POLYGON); //ground
+                    glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, 1, 1);
                     glTexCoord2d(1,1);  glVertex3f(-1, -1, 1);
@@ -66,7 +88,7 @@ void LevelDrawer::drawBlocks()
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                     glColor3f(1,1,1);
-                    glBegin(GL_POLYGON); //ground
+                    glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, 1, -1);
                     glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
                     glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
@@ -77,7 +99,7 @@ void LevelDrawer::drawBlocks()
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                     glColor3f(1,1,1);
-                    glBegin(GL_POLYGON); //ground
+                    glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
                     glTexCoord2d(1,0);  glVertex3f(1, 1, -1);
                     glTexCoord2d(1,1);  glVertex3f(1, -1, -1);
