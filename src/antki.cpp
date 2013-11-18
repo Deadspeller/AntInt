@@ -29,10 +29,17 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
                     break;
 
             case TAKE:     //futter aufnehmen
-                    if (takeFood())
-                        status = GOHOME;
+                    foodleft = takeFood();
+                    if (foodleft || foodbag > 0)
+                    {
+                          status = GOHOME;
+                    }
                     else
+                    {
+                        *nextfoodmanhattan = 99;
                         status = SEARCH;
+                    }
+
                     break;
 
             case GOHOME:     //A* zum Bau
@@ -47,15 +54,22 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
             case PUT:     //Futter ablegen
                     if(bringFood())
                     {
-                        cout<<"food zurückgebracht"<<endl;
+                        setNextFood(xFoodPos, yFoodpos, foodleft);
                         status = GOFOOD;
                         waytick = 0;
                     }
                     break;
 
             case GOFOOD:     //A* zum Futter
-                    findWayTo(xFoodPos, yFoodpos);
-                    if(xFoodPos == xAntPosition && yFoodpos == zAntPosition)
+                    if(*nextfoodmanhattan<99)
+                    {
+                        findWayTo(*nextfoodx, *nextfoodz);
+                    }
+                    else
+                        status = SEARCH;
+
+                    //findWayTo(xFoodPos, yFoodpos);
+                    if(xAntPosition == *nextfoodx && zAntPosition == *nextfoodz)
                     {
                         status = TAKE;
                         nextmove = 9;
@@ -162,22 +176,18 @@ void Ant::searchfood()
 
     if (antViewVec[antViewRadius+1][antViewRadius].food > 0) //north is block
     {
-        cout<<"food found north"<<endl;
         nextmove = 0;
     }
     if (antViewVec[antViewRadius-1][antViewRadius].food > 0) //south is block
     {
-        cout<<"food found south"<<endl;
         nextmove = 2;
     }
     if (antViewVec[antViewRadius][antViewRadius-1].food > 0) //west is block
     {
-        cout<<"food found west"<<endl;
         nextmove = 3;
     }
     if (antViewVec[antViewRadius][antViewRadius+1].food > 0) //east is block
     {
-        cout<<"food found east"<<endl;
         nextmove = 1;
     }
 

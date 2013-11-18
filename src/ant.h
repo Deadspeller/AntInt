@@ -33,11 +33,13 @@ public:
     AntHill *anthillpointer;
     vector <vector <int> > antworldvector;
     int *xhillorigin, *zhillorigin, *hillfood;
+    int *nextfoodx, *nextfoodz, *nextfoodmanhattan;
 
     bool antalive;
 
     void antspawn(int x, int z);
     void ki();
+    void setNextFood(int x, int z, int foodleft);
     vector <vector <Square> > antMapVec;
     vector <vector <Square> > antViewVec;
 
@@ -59,6 +61,7 @@ private:
 
     int xFoodPos, yFoodpos;
     int lastFoodValue;
+    int foodleft;
 
     bool collision;
     float difTime, gesTime;

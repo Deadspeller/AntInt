@@ -52,7 +52,7 @@ int Ant::takeFood()
         xFoodPos = xAntPosition;
         yFoodpos = zAntPosition;
         lastFoodValue = worldvector[xAntPosition][zAntPosition].food;
-        return 1;
+        return worldvector[xAntPosition][zAntPosition].food;
     }
     else
         return 0;
@@ -143,6 +143,28 @@ void Ant::antcollision()
 
 }
 
+void Ant::setNextFood(int xwert, int zwert, int foodvalue)
+{
+    if(*nextfoodmanhattan == 0) *nextfoodmanhattan = 99;
+    int newmanhattan = abs(*xhillorigin-xwert)+abs(*zhillorigin-zwert);
+    cout<<"new manhattan: "<<newmanhattan<<" old manhattan: "<<*nextfoodmanhattan<<endl;
+
+    if(foodvalue == 0)
+    {
+        cout<<"nextmanhattan = 99"<<endl;
+        *nextfoodmanhattan = 99;
+    }
+
+    if(newmanhattan < *nextfoodmanhattan)
+    {
+        *nextfoodx = xwert;
+        *nextfoodz = zwert;
+        *nextfoodmanhattan = newmanhattan;
+    }
+
+
+}
+
 void Ant::nearcheck()
 {
     Square outSquare;
@@ -195,6 +217,7 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         foodbag = 0;
         gesTime = 0;
         yorigin = 0.0001;
+        //*nextfoodmanhattan = 99;
 
         /* initialize random seed: */
         srand (time(NULL));
