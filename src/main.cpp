@@ -135,8 +135,8 @@ int main (int argc, char **argv)
 {
 	//Init with start Position
     xpos=9;
-    ypos=18;
-    zpos=9;
+    ypos=9;
+    zpos=15;
     xrot=50; //80°
     yrot=135; //135°
 

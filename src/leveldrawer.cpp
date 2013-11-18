@@ -145,6 +145,49 @@ void LevelDrawer::drawBlocks()
         }
 
         glScalef(0.5,0.5,0.5);
+
+            glColor3f(1,0.1,0.1);
+            glEnable(GL_TEXTURE_2D);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBindTexture(GL_TEXTURE_2D, tex_antbody);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+            glColor3f(1,1,1);
+        blockTextDraw(0.7, 1, 0.01, 0.3, -0.25, 0.25);
+            glDisable(GL_BLEND);
+            glDisable(GL_TEXTURE_2D);
+            glEnd();
+
+            glColor3f(1,0.1,0.1);
+            glEnable(GL_TEXTURE_2D);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBindTexture(GL_TEXTURE_2D, tex_antbody);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+            glColor3f(1,1,1);
+        blockTextDraw(0.1, 0.6, 0.01, 0.25, -0.15, 0.15);
+            glDisable(GL_BLEND);
+            glDisable(GL_TEXTURE_2D);
+            glEnd();
+
+            glColor3f(1,0.1,0.1);
+            glEnable(GL_TEXTURE_2D);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBindTexture(GL_TEXTURE_2D, tex_antback);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+            glColor3f(1,1,1);
+        blockTextDraw(0, -1, 0.01, 0.3, -0.3, 0.3);
+            glDisable(GL_BLEND);
+            glDisable(GL_TEXTURE_2D);
+            glEnd();
+
         glColor3f(1,0.1,0.1);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
@@ -167,3 +210,133 @@ void LevelDrawer::drawBlocks()
 
 
 }// end method
+
+
+void blockDraw(float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)
+{
+    glColor3f(1,0.2,0.2);   //bottom
+    glBegin(GL_POLYGON);
+    glVertex3f(xmin, ymin, zmin);
+    glVertex3f(xmax, ymin, zmin);
+    glVertex3f(xmax, ymin, zmax);
+    glVertex3f(xmin, ymin, zmax);
+    glEnd();
+
+    glColor3f(1,0.2,0.2);   //front
+    glBegin(GL_POLYGON);
+    glVertex3f(xmax, ymin, zmin);
+    glVertex3f(xmax, ymax, zmin);
+    glVertex3f(xmax, ymax, zmax);
+    glVertex3f(xmax, ymin, zmax);
+    glEnd();
+
+    glColor3f(1,0.2,0.2);   //back
+    glBegin(GL_POLYGON);
+    glVertex3f(xmin, ymin, zmin);
+    glVertex3f(xmin, ymax, zmin);
+    glVertex3f(xmin, ymax, zmax);
+    glVertex3f(xmin, ymin, zmax);
+    glEnd();
+
+    glColor3f(1,0.2,0.2);   //left
+    glBegin(GL_POLYGON);
+    glVertex3f(xmin, ymin, zmin);
+    glVertex3f(xmin, ymax, zmin);
+    glVertex3f(xmax, ymax, zmin);
+    glVertex3f(xmax, ymin, zmin);
+    glEnd();
+
+    glColor3f(1,0.2,0.2);   //right
+    glBegin(GL_POLYGON);
+    glVertex3f(xmin, ymin, zmax);
+    glVertex3f(xmin, ymax, zmax);
+    glVertex3f(xmax, ymax, zmax);
+    glVertex3f(xmax, ymin, zmax);
+    glEnd();
+
+    glColor3f(1,0.2,0.2);   //top
+    glBegin(GL_POLYGON);
+    glVertex3f(xmin, ymax, zmin);
+    glVertex3f(xmax, ymax, zmin);
+    glVertex3f(xmax, ymax, zmax);
+    glVertex3f(xmin, ymax, zmax);
+    glEnd();
+
+}
+
+void blockTextDraw(float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)
+{
+       //bottom
+    glBegin(GL_POLYGON);
+    glTexCoord2d(0,0);
+    glVertex3f(xmin, ymin, zmin);
+    glTexCoord2d(1,0);
+    glVertex3f(xmax, ymin, zmin);
+    glTexCoord2d(1,1);
+    glVertex3f(xmax, ymin, zmax);
+    glTexCoord2d(0,1);
+    glVertex3f(xmin, ymin, zmax);
+    glEnd();
+
+//front
+    glBegin(GL_POLYGON);
+        glTexCoord2d(0,0);
+    glVertex3f(xmax, ymin, zmin);
+        glTexCoord2d(1,0);
+    glVertex3f(xmax, ymax, zmin);
+        glTexCoord2d(1,1);
+    glVertex3f(xmax, ymax, zmax);
+        glTexCoord2d(0,1);
+    glVertex3f(xmax, ymin, zmax);
+    glEnd();
+
+//back
+    glBegin(GL_POLYGON);
+        glTexCoord2d(0,0);
+    glVertex3f(xmin, ymin, zmin);
+        glTexCoord2d(1,0);
+    glVertex3f(xmin, ymax, zmin);
+        glTexCoord2d(1,1);
+    glVertex3f(xmin, ymax, zmax);
+        glTexCoord2d(0,1);
+    glVertex3f(xmin, ymin, zmax);
+    glEnd();
+
+//left
+    glBegin(GL_POLYGON);
+        glTexCoord2d(0,0);
+    glVertex3f(xmin, ymin, zmin);
+        glTexCoord2d(1,0);
+    glVertex3f(xmin, ymax, zmin);
+        glTexCoord2d(1,1);
+    glVertex3f(xmax, ymax, zmin);
+        glTexCoord2d(0,1);
+    glVertex3f(xmax, ymin, zmin);
+    glEnd();
+
+//right
+    glBegin(GL_POLYGON);
+        glTexCoord2d(0,0);
+    glVertex3f(xmin, ymin, zmax);
+        glTexCoord2d(1,0);
+    glVertex3f(xmin, ymax, zmax);
+        glTexCoord2d(1,1);
+    glVertex3f(xmax, ymax, zmax);
+        glTexCoord2d(0,1);
+    glVertex3f(xmax, ymin, zmax);
+    glEnd();
+
+//top
+    glBegin(GL_POLYGON);
+        glTexCoord2d(0,0);
+    glVertex3f(xmin, ymax, zmin);
+        glTexCoord2d(1,0);
+    glVertex3f(xmax, ymax, zmin);
+        glTexCoord2d(1,1);
+    glVertex3f(xmax, ymax, zmax);
+        glTexCoord2d(0,1);
+    glVertex3f(xmin, ymax, zmax);
+    glEnd();
+
+
+}

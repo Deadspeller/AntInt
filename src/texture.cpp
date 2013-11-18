@@ -5,6 +5,8 @@ GLuint tex_ant;
 GLuint tex_wood_horizontal;
 GLuint tex_wood_vertical;
 GLuint tex_hill;
+GLuint tex_antbody;
+GLuint tex_antback;
 
 int LoadTextures()                 // Load Images And Convert To Textures
 {
@@ -26,6 +28,7 @@ int LoadTextures()                 // Load Images And Convert To Textures
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
         );
+
     //wood horizontal
     tex_wood_vertical = SOIL_load_OGL_texture
         (
@@ -48,6 +51,24 @@ int LoadTextures()                 // Load Images And Convert To Textures
     tex_ant = SOIL_load_OGL_texture
         (
         "textures/ant.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+
+    //Antbody Texture
+    tex_antbody = SOIL_load_OGL_texture
+        (
+        "textures/antbody.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_INVERT_Y
+        );
+
+    //Antback Texture
+    tex_antback = SOIL_load_OGL_texture
+        (
+        "textures/antback.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
