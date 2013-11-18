@@ -8,7 +8,7 @@ void AntHill::ki()
     hillTime += hillTimer.getElapsedTime();
 
 
-    if(hillTime >= 1 && antVec.size() < 3)
+    if(hillTime >= 1 && antVec.size() < maxAnts)
     {
         hillTime = 0;
         spawnAnt();
@@ -45,10 +45,33 @@ void AntHill::spawnAnt()
 
 void AntHill::moveAnts()
 {
-    for (size_t i=0; i < antVec.size(); i++)
+    static int i;
+    static float difTime;
+    static float gesTime;
+    static Timer moveTimer;
+
+    moveTimer.stop();
+    difTime = moveTimer.getElapsedTime();
+    gesTime += difTime;
+
+    if(gesTime >= roundTime/maxAnts)
     {
         antVec[i].ki();
+        i++;
+        gesTime = 0;
+        difTime = 0;
     }
+    if(i >= antVec.size())
+    {
+        i=0;
+    }
+
+//    for (size_t i=0; i < antVec.size(); i++)
+//    {
+//        //antVec[i].ki();
+//    }
+
+    moveTimer.start();
 }
 
 void AntHill::setHill(size_t x, size_t z)

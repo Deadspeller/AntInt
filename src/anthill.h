@@ -6,6 +6,8 @@
 #include "anthill.h"
 #include "ant.h"
 
+extern int maxAnts;
+
 class AntHill
 {    
 public:
