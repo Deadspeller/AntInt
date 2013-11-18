@@ -9,7 +9,7 @@
 using namespace std;
 
 extern GLuint tex_grass;
-extern GLuint tex_ant;
+extern GLuint tex_antfeet;
 extern GLuint tex_antbody;
 extern GLuint tex_antback;
 extern GLuint tex_wood_horizontal;

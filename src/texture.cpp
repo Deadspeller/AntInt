@@ -1,7 +1,7 @@
 #include "texture.h"
 
 GLuint tex_grass;
-GLuint tex_ant;
+GLuint tex_antfeet;
 GLuint tex_wood_horizontal;
 GLuint tex_wood_vertical;
 GLuint tex_hill;
@@ -55,10 +55,10 @@ int LoadTextures()                 // Load Images And Convert To Textures
         SOIL_FLAG_INVERT_Y
         );
 
-    //Ant Texture
-    tex_ant = SOIL_load_OGL_texture
+    //Ant Feet
+    tex_antfeet = SOIL_load_OGL_texture
         (
-        "textures/ant.png",
+        "textures/antfeet.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_INVERT_Y
