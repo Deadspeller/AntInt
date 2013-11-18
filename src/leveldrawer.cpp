@@ -109,13 +109,61 @@ void LevelDrawer::drawBlocks()
                 }
                 if(col->food > 0)
                 {
-                    float foodsize = (col->food)*0.005+0.5;
-                    glColor3f(1,1,0);
+                    glEnable(GL_TEXTURE_2D);
+                    glEnable(GL_BLEND);
+                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+                    switch(col->food)
+                    {
+                    case 100:
+                            glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
+                            break;
+                    case 90:
+                            glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
+                            break;
+                    case 80:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
+                            break;
+                    case 70:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
+                            break;
+                    case 60:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb60);
+                            break;
+                    case 50:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
+                            break;
+                    case 40:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
+                            break;
+                    case 30:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb30);
+                            break;
+                    case 20:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb10);
+                            break;
+                    case 10:
+                        glBindTexture(GL_TEXTURE_2D, tex_honeycomb5);
+                            break;
+                    }
+
+//                    glEnable(GL_TEXTURE_2D);
+//                    glEnable(GL_BLEND);
+//                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//                    glBindTexture(GL_TEXTURE_2D, tex_honeycomb);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                    glColor4f(1,1,1,1);
+
                     glBegin(GL_POLYGON);
-                    glVertex3f(-foodsize, 0.001, -foodsize);
-                    glVertex3f(foodsize, 0.001, -foodsize);
-                    glVertex3f(foodsize, 0.001, foodsize);
-                    glVertex3f(-foodsize, 0.01, foodsize);
+                    glTexCoord2d(0,0);
+                    glVertex3f(-1, 0.001, -1);
+                    glTexCoord2d(1,0);
+                    glVertex3f(1, 0.001, -1);
+                    glTexCoord2d(1,1);
+                    glVertex3f(1, 0.001, 1);
+                    glTexCoord2d(0,1);
+                    glVertex3f(-1, 0.001, 1);
                     glEnd();
                 }
                 glPopMatrix();
@@ -145,7 +193,6 @@ void LevelDrawer::drawBlocks()
         }
 
         glScalef(0.5,0.5,0.5);
-
             glColor3f(1,0.1,0.1);
             glEnable(GL_TEXTURE_2D);
             glEnable(GL_BLEND);
@@ -155,7 +202,7 @@ void LevelDrawer::drawBlocks()
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
             glColor3f(1,1,1);
-        blockTextDraw(0.7, 1, 0.01, 0.3, -0.25, 0.25);
+        blockTextDraw(0.55, 0.8, 0.01, 0.3, -0.25, 0.25);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
             glEnd();
@@ -169,7 +216,7 @@ void LevelDrawer::drawBlocks()
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
             glColor3f(1,1,1);
-        blockTextDraw(0.1, 0.6, 0.01, 0.25, -0.15, 0.15);
+        blockTextDraw(0.1, 0.5, 0.01, 0.25, -0.15, 0.15);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
             glEnd();

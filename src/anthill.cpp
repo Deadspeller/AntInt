@@ -8,7 +8,7 @@ void AntHill::ki()
     hillTime += hillTimer.getElapsedTime();
 
 
-    if(hillTime >= 3 && antVec.size() < 6)
+    if(hillTime >= 0.5 && antVec.size() < 100)
     {
         hillTime = 0;
         spawnAnt();
