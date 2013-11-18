@@ -8,7 +8,7 @@ void AntHill::ki()
     hillTime += hillTimer.getElapsedTime();
 
 
-    if(hillTime >= 3 && antVec.size() < 1)
+    if(hillTime >= 3 && antVec.size() < 6)
     {
         hillTime = 0;
         spawnAnt();
@@ -29,6 +29,9 @@ void AntHill::spawnAnt()
         antVec[antVec.size()-1].xhillorigin = &xposition;
         antVec[antVec.size()-1].zhillorigin = &zposition;
         antVec[antVec.size()-1].hillfood = &food;
+        antVec[antVec.size()-1].nextfoodx = &nextfoodx;
+        antVec[antVec.size()-1].nextfoodz = &nextfoodz;
+        antVec[antVec.size()-1].nextfoodmanhattan = &nextfoodmanhattan;
         antVec[antVec.size()-1].anthillpointer = this;
         cout<<"Ants: "<<antVec.size()<<endl;
     }
@@ -37,6 +40,8 @@ void AntHill::spawnAnt()
         cout<<"Not enough food"<<endl;
     }
 }
+
+
 
 void AntHill::moveAnts()
 {

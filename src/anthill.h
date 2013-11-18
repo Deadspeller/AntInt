@@ -13,6 +13,7 @@ public:
 	Ant tempAnt;
 	int xposition, zposition;
     int food;
+    int nextfoodx, nextfoodz, nextfoodmanhattan;
 
     void setHill(size_t x, size_t z);
     void spawnAnt();
