@@ -21,6 +21,7 @@ public:
     void spawnAnt();
     void ki();
     void moveAnts();
+    void antanimation();
     AntHill(int, int);
 };
 

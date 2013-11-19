@@ -111,9 +111,9 @@ int Ant::antmove(size_t a)	//move the ant
                 xAntPosition = oldxAntPosition;
                 zAntPosition = oldzAntPosition;
             }
+            xAntAnimPosition = oldxAntPosition;
+            zAntAnimPosition = oldzAntPosition;
 
-            //worldvector[oldxAntPosition][oldzAntPosition].block = 0;
-            //worldvector[xAntPosition][zAntPosition].block = 3;
             gesTime = 0;
 
             return 1;
@@ -127,6 +127,8 @@ int Ant::antmove(size_t a)	//move the ant
     }
 return 0;
 }
+
+
 
 
 

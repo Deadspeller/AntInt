@@ -171,7 +171,7 @@ void LevelDrawer::drawBlocks()
     for (size_t i=0; i<antHill1.antVec.size(); i++)
     {
         glPushMatrix();
-        glTranslated(antHill1.antVec[i].xAntPosition, antHill1.antVec[i].yAntPosition, antHill1.antVec[i].zAntPosition);
+        glTranslated(antHill1.antVec[i].xAntAnimPosition, antHill1.antVec[i].yAntPosition, antHill1.antVec[i].zAntAnimPosition);
 
         switch (antHill1.antVec[i].movedirection)
         {

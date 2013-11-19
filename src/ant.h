@@ -22,6 +22,7 @@ extern float antspeed;
 extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 extern float roundTime;
+extern float AntSpeed;
 
 using namespace std;
 
@@ -48,6 +49,9 @@ public:
     int startdirection;
     int movedirection;
     int xAntPosition, yAntPosition, zAntPosition; //Position of the Ant
+    float xAntAnimPosition, yAntAnimPosition, zAntAnimPosition;
+    int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
+
 
 private:
     bool done;
@@ -70,7 +74,7 @@ private:
     float yorigin, zorigin, xorigin; //where the ant started
 
 
-    int oldxAntPosition, oldyAntPosition, oldzAntPosition; //Position of the Ant
+
     Timer AntTimer;
 
     PathFind *pathfinder;

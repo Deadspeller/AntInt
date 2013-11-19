@@ -29,9 +29,10 @@ extern int mouseScrollValue;
 
 // Game Configurations
 int leftClickAction = 2;
-float roundTime = 1;
+float roundTime = 0.7;
 bool gameStart = false;
 int maxAnts = 10;
+float AntSpeed = 1.5;
 //world
 size_t xworldsize = 31;
 size_t zworldsize = 31;
@@ -184,6 +185,7 @@ int main (int argc, char **argv)
         if(gameStart)
         {
             antHill1.ki();
+            antHill1.antanimation();
         }
 
         DrawHUD();		//draw the HUD

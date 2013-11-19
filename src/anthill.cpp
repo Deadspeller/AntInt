@@ -73,6 +73,59 @@ void AntHill::moveAnts()
 
     moveTimer.start();
 }
+    Timer AnimationTimer;
+void AntHill::antanimation()
+{
+    float difTime;
+
+
+    AnimationTimer.stop();
+    difTime = AnimationTimer.getElapsedTimeInSec();
+    if(difTime > 0.2)difTime = 0;
+
+    for (size_t i=0; i < antVec.size(); i++)
+    {
+        if(antVec[i].xAntAnimPosition <= antVec[i].xAntPosition)
+        {
+            antVec[i].xAntAnimPosition += difTime*AntSpeed;
+            if(antVec[i].xAntAnimPosition >= antVec[i].xAntPosition)
+            {
+                antVec[i].xAntAnimPosition = antVec[i].xAntPosition;
+            }
+
+        }
+        else if(antVec[i].xAntAnimPosition > antVec[i].xAntPosition)
+        {
+            antVec[i].xAntAnimPosition -= difTime*AntSpeed;
+            if(antVec[i].xAntAnimPosition <= antVec[i].xAntPosition)
+            {
+                antVec[i].xAntAnimPosition = antVec[i].xAntPosition;
+            }
+
+        }
+
+        if(antVec[i].zAntAnimPosition <= antVec[i].zAntPosition)
+        {
+            antVec[i].zAntAnimPosition += difTime*AntSpeed;
+            if(antVec[i].zAntAnimPosition >= antVec[i].zAntPosition)
+            {
+                antVec[i].zAntAnimPosition = antVec[i].zAntPosition;
+            }
+
+        }
+        else if(antVec[i].zAntAnimPosition > antVec[i].zAntPosition)
+        {
+            antVec[i].zAntAnimPosition -= difTime*AntSpeed;
+            if(antVec[i].zAntAnimPosition <= antVec[i].zAntPosition)
+            {
+                antVec[i].zAntAnimPosition = antVec[i].zAntPosition;
+            }
+
+        }
+
+    }
+    AnimationTimer.start();
+}
 
 void AntHill::setHill(size_t x, size_t z)
 {
