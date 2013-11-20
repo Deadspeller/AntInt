@@ -14,7 +14,10 @@ Ant::Ant():
     lastFoodValue(0),
     gesTime(0),
     foodbag(0),
-    pathfinder(0)
+    pathfinder(0),
+    antLifeTime(lifeTime),
+    antwarning(0)
+
 {
 
     Square tmpSquare;
@@ -121,8 +124,13 @@ int Ant::antmove(size_t a)	//move the ant
 
         AntTimer.stop();
         difTime = AntTimer.getElapsedTimeInSec();
-//        if (difTime > 0.1) difTime = 0;	//remove first time
+        if (difTime > 2) difTime = 0;	//remove first time
         gesTime += difTime;
+        antLifeTime -= difTime;
+        if(antLifeTime <= 0) antalive = 0;
+        else if (antLifeTime <= 2) antwarning = 1;
+        else antwarning = 0;
+
         AntTimer.start();
     }
 return 0;
@@ -194,19 +202,6 @@ void Ant::nearcheck()
         tmpRow.clear();
     }
 
-    //test output of created map (spaw only one ant!)
-
-//    std::vector< std::vector<Square> >::iterator row;
-//    std::vector<Square>::iterator col;
-
-//    for (row = antMapVec.begin(); row != antMapVec.end(); row++)
-//    {
-//        cout << std::endl;
-//        for (col = row->begin(); col != row->end(); col++)
-//            cout << col->block << ",";
-//    }
-//    cout << std::endl;
-//    cout << std::endl;
 }
 
 void Ant::antspawn(int x, int z) //spawn a new ant
@@ -226,7 +221,8 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         /* generate secret number between 0 and 3: */
         startdirection = rand() % 3;
-        startdirection = 0;
+        cout<<"startdirection: "<<startdirection<<endl;
+        //startdirection = 0;
 
         xAntPosition = x;
         zAntPosition = z;
@@ -235,8 +231,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         zorigin = zAntPosition;
         xorigin = xAntPosition;
 
-        //worldvector[xAntPosition][zAntPosition].block = 3;
-        cout<<"Zeiger pos: "<<xpos<<" "<<zpos<<endl;
         cout<<"Ant not alive. Ant created and spawned at: x="<<xAntPosition<<" z="<<zAntPosition<<endl;
     }
     else

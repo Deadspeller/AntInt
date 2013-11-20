@@ -45,10 +45,12 @@ void AntHill::spawnAnt()
 
 void AntHill::moveAnts()
 {
-    static int i;
+    //static int i;
     static float difTime;
     static float gesTime;
     static Timer moveTimer;
+
+    static int i;
 
     moveTimer.stop();
     difTime = moveTimer.getElapsedTime();
@@ -56,7 +58,19 @@ void AntHill::moveAnts()
 
     if(gesTime >= roundTime/maxAnts)
     {
-        antVec[i].ki();
+        if(antVec[i].antalive == 0)
+        {
+            std::vector<Ant>::iterator iter;
+            iter = antVec.begin();
+            for(int a=0; a < i; i++) iter++;
+
+            antVec.erase(iter);
+
+        }
+        else
+        {
+            antVec[i].ki();
+        }
         i++;
         gesTime = 0;
         difTime = 0;

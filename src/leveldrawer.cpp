@@ -190,7 +190,8 @@ void LevelDrawer::drawBlocks()
         }
 
         glScalef(0.5,0.5,0.5);
-            glColor3f(1,0.1,0.1);
+
+
             glEnable(GL_TEXTURE_2D);
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -199,12 +200,13 @@ void LevelDrawer::drawBlocks()
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
             glColor3f(1,1,1);
+            if(antHill1.antVec[i].antwarning==1) glColor3f(0.3,0.3,0.3);
+            else glColor3f(1,1,1);
         blockTextDraw(0.55, 0.8, 0.01, 0.3, -0.25, 0.25);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
             glEnd();
 
-            glColor3f(1,0.1,0.1);
             glEnable(GL_TEXTURE_2D);
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -212,13 +214,14 @@ void LevelDrawer::drawBlocks()
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
-            glColor3f(1,1,1);
+            //glColor3f(1,1,1);
+            if(antHill1.antVec[i].antwarning) glColor3f(0.3,0.3,0.3);
+            else glColor3f(1,1,1);
         blockTextDraw(0.1, 0.5, 0.01, 0.25, -0.15, 0.15);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
             glEnd();
 
-            glColor3f(1,0.1,0.1);
             glEnable(GL_TEXTURE_2D);
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -227,6 +230,8 @@ void LevelDrawer::drawBlocks()
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
             glColor3f(1,1,1);
+            if(antHill1.antVec[i].antwarning) glColor3f(0.3,0.3,0.3);
+            else glColor3f(1,1,1);
         blockTextDraw(0, -1, 0.01, 0.3, -0.3, 0.3);
             glDisable(GL_BLEND);
             glDisable(GL_TEXTURE_2D);
@@ -240,6 +245,8 @@ void LevelDrawer::drawBlocks()
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glColor4f(1,1,1,1); // If you do not set a color, the textured area will appear black.
+        if(antHill1.antVec[i].antwarning) glColor4f(1,0.3,0.3,0.3);
+        else glColor4f(1,1,1,1);
         glBegin(GL_POLYGON); //ground
         glTexCoord2d(1,0);  glVertex3f(-1, 0.01, -1);
         glTexCoord2d(1,1);  glVertex3f(1, 0.01, -1);

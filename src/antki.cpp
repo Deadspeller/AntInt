@@ -89,7 +89,7 @@ void Ant::ki() //TODO: only call ki() once a round! (move drawing to levelDrawer
 void Ant::searchfood()
 {
 
-    if(waytick>=3 || (xAntPosition == nextx && zAntPosition == nextz))
+    if(waytick>=4 || (xAntPosition == nextx && zAntPosition == nextz))
     {
 
         srand (time(NULL));
@@ -105,23 +105,23 @@ void Ant::searchfood()
         {
             case 0:
                     srand (time(NULL));
-                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
-                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
+                    nextx = ((2 + rand() % 6)* xwalkpos+1) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos+1) + zAntPosition;
                     break;
             case 1:
                     srand (time(NULL));
-                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
-                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
+                    nextx = ((2 + rand() % 6)* xwalkpos+1) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos+1) + zAntPosition;
                     break;
             case 2:
                     srand (time(NULL));
-                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
-                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
+                    nextx = ((2 + rand() % 6)* xwalkpos-1) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos-1) + zAntPosition;
                     break;
             case 3:
                     srand (time(NULL));
-                    nextx = ((2 + rand() % 6)* xwalkpos) + xAntPosition;
-                    nextz = ((2 + rand() % 6)* zwalkpos) + zAntPosition;
+                    nextx = ((2 + rand() % 6)* xwalkpos-1) + xAntPosition;
+                    nextz = ((2 + rand() % 6)* zwalkpos-1) + zAntPosition;
                     break;
         }
 

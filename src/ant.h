@@ -23,6 +23,7 @@ extern float xpos, ypos, zpos;
 extern float colobjects[6][4];
 extern float roundTime;
 extern float AntSpeed;
+extern float lifeTime;
 
 using namespace std;
 
@@ -37,6 +38,8 @@ public:
     int *nextfoodx, *nextfoodz, *nextfoodmanhattan;
 
     bool antalive;
+    float antLifeTime;
+    bool antwarning;
 
     void antspawn(int x, int z);
     void ki();

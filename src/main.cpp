@@ -29,10 +29,11 @@ extern int mouseScrollValue;
 
 // Game Configurations
 int leftClickAction = 2;
-float roundTime = 0.7;
+float roundTime = 0.5;
 bool gameStart = false;
-int maxAnts = 10;
+int maxAnts = 5;
 float AntSpeed = 1.5;
+float lifeTime = 10;
 //world
 size_t xworldsize = 31;
 size_t zworldsize = 31;
