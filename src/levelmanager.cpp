@@ -141,7 +141,7 @@ bool LevelManager::saveFile()
             else if (col->antHill > 0)
                 mapFile << "H" << setfill('0') << setw(3) << col->antHill << ",";
             else
-                mapFile << "X000" << ",";
+                mapFile << "0000" << ",";
         }
     }
     mapFile.close();
