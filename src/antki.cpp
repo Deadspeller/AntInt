@@ -91,7 +91,6 @@ void Ant::searchfood()
 
     if(waytick>=4 || (xAntPosition == nextx && zAntPosition == nextz))
     {
-
         srand (time(NULL));
 
         if((rand() % 10) > 5) xwalkpos = 1;
@@ -99,7 +98,6 @@ void Ant::searchfood()
 
         if((rand() % 10) > 5) zwalkpos = 1;
         else zwalkpos = -1;
-
 
         switch(startdirection)
         {
@@ -136,10 +134,8 @@ void Ant::searchfood()
         if(nextx <= 1) nextx = 2;
         if(nextz <= 1) nextz = 2;
 
-//        cout<<"ant: x: "<<xAntPosition<<" z: "<<zAntPosition<<" target: x: "<<nextx<<" z: "<<nextz<<endl;
         if(antMapVec[nextx][nextz].block==1)
         {
-            cout<<"Block:"<<endl;
             nextx = xAntPosition;
             nextz = zAntPosition;
         }

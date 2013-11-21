@@ -41,7 +41,7 @@ bool LevelManager::loadFile()
     while (getline(mapFile,str))
         lines.push_back(str);
 
-    std::vector<std::string> number;
+    std::vector<std::string> squareProperties;
     std::vector<std::string>::iterator it, itStr;
 
     std::vector< std::vector<Square> >::iterator row;
@@ -56,26 +56,39 @@ bool LevelManager::loadFile()
     worldvector.clear();
     for (it = lines.begin() + 4; it != lines.end(); it++)
     {
-        number.clear();
-        split(*it,',' , number);
+        squareProperties.clear();
+        split(*it,',' , squareProperties);
 
-        for (itStr = number.begin(); itStr != number.end(); itStr++)
+        for (itStr = squareProperties.begin(); itStr != squareProperties.end(); itStr++)
         {
-            istringstream (*itStr) >> tmpSquare.block; // convert to int and assign to blocktype
+            char squareType = 0;
+            int squareValue = 0;
+            tmpSquare.reset();
 
-            //0 = nothing, 1 = block, 2 = food, 3 = wood, 4 = hill
-            if(tmpSquare.block == 2)    //set food to 100
+            squareType = (*itStr)[0];
+            if((*itStr).size() >= 2)
+                istringstream ( ((*itStr).substr(1)) ) >> squareValue; //get digits; then convert to int
+
+            switch (squareType)
             {
-                tmpSquare.food = 100;
+                case '0':
+                break;
+
+                case 'B':
+                    tmpSquare.block = squareValue;
+                break;
+
+                case 'F':
+                    tmpSquare.food = squareValue;
+                break;
+
+                case 'H':
+                    tmpSquare.antHill = squareValue;
+                break;
+
+                default:
+                    cout << "LoadLevel: ignoring Square (" << squareType << squareValue <<")" << endl;
             }
-            else
-                tmpSquare.food = 0;
-            if(tmpSquare.block == 4)    //hill
-            {
-                tmpSquare.antHill = 1;
-            }
-            else
-                tmpSquare.antHill = 0;
 
             tmpRow.push_back(tmpSquare);
 
@@ -89,18 +102,17 @@ bool LevelManager::loadFile()
 
     cout << "Level loaded - Size: " << xworldsize << " x " << zworldsize << endl;
     //setting up the "walls"
-//    for (size_t i = 0; i < zworldsize; i++)
-//        worldvector.at(i).at(0).block = 1;
+    for (size_t i = 0; i < zworldsize; i++)
+        worldvector.at(i).at(0).block = 1;
 
-//    for (size_t i = 0; i < xworldsize; i++)
-//        worldvector.at(0).at(i).block = 1;
+    for (size_t i = 0; i < xworldsize; i++)
+        worldvector.at(0).at(i).block = 1;
 
-//    for (size_t i = 0; i < zworldsize; i++)
-//        worldvector.at(i).at(xworldsize - 1).block = 1;
+    for (size_t i = 0; i < zworldsize; i++)
+        worldvector.at(i).at(xworldsize - 1).block = 1;
 
-//    for (size_t i = 0; i < xworldsize; i++)
-//        worldvector.at(zworldsize - 1).at(i).block = 1;
-
+    for (size_t i = 0; i < xworldsize; i++)
+        worldvector.at(zworldsize - 1).at(i).block = 1;
 
     mapFile.close();
     return true;
@@ -121,7 +133,16 @@ bool LevelManager::saveFile()
     {
         mapFile << std::endl;
         for (col = row->begin(); col != row->end(); col++)
-            mapFile << col->block << ",";
+        {
+            if (col->block > 0)
+                mapFile << "B" << setfill('0') << setw(3) << col->block << ",";
+            else if (col->food > 0)
+                mapFile << "F" << setfill('0') << setw(3) << col->food << ",";
+            else if (col->antHill > 0)
+                mapFile << "H" << setfill('0') << setw(3) << col->antHill << ",";
+            else
+                mapFile << "X000" << ",";
+        }
     }
     mapFile.close();
     return true;
