@@ -23,6 +23,7 @@ public:
 
     Square();
     Square(int typeblock);
+    void reset();
 };
 
 #endif

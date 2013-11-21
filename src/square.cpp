@@ -35,10 +35,20 @@ Square::Square(int typeblock):
 
 }
 
-Square::Square()
+Square::Square():
+    block(0),
+    food(0),
+    smell(0),
+    antHill(0),
+    ant(0)
+{
+}
+
+void Square::reset()
 {
     block = 0;
     food = 0;
+    smell = 0;
     antHill = 0;
-
+    ant = 0;
 }
