@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 Ant::Ant():
-    antViewRadius(1),
+    antViewRadius(2),
     done(false),
     status(SEARCH),
     waytick(1),
@@ -10,14 +10,14 @@ Ant::Ant():
     lastmove(0),
     followingPath(0),
     xFoodPos(0),
-    yFoodpos(0),
+    yFoodPos(0),
     lastFoodValue(0),
+    foodInSight(0),
     gesTime(0),
     foodbag(0),
     pathfinder(0),
     antLifeTime(lifeTime),
     antwarning(0)
-
 {
 
     Square tmpSquare;
@@ -53,7 +53,7 @@ int Ant::takeFood()
             worldvector[xAntPosition][zAntPosition].food -= 1;
         }
         xFoodPos = xAntPosition;
-        yFoodpos = zAntPosition;
+        yFoodPos = zAntPosition;
         lastFoodValue = worldvector[xAntPosition][zAntPosition].food;
         return worldvector[xAntPosition][zAntPosition].food;
     }
@@ -136,10 +136,6 @@ int Ant::antmove(size_t a)	//move the ant
 return 0;
 }
 
-
-
-
-
 void Ant::antcollision()
 {
     collision = false;
@@ -172,7 +168,6 @@ void Ant::setNextFood(int xwert, int zwert, int foodvalue)
         *nextfoodmanhattan = newmanhattan;
     }
 
-
 }
 
 void Ant::nearcheck()
@@ -188,14 +183,14 @@ void Ant::nearcheck()
         {
             if ( (xAntPosition + x) < worldvector.size() && (zAntPosition + y) < worldvector[0].size() )
             {
-                tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y));
-                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector.at(xAntPosition + x).at(zAntPosition + y);
+                tmpRow.push_back(worldvector.at(xAntPosition + x).at(zAntPosition +y)); // live Ant view
+                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = worldvector.at(xAntPosition + x).at(zAntPosition + y); //update Ant map in memory
             }
             else
             {
-                cout << "debug: view out of map" << endl;
-                tmpRow.push_back(outSquare);
-                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = outSquare;
+//                cout << "debug: view out of map" << endl;
+//                tmpRow.push_back(outSquare);
+//                antMapVec.at(xAntPosition + x).at(zAntPosition + y) = outSquare;
             }
         }
         antViewVec.push_back(tmpRow);
@@ -206,7 +201,6 @@ void Ant::nearcheck()
 
 void Ant::antspawn(int x, int z) //spawn a new ant
 {
-
     if (antalive == 0) //if ant is not already alive
     {
         antalive = true;

@@ -168,7 +168,7 @@ void LevelDrawer::drawBlocks()
             }//end if
         }// end for
 
-    for (size_t i=0; i<antHill1.antVec.size(); i++)
+    for (size_t i = 0; i < antHill1.antVec.size(); i++)
     {
         glPushMatrix();
         glTranslated(antHill1.antVec[i].xAntAnimPosition, antHill1.antVec[i].yAntPosition, antHill1.antVec[i].zAntAnimPosition);

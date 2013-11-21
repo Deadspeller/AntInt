@@ -66,9 +66,10 @@ private:
     int nextx, nextz;
     int xwalkpos, zwalkpos;
 
-    int xFoodPos, yFoodpos;
+    int xFoodPos, yFoodPos;
     int lastFoodValue;
     int foodleft;
+    bool foodInSight;
 
     bool collision;
     float difTime, gesTime;
@@ -92,7 +93,7 @@ private:
     int bringFood();
 
     void searchfood();
-    void findWayTo(size_t xTo, size_t yTo);
+    bool findWayTo(size_t xTo, size_t yTo);
 
     enum myStati {SEARCH,TAKE,GOHOME,PUT,GOFOOD} status;
 
