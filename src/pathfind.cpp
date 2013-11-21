@@ -35,9 +35,9 @@ void PathFind::updateMap(Ant *antpointer)
 //        }
 //    }
 
-    for (size_t y = 0; y < zworldsize-1; y++)
+    for (size_t y = 0; y < zworldsize; y++)
     {
-        for (size_t x=0; x < xworldsize-1; x++)
+        for (size_t x=0; x < xworldsize; x++)
         {
 //            if (x < antpointer->antMapVec.size() && y < antpointer->antMapVec[0].size())
                 map[x][y] = antpointer->antMapVec[x][y].block;
@@ -55,16 +55,19 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
     *   A priority queue is a data structure in which only the largest element can be retrieved (popped).
     *   It's problem is that finding an node in the queue is a slow operation.
     **/
+    if (xStart >= xworldsize || yStart >= zworldsize || xFinish >= xworldsize || yFinish >= zworldsize)
+        cout << " HUGE PROBLEM! sX: "<< xStart << " sY: " << yStart << " fX: " << xFinish << " fY: " << yFinish << endl;
+
     std::priority_queue<Node> pq[2]; //we define 2 priority list which is needed for our priority change of a node 'algo'
     static int index; //static and global variables are initialized to 0
-    static Node *currentNode;
-    static Node *neighborNode;
+    static std::unique_ptr<Node> currentNode;
+    static std::unique_ptr<Node> neighborNode;
     //first reset maps
     resetMaps();
 
     //create start node
-    static Node * startNode;
-    startNode= new Node(xStart,yStart,0,0);
+    static std::unique_ptr<Node> startNode;
+    startNode = std::unique_ptr<Node>(new Node(xStart,yStart,0,0));
     startNode->updatePriority(xFinish, yFinish);
 
     // push it into the priority queue
@@ -79,10 +82,10 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
     {
         //get current node with the higest priority from the priority list
         //in first instance this is the start node
-        currentNode = new Node(pq[index].top().getxPos(),
-                               pq[index].top().getyPos(),
-                               pq[index].top().getDistance(),
-                               pq[index].top().getPriority());
+        currentNode = std::unique_ptr<Node>(new Node   (pq[index].top().getxPos(),
+                                                        pq[index].top().getyPos(),
+                                                        pq[index].top().getDistance(),
+                                                        pq[index].top().getPriority()) );
         //remove node from priority queue
         pq[index].pop();
         openNodes[currentNode->getxPos()][currentNode->getyPos()]=0; //remove node from open list
@@ -110,8 +113,6 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                 y+=dirY[direction];
             }
 
-            //garbage collection; the memory allocated with 'new' should be freed to avoid memory leaks
-            delete currentNode;
             while (!pq[index].empty()){
                 pq[index].pop();
             }
@@ -136,7 +137,7 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                       closedNodes[neighborX][neighborY]==1 || map[neighborX][neighborY] == 1))
                 {
                     //ok -> generate neighbor node
-                    neighborNode = new Node (neighborX,neighborY,currentNode->getDistance(),currentNode->getPriority());
+                    neighborNode = std::unique_ptr<Node>(new Node (neighborX,neighborY,currentNode->getDistance(),currentNode->getPriority()) );
                     //calculate the fscore of the node
                     neighborNode->updateDistance();
                     neighborNode->updatePriority(xFinish,yFinish);
@@ -218,7 +219,6 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                         index=1-index; //index switch 1->0 or 0->1
                         pq[index].push(*neighborNode); //and the -new-current node will be pushed in instead
                     }
-                    else delete neighborNode;
 
                 }
                 else
@@ -226,8 +226,6 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
 //                    cout << "ignored: "<< map[neighborX][neighborY] << endl;
                 }
             }
-
-            delete currentNode;
         }
 
     } return ""; //no path found

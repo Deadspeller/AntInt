@@ -8,6 +8,7 @@
 #include <sstream>
 #include <vector>
 #include <queue>
+#include <memory>
 
 #include "square.h"
 #include "node.h"
