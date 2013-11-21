@@ -131,11 +131,12 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                 int neighborX = currentNode->getxPos() + dirX[i];
                 int neighborY = currentNode->getyPos() + dirY[i];
                 //check boundaries
-                //ignore if on closed list (was already evaluted) or if unwalkable (currently -n-o-t- implemented)
-
-                if (!(neighborX < 0 || neighborY < 0 || neighborX > xworldsize || neighborY > zworldsize ||
-                      closedNodes[neighborX][neighborY]==1 || map[neighborX][neighborY] == 1))
+                if (neighborX < 0 || neighborY < 0 || neighborX >= xworldsize || neighborY >= zworldsize)
+                    break;
+                //ignore if on closed list (was already evaluted) or if unwalkable (wall)
+                if (!(closedNodes[neighborX][neighborY]==1 || map[neighborX][neighborY] == 1))
                 {
+
                     //ok -> generate neighbor node
                     neighborNode = std::unique_ptr<Node>(new Node (neighborX,neighborY,currentNode->getDistance(),currentNode->getPriority()) );
                     //calculate the fscore of the node
