@@ -22,7 +22,7 @@ set(AntInt_SOURCES
 	src/leveldrawer.cpp
 	src/menu.cpp
 	src/objectcreator.cpp
-	src/texture.cpp
+        src/texture.cpp
 	src/timer.cpp
 	src/world.cpp
         src/pathfind.cpp
@@ -48,7 +48,7 @@ set(AntInt_HEADERS
 add_executable(AntInt ${AntInt_SOURCES}
 	${AntInt_HEADERS})
 
-find_package (SFML 2.0 REQUIRED system window graphics)
+find_package (SFML 2.0 REQUIRED system window graphics audio)
 if (SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIRS})
   target_link_libraries (AntInt ${SFML_LIBRARIES})

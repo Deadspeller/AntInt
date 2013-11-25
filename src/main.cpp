@@ -8,6 +8,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <GL/glew.h>
 
 #include "ant.h"
@@ -130,6 +131,7 @@ void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFa
     fW = fH * aspect;
     glFrustum( -fW, fW, -fH, fH, zNear, zFar );
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 

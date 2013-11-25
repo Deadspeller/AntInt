@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include "SOIL/SOIL.h"
 
 #include "anthill.h"

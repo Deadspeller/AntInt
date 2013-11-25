@@ -5,8 +5,11 @@ LevelDrawer::LevelDrawer()
     drawBlocks();
 }
 
+sf::SoundBuffer blockSoundBuffer;
+sf::Sound blockSound;
 void LevelDrawer::drawBlocks()
 {
+
     static float difTime = 0;
     std::vector< std::vector<Square> >::iterator row;
     std::vector<Square>::iterator col;
@@ -22,13 +25,23 @@ void LevelDrawer::drawBlocks()
                 //if(difTime > 2) difTime = 0;	//remove first time
                 if(col->yBlockAnim > 0.5)
                 {
-                    cout<<"difTime: "<<difTime<<endl;
                     col->yBlockSpeed += 50*difTime;
-                    cout<<"speed: "<<col->yBlockSpeed<<endl;
                     col->yBlockAnim -= col->yBlockSpeed * difTime;
                 }
                 else
+                if(col->yBlockAnim < 0.5)
                 {
+                    cout<<"sound"<<endl;
+//                    sf::SoundBuffer blockSoundBuffer;
+//                    blockSoundBuffer.loadFromFile("sounds/blocksound.wav");
+//                    sf::Sound blockSound;
+//                    blockSound.setBuffer(blockSoundBuffer);
+                    blockSoundBuffer.loadFromFile("sounds/blocksound.wav");
+                    blockSound.setBuffer(blockSoundBuffer);
+                    blockSound.setVolume(100);
+                    blockSound.play();
+                    blockSound.getStatus();
+
                     col->yBlockAnim = 0.5;
                 }
 
