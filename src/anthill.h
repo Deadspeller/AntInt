@@ -7,6 +7,7 @@
 #include "ant.h"
 
 extern int maxAnts;
+extern float roundTime;
 
 class AntHill
 {    

@@ -58,11 +58,12 @@ void AntHill::moveAnts()
 
     if(gesTime >= roundTime/maxAnts)
     {
+        if(antVec.size() > 0)
         if(antVec[i].antalive == 0)
         {
             std::vector<Ant>::iterator iter;
-            iter = antVec.begin();
-            for(int a=0; a < i; i++) iter++;
+            iter = antVec.begin()+i;
+            //for(int a=0; a < i; i++) iter++;
 
             antVec.erase(iter);
 
@@ -95,13 +96,13 @@ void AntHill::antanimation()
 
     AnimationTimer.stop();
     difTime = AnimationTimer.getElapsedTimeInSec();
-    if(difTime > 0.2)difTime = 0;
+    if(difTime > 1)difTime = 0;
 
     for (size_t i=0; i < antVec.size(); i++)
     {
         if(antVec[i].xAntAnimPosition <= antVec[i].xAntPosition)
         {
-            antVec[i].xAntAnimPosition += difTime*AntSpeed;
+            antVec[i].xAntAnimPosition += difTime*AntSpeed/roundTime;
             if(antVec[i].xAntAnimPosition >= antVec[i].xAntPosition)
             {
                 antVec[i].xAntAnimPosition = antVec[i].xAntPosition;
@@ -110,7 +111,7 @@ void AntHill::antanimation()
         }
         else if(antVec[i].xAntAnimPosition > antVec[i].xAntPosition)
         {
-            antVec[i].xAntAnimPosition -= difTime*AntSpeed;
+            antVec[i].xAntAnimPosition -= difTime*AntSpeed/roundTime;
             if(antVec[i].xAntAnimPosition <= antVec[i].xAntPosition)
             {
                 antVec[i].xAntAnimPosition = antVec[i].xAntPosition;
@@ -120,7 +121,7 @@ void AntHill::antanimation()
 
         if(antVec[i].zAntAnimPosition <= antVec[i].zAntPosition)
         {
-            antVec[i].zAntAnimPosition += difTime*AntSpeed;
+            antVec[i].zAntAnimPosition += difTime*AntSpeed/roundTime;
             if(antVec[i].zAntAnimPosition >= antVec[i].zAntPosition)
             {
                 antVec[i].zAntAnimPosition = antVec[i].zAntPosition;
@@ -129,7 +130,7 @@ void AntHill::antanimation()
         }
         else if(antVec[i].zAntAnimPosition > antVec[i].zAntPosition)
         {
-            antVec[i].zAntAnimPosition -= difTime*AntSpeed;
+            antVec[i].zAntAnimPosition -= difTime*AntSpeed/roundTime;
             if(antVec[i].zAntAnimPosition <= antVec[i].zAntPosition)
             {
                 antVec[i].zAntAnimPosition = antVec[i].zAntPosition;

@@ -125,8 +125,12 @@ int Ant::antmove(size_t a)	//move the ant
         AntTimer.stop();
         difTime = AntTimer.getElapsedTimeInSec();
         if (difTime > 2) difTime = 0;	//remove first time
-            gesTime += difTime;
-        antLifeTime -= difTime;
+        else
+        {
+            gesTime += difTime/roundTime;
+            antLifeTime -= difTime/roundTime;
+        }
+
         if(antLifeTime <= 0)        antalive = 0;
         else if (antLifeTime <= 2)  antwarning = 1;
         else antwarning = 0;
