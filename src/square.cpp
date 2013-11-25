@@ -5,7 +5,9 @@ Square::Square(int typeblock):
     food(0),
     smell(0),
     antHill(0),
-    ant(0)
+    ant(0),
+    yBlockAnim(3),
+    yBlockSpeed(0)
 {
 
     switch (typeblock)

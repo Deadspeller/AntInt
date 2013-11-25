@@ -23,6 +23,7 @@ public:
     LevelDrawer();
     void drawBlocks();
 
+    Timer BlockTimer;
 }; //end Class
 
 #endif

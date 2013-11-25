@@ -7,15 +7,38 @@ LevelDrawer::LevelDrawer()
 
 void LevelDrawer::drawBlocks()
 {
+    static float difTime = 0;
     std::vector< std::vector<Square> >::iterator row;
     std::vector<Square>::iterator col;
+
     for (row = worldvector.begin(); row != worldvector.end(); row++)
         for (col = row->begin(); col != row->end(); col++)
         {
             if (col->block == 1 || col->block == 2 || col->antHill == 1 || col->food > 0)
             {
+
+                BlockTimer.stop();
+                difTime = BlockTimer.getElapsedTimeInSec();
+                //if(difTime > 2) difTime = 0;	//remove first time
+                if(col->yBlockAnim > 0.5)
+                {
+                    cout<<"difTime: "<<difTime<<endl;
+                    col->yBlockSpeed += 50*difTime;
+                    cout<<"speed: "<<col->yBlockSpeed<<endl;
+                    col->yBlockAnim -= col->yBlockSpeed * difTime;
+                }
+                else
+                {
+                    col->yBlockAnim = 0.5;
+                }
+
+
                 glPushMatrix();
+                if(col->block == 1)
+                glTranslated(row - worldvector.begin(), col->yBlockAnim, col - row->begin());
+                else
                 glTranslated(row - worldvector.begin(), 0, col - row->begin());
+
                 glScalef(0.5,0.5,0.5);
 
                 if(col->antHill)
@@ -167,6 +190,7 @@ void LevelDrawer::drawBlocks()
 
             }//end if
         }// end for
+    BlockTimer.start();
 
     for (size_t i = 0; i < antHill1.antVec.size(); i++)
     {

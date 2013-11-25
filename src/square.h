@@ -19,6 +19,8 @@ public:
     int food;
     int smell;
     int antHill;
+    float yBlockAnim;
+    float yBlockSpeed;
     Ant* ant;
 
     Square();

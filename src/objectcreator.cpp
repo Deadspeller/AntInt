@@ -17,6 +17,8 @@ void ObjectCreator::createBlock(size_t xwert, size_t zwert, int blocktype)
             if(blocktype == 1)
             {
                 worldvector.at(xwert).at(zwert).block = blocktype;	// add Block
+                worldvector.at(xwert).at(zwert).yBlockAnim = 4;
+                worldvector.at(xwert).at(zwert).yBlockSpeed = 0;
                 cout<<"create block"<<endl;
             }
 

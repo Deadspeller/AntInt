@@ -66,7 +66,6 @@ void AntHill::moveAnts()
             //for(int a=0; a < i; i++) iter++;
 
             antVec.erase(iter);
-
         }
         else
         {
