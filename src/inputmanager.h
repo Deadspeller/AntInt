@@ -28,7 +28,7 @@ extern float roundTime;
 extern float xlook, zlook;
 extern bool gameStart;
 
-extern bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
+extern bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveUpKey, MoveDownKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
 extern bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
 extern int mouseScrollValue;
 

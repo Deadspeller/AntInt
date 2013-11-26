@@ -2,12 +2,11 @@
 
 
 
-
 int GP_LT = 8,GP_RT = 9, GP_LB = 10, GP_RB = 11, GP_LStick = 1, GP_RStick = 2, GP_Dreieck = 12;
 int GP_Viereck = 15, GP_X = 14, GP_Kreis = 13, GP_DUp = 4, GP_DLeft = 7, GP_DDown = 6, GP_DRight = 5;
 int GP_Select = 0, GP_Start = 3, GP_XBox = 16;
 
-bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
+bool Key1, Key2, Key3, Key4, MoveForwardKey, MoveLeftKey, MoveBackwardKey, MoveRightKey, MoveUpKey, MoveDownKey, MoveSneakKey, MoveLaydownKey, MoveJumpKey, MoveSprintKey;
 bool LControlKeyDown, YKeyDown, KKeyDown, IKeyDown, EscKeyDown, SpaceKeyDown, LeftClickDown;
 int mouseScrollValue = 0;
 
@@ -44,6 +43,8 @@ void inputmanager(float difTime)
     MoveLeftKey = KeyboardInput.isKeyPressed(sf::Keyboard::A);
     MoveBackwardKey = KeyboardInput.isKeyPressed(sf::Keyboard::S);
     MoveRightKey = KeyboardInput.isKeyPressed(sf::Keyboard::D);
+    MoveUpKey = KeyboardInput.isKeyPressed(sf::Keyboard::Q);
+    MoveDownKey = KeyboardInput.isKeyPressed(sf::Keyboard::E);
     MoveSneakKey = KeyboardInput.isKeyPressed(sf::Keyboard::LControl);
     MoveSprintKey = KeyboardInput.isKeyPressed(sf::Keyboard::LShift);
     MoveLaydownKey = KeyboardInput.isKeyPressed(sf::Keyboard::Y);
@@ -219,6 +220,18 @@ void inputmanager(float difTime)
         yrotrad = (yrot / 180 * 3.141592654f);
         xpos -= float(cos(yrotrad)) * actspeed*difTime;
         zpos -= float(sin(yrotrad)) * actspeed*difTime;
+    }
+
+    if (MoveUpKey)
+    {
+        float yrotrad = (yrot / 180 * 3.141592654f);
+        ypos -= float(cos(yrotrad)) * actspeed * difTime;
+    }
+
+    if (MoveDownKey)
+    {
+        float yrotrad = (yrot / 180 * 3.141592654f);
+        ypos += float(cos(yrotrad)) * actspeed * difTime;
     }
 
     if (mouseScrollValue != 0)
