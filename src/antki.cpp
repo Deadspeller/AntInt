@@ -154,7 +154,7 @@ void Ant::searchfood()
         //detect Food in sight
         for (size_t x = 0; x < antViewVec.size(); x++)
         {
-            for (size_t y = 0; y <antViewVec[0].size(); y++)
+            for (size_t y = 0; y < antViewVec[x].size(); y++)
             {
                 if (antViewVec[x][y].food)
                 {
