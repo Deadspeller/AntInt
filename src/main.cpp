@@ -32,22 +32,16 @@ extern int mouseScrollValue;
 int leftClickAction = 2;
 float roundTime = 0.5;
 bool gameStart = false;
-int maxAnts = 3;
+int maxAnts = 10;
 float AntSpeed = 0.5;
-float lifeTime = 10;
+float lifeTime =1000;
 //world
 size_t xworldsize = 31;
 size_t zworldsize = 31;
 
 vector <vector <Square> > worldvector(xworldsize+1, vector<Square>(zworldsize+1)); //contains all informations about blocks, ants and food
 
-//Ants
-const int maxants = 0;
-const int maxblocks = 100;
-
 //Classes
-Ant antarray[maxants];
-Square blockarray[maxblocks];
 ObjectCreator objectCreator1;
 LevelDrawer levelDrawer1;
 LevelManager levelManager1;
