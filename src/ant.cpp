@@ -224,7 +224,10 @@ void Ant::antspawn(int x, int z) //spawn a new ant
 
         xAntPosition = x;
         zAntPosition = z;
+        xAntAnimPosition = x;
+        zAntAnimPosition = z;
         yAntPosition = 0.001;
+
 
         zorigin = zAntPosition;
         xorigin = xAntPosition;
