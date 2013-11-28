@@ -143,10 +143,12 @@ void AntHill::antanimation()
 
 void AntHill::setHill(size_t x, size_t z)
 {
-    if (x < worldvector.size() && z < worldvector.at(0).size())
+    if (x < worldvector.size() && z < worldvector.at(x).size())
     {
+        worldvector[xposition][zposition].antHill = 0;
         xposition = x;
         zposition = z;
+        worldvector[xposition][zposition].antHill = 1;
     }
 }
 
