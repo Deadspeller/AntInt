@@ -171,7 +171,6 @@ void inputmanager(float difTime)
                 case 4:
                         //objectCreator1.createHill(round(xpos+1), round(zpos+1));
                         antHill1.setHill(xlook, zlook);
-                        objectCreator1.createHill(antHill1.xposition, antHill1.zposition);
                         break;
             }
         }
