@@ -92,7 +92,7 @@ void Ant::searchfood()
 
     if (!foodInSight)
     {
-        if (waytick>=4 || (xAntPosition == nextx && zAntPosition == nextz))
+        if (waytick >= 4 || (xAntPosition == nextx && zAntPosition == nextz))
         {
             srand (time(NULL));
 
@@ -126,16 +126,16 @@ void Ant::searchfood()
                         break;
             }
 
-            if(nextx >= xworldsize-1)
+            if (nextx >= xworldsize-1)
             {
                 nextx = xworldsize-2;
             }
-            if(nextz >= zworldsize-1)
+            if (nextz >= zworldsize-1)
             {
                 nextz = zworldsize-2;
             }
-            if(nextx <= 1) nextx = 2;
-            if(nextz <= 1) nextz = 2;
+            if (nextx <= 1) nextx = 2;
+            if (nextz <= 1) nextz = 2;
 
             if(antMapVec[nextx][nextz].block==1)
             {
@@ -189,7 +189,6 @@ void Ant::searchfood()
 //    {
 //        nextmove = 1;
 //    }
-
 }
 
 bool Ant::findWayTo(size_t xTo, size_t yTo)

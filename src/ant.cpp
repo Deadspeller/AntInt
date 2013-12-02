@@ -2,9 +2,10 @@
 #include <stdlib.h>
 
 Ant::Ant():
+    antLifeTime(lifeTime),
+    antwarning(0),
     antViewRadius(2),
     done(false),
-    status(SEARCH),
     waytick(1),
     nextmove(0),
     lastmove(0),
@@ -16,8 +17,8 @@ Ant::Ant():
     gesTime(0),
     foodbag(0),
     pathfinder(0),
-    antLifeTime(lifeTime),
-    antwarning(0)
+
+    status(SEARCH)
 {
 
     Square tmpSquare;
@@ -227,7 +228,6 @@ void Ant::antspawn(int x, int z) //spawn a new ant
         xAntAnimPosition = x;
         zAntAnimPosition = z;
         yAntPosition = 0.001;
-
 
         zorigin = zAntPosition;
         xorigin = xAntPosition;

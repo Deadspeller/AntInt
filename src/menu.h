@@ -24,12 +24,8 @@ extern float geswaitTime;
 void menukeyPressed (unsigned char key, int x, int y);
 void menukeyUp (unsigned char key, int x, int y);
 void menukeyOperations (void);
-void DrawMainMenu();
-void DrawCredits();
 
 void DrawMenu();
-void DrawMainMenu();
-void DrawCredits();
 void menukeyPressed (unsigned char key, int x, int y);
 void menukeyUp (unsigned char key, int x, int y);
 void menukeyOperations (void);

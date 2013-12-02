@@ -20,7 +20,7 @@ set(AntInt_SOURCES
         src/inputmanager.cpp
 	src/hud.cpp
 	src/leveldrawer.cpp
-	src/menu.cpp
+        #src/menu.cpp
 	src/objectcreator.cpp
         src/texture.cpp
 	src/timer.cpp
@@ -32,12 +32,11 @@ set(AntInt_SOURCES
 set(AntInt_HEADERS 
 	src/ant.h
 	src/anthill.h
-        src/antki.h
 	src/square.h
         src/inputmanager.h
 	src/hud.h
 	src/leveldrawer.h
-	src/menu.h
+        #src/menu.h
 	src/objectcreator.h
 	src/texture.h
 	src/timer.h

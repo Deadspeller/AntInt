@@ -32,7 +32,7 @@ extern int mouseScrollValue;
 int leftClickAction = 2;
 float roundTime = 0.5;
 bool gameStart = false;
-int maxAnts = 10;
+size_t maxAnts = 50;
 float AntSpeed = 0.5;
 float lifeTime =1000;
 //world
@@ -90,14 +90,6 @@ void keyUpswitch (unsigned char, int, int);
 
 sf::Window DSWindow(sf::VideoMode(xres, yres, 32), "Ant Intelligence", sf::Style::Default, sf::ContextSettings(32));
 
-void drawswitch () //change between menu and game  !!NOT IN USE!!
-{
-    if (menuplay == 1);	// Draw the Game
-	else 
-	DrawMenu();			// Draw the Menu
-}
-
-
 void enableGlOptions (void)
 {
 	glEnable (GL_DEPTH_TEST);
@@ -137,8 +129,6 @@ int main (int argc, char **argv)
     zpos=15;
     xrot=50; //80°
     yrot=135; //135°
-
-    objectCreator1.createHill(15, 15);
 
     // Set the color and depth clear values
     glClearDepth(1.f);

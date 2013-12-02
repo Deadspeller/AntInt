@@ -6,7 +6,7 @@
 #include "anthill.h"
 #include "ant.h"
 
-extern int maxAnts;
+extern size_t maxAnts;
 extern float roundTime;
 
 class AntHill
@@ -14,7 +14,7 @@ class AntHill
 public:
     std::vector <Ant> antVec;
 	Ant tempAnt;
-	int xposition, zposition;
+    int xposition, zposition;
     int food;
     int nextfoodx, nextfoodz, nextfoodmanhattan;
 

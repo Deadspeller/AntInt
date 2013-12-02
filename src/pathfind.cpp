@@ -92,7 +92,7 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
         closedNodes[currentNode->getxPos()][currentNode->getyPos()]=1; //add current to closed list
 
         //if current node = goal => finished => retrace route back using parents nodes
-        if (currentNode->getxPos()==xFinish && currentNode->getyPos()==yFinish)
+        if (currentNode->getxPos() == xFinish && currentNode->getyPos() == yFinish)
         {
             //quit searching if goal is reached
             //return generated path from finish to start

@@ -200,23 +200,22 @@ void inputmanager(float difTime)
     }
 
     if (MoveBackwardKey)
-    {	float xrotrad, yrotrad;
-        yrotrad = (yrot / 180 * 3.141592654f);
-        xrotrad = (xrot / 180 * 3.141592654f);
+    {
+        float yrotrad = (yrot / 180 * 3.141592654f);
         xpos -= float(sin(yrotrad)) * actspeed * difTime;
         zpos += float(cos(yrotrad)) * actspeed * difTime;
     }
 
     if (MoveRightKey)
-    {	float yrotrad;
-        yrotrad = (yrot / 180 * 3.141592654f);
+    {
+        float yrotrad = (yrot / 180 * 3.141592654f);
         xpos += float(cos(yrotrad)) * actspeed * difTime;
         zpos += float(sin(yrotrad)) * actspeed * difTime;
     }
 
     if (MoveLeftKey)
-    {	float yrotrad;
-        yrotrad = (yrot / 180 * 3.141592654f);
+    {
+        float yrotrad = (yrot / 180 * 3.141592654f);
         xpos -= float(cos(yrotrad)) * actspeed*difTime;
         zpos -= float(sin(yrotrad)) * actspeed*difTime;
     }
