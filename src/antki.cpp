@@ -1,6 +1,5 @@
 #include "ant.h"
 #include "pathfind.h"
-#include "antki.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <fstream>
