@@ -18,10 +18,8 @@ void LevelDrawer::drawAntMap(int antnum)
             for (col = row->begin(); col != row->end(); col++)
             {
 
-                if (col->block == 1 || col->block == 2 || col->antHill == 1 || col->food > 0)
+                if (col->block == 1 || col->block == 2 || col->block == 9 || col->antHill == 1 || col->food > 0)
                 {
-
-
 
                     glPushMatrix();
                     if(col->block == 1)
@@ -30,6 +28,24 @@ void LevelDrawer::drawAntMap(int antnum)
                     glTranslated(row - antHill1.antVec[antnum].antMapVec.begin(), 0, col - row->begin());
 
                     glScalef(0.5,0.5,0.5);
+
+                    if(col->block == 9)
+                    {
+                        glEnable(GL_TEXTURE_2D);
+                        glColor4f(0.1,0.1,0.1,0.5);
+                        glBegin(GL_POLYGON);
+                        glTexCoord2d(0,0);
+                        glVertex3f(-1, 0.001, -1);
+                        glTexCoord2d(1,0);
+                        glVertex3f(1, 0.001, -1);
+                        glTexCoord2d(1,1);
+                        glVertex3f(1, 0.001, 1);
+                        glTexCoord2d(0,1);
+                        glVertex3f(-1, 0.001, 1);
+                        glEnd();
+                    }
+                    else
+                        glColor4f(1,1,1,1);
 
                     if(col->antHill)
                     {
@@ -163,7 +179,7 @@ void LevelDrawer::drawAntMap(int antnum)
     //                    glBindTexture(GL_TEXTURE_2D, tex_honeycomb);
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                        glColor4f(1,1,1,1);
+                        glColor4f(1,1,1,0.5);
 
                         glBegin(GL_POLYGON);
                         glTexCoord2d(0,0);

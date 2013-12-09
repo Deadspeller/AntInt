@@ -95,7 +95,7 @@ void inputmanager(float difTime)
         {
             if (Event.key.code == sf::Keyboard::K)
             {
-                if (roundTime > 0.1)
+                if (roundTime > 0.05)
                     roundTime -= 0.05;
                 cout<<"Zeit pro Runde: "<<roundTime<<endl;
             }

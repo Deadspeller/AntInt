@@ -34,7 +34,7 @@ float roundTime = 0.5;
 bool gameStart = false;
 size_t maxAnts = 1;
 float AntSpeed = 0.5;
-float lifeTime =1000;
+float lifeTime =99000;
 //world
 size_t xworldsize = 31;
 size_t zworldsize = 31;
