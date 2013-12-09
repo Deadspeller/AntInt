@@ -32,7 +32,7 @@ extern int mouseScrollValue;
 int leftClickAction = 2;
 float roundTime = 0.5;
 bool gameStart = false;
-size_t maxAnts = 50;
+size_t maxAnts = 1;
 float AntSpeed = 0.5;
 float lifeTime =1000;
 //world
@@ -167,7 +167,9 @@ int main (int argc, char **argv)
 
         world();		//draw the "World
 
+        levelDrawer1.drawAntMap(0);
         levelDrawer1.drawBlocks();
+
 
         if(gameStart)
         {
