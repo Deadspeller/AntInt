@@ -78,16 +78,16 @@ void LevelDrawer::drawAntMap(int antnum)
 
                         glBegin(GL_POLYGON); //top
                         glTexCoord2d(0,0);
-                        glVertex3f(-1, 1, -1);
+                        glVertex3f(-1, BLOCK_HEIGHT, -1);
 
                         glTexCoord2d(1,0);
-                        glVertex3f(1, 1, -1);
+                        glVertex3f(1, BLOCK_HEIGHT, -1);
 
                         glTexCoord2d(1,1);
-                        glVertex3f(1, 1, 1);
+                        glVertex3f(1, BLOCK_HEIGHT, 1);
 
                         glTexCoord2d(0,1);
-                        glVertex3f(-1, 1, 1);
+                        glVertex3f(-1, BLOCK_HEIGHT, 1);
                         glEnd();
 
                         glEnable(GL_TEXTURE_2D);
@@ -96,8 +96,8 @@ void LevelDrawer::drawAntMap(int antnum)
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                         glColor3f(1,1,1);
                         glBegin(GL_POLYGON); //side
-                        glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
-                        glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+                        glTexCoord2d(0,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
                         glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
                         glTexCoord2d(0,1);  glVertex3f(-1, -1, 1);
                         glEnd();
@@ -107,8 +107,8 @@ void LevelDrawer::drawAntMap(int antnum)
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                         glColor3f(1,1,1);
                         glBegin(GL_POLYGON); //side
-                        glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
-                        glTexCoord2d(1,0);  glVertex3f(-1, 1, 1);
+                        glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
                         glTexCoord2d(1,1);  glVertex3f(-1, -1, 1);
                         glTexCoord2d(0,1);  glVertex3f(1, -1, 1);
                         glEnd();
@@ -118,8 +118,8 @@ void LevelDrawer::drawAntMap(int antnum)
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                         glColor3f(1,1,1);
                         glBegin(GL_POLYGON); //side
-                        glTexCoord2d(0,0);  glVertex3f(1, 1, -1);
-                        glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+                        glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
                         glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
                         glTexCoord2d(0,1);  glVertex3f(1, -1, -1);
                         glEnd();
@@ -129,8 +129,8 @@ void LevelDrawer::drawAntMap(int antnum)
                         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
                         glColor3f(1,1,1);
                         glBegin(GL_POLYGON); //side
-                        glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
-                        glTexCoord2d(1,0);  glVertex3f(1, 1, -1);
+                        glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
+                        glTexCoord2d(1,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
                         glTexCoord2d(1,1);  glVertex3f(1, -1, -1);
                         glTexCoord2d(0,1);  glVertex3f(1, -1, 1);
                         glEnd();
