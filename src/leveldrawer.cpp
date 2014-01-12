@@ -1,5 +1,8 @@
 #include "leveldrawer.h"
+
 #define BLOCK_HEIGHT 0.3
+#define BLOCK_ALPHA 1
+
 LevelDrawer::LevelDrawer()
 {
     drawBlocks();
@@ -250,7 +253,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_hill);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
 
                     glBegin(GL_POLYGON);
                     glTexCoord2d(0,0);
@@ -271,7 +274,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5); // If you do not set a color, the textured area will appear black.
+                    glColor4f(1,1,1,BLOCK_ALPHA); // If you do not set a color, the textured area will appear black.
 
                     glBegin(GL_POLYGON); //top
                     glTexCoord2d(0,0);
@@ -291,7 +294,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
@@ -302,7 +305,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
@@ -313,7 +316,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
@@ -324,7 +327,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
@@ -376,7 +379,7 @@ void LevelDrawer::drawBlocks()
 //                    glBindTexture(GL_TEXTURE_2D, tex_honeycomb);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,0.5);
+                    glColor4f(1,1,1,BLOCK_ALPHA);
 
                     glBegin(GL_POLYGON);
                     glTexCoord2d(0,0);
