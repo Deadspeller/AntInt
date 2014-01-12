@@ -41,6 +41,7 @@ void PathFind::updateMap(Ant *antpointer)
         {
 //            if (x < antpointer->antMapVec.size() && y < antpointer->antMapVec[0].size())
                 map[x][y] = antpointer->antMapVec[x][y].block;
+                //TODO: add smell
         }
     }
 }
@@ -134,7 +135,7 @@ string PathFind::calculatePath(const int & xStart, const int & yStart,const int 
                 if (neighborX < 0 || neighborY < 0 || neighborX >= xworldsize || neighborY >= zworldsize)
                     break;
                 //ignore if on closed list (was already evaluted) or if unwalkable (wall)
-                if (!(closedNodes[neighborX][neighborY]==1 || map[neighborX][neighborY] == 1))
+                if (!(closedNodes[neighborX][neighborY] == 1 || map[neighborX][neighborY] == 1))
                 {
 
                     //ok -> generate neighbor node
