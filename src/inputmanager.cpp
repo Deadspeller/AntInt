@@ -95,7 +95,7 @@ void inputmanager(float difTime)
         {
             if (Event.key.code == sf::Keyboard::K)
             {
-                if (roundTime > 0.1)
+                if (roundTime > 0.05)
                     roundTime -= 0.05;
                 cout<<"Zeit pro Runde: "<<roundTime<<endl;
             }
@@ -144,7 +144,7 @@ void inputmanager(float difTime)
                 {
                     antViewFile << std::endl;
                     for (size_t b = 0; b < antHill1.antVec[0].antMapVec[0].size(); b++)
-                        antViewFile << antHill1.antVec[0].antMapVec[a][b].food << "|";
+                        antViewFile << antHill1.antVec[0].antMapVec[a][b].block << "|";
                 }
                 antViewFile.close();
             }

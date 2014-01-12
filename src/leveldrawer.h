@@ -23,6 +23,7 @@ class LevelDrawer
 public:
     LevelDrawer();
     void drawBlocks();
+    void drawAntMap(int);
 
     Timer BlockTimer;
 }; //end Class

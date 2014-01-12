@@ -7,6 +7,198 @@ LevelDrawer::LevelDrawer()
 
 sf::SoundBuffer blockSoundBuffer;
 sf::Sound blockSound;
+
+void LevelDrawer::drawAntMap(int antnum)
+{
+    std::vector< std::vector<Square> >::iterator row;
+    std::vector<Square>::iterator col;
+
+    if(antHill1.antVec.size())
+        for (row = antHill1.antVec[antnum].antMapVec.begin(); row != antHill1.antVec[antnum].antMapVec.end(); row++)
+            for (col = row->begin(); col != row->end(); col++)
+            {
+
+                if (col->block == 1 || col->block == 2 || col->block == 9 || col->antHill == 1 || col->food > 0)
+                {
+
+                    glPushMatrix();
+                    if(col->block == 1)
+                    glTranslated(row - antHill1.antVec[antnum].antMapVec.begin(), 0.5, col - row->begin());
+                    else
+                    glTranslated(row - antHill1.antVec[antnum].antMapVec.begin(), 0, col - row->begin());
+
+                    glScalef(0.5,0.5,0.5);
+
+                    if(col->block == 9)
+                    {
+                        glEnable(GL_TEXTURE_2D);
+                        glColor4f(0.1,0.1,0.1,0.5);
+                        glBegin(GL_POLYGON);
+                        glTexCoord2d(0,0);
+                        glVertex3f(-1, 0.001, -1);
+                        glTexCoord2d(1,0);
+                        glVertex3f(1, 0.001, -1);
+                        glTexCoord2d(1,1);
+                        glVertex3f(1, 0.001, 1);
+                        glTexCoord2d(0,1);
+                        glVertex3f(-1, 0.001, 1);
+                        glEnd();
+                    }
+                    else
+                        glColor4f(1,1,1,1);
+
+                    if(col->antHill)
+                    {
+                        glEnable(GL_TEXTURE_2D);
+                        glBindTexture(GL_TEXTURE_2D, tex_hill);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1);
+
+                        glBegin(GL_POLYGON);
+                        glTexCoord2d(0,0);
+                        glVertex3f(-1, 0.001, -1);
+                        glTexCoord2d(1,0);
+                        glVertex3f(1, 0.001, -1);
+                        glTexCoord2d(1,1);
+                        glVertex3f(1, 0.001, 1);
+                        glTexCoord2d(0,1);
+                        glVertex3f(-1, 0.001, 1);
+                        glEnd();
+                    }
+
+                    if(col->block == 1)
+                    {
+
+                        glEnable(GL_TEXTURE_2D);
+                        glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
+
+                        glBegin(GL_POLYGON); //top
+                        glTexCoord2d(0,0);
+                        glVertex3f(-1, 1, -1);
+
+                        glTexCoord2d(1,0);
+                        glVertex3f(1, 1, -1);
+
+                        glTexCoord2d(1,1);
+                        glVertex3f(1, 1, 1);
+
+                        glTexCoord2d(0,1);
+                        glVertex3f(-1, 1, 1);
+                        glEnd();
+
+                        glEnable(GL_TEXTURE_2D);
+                        glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1);
+                        glBegin(GL_POLYGON); //side
+                        glTexCoord2d(0,0);  glVertex3f(-1, 1, 1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+                        glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
+                        glTexCoord2d(0,1);  glVertex3f(-1, -1, 1);
+                        glEnd();
+
+                        glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1);
+                        glBegin(GL_POLYGON); //side
+                        glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, 1, 1);
+                        glTexCoord2d(1,1);  glVertex3f(-1, -1, 1);
+                        glTexCoord2d(0,1);  glVertex3f(1, -1, 1);
+                        glEnd();
+
+                        glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1);
+                        glBegin(GL_POLYGON); //side
+                        glTexCoord2d(0,0);  glVertex3f(1, 1, -1);
+                        glTexCoord2d(1,0);  glVertex3f(-1, 1, -1);
+                        glTexCoord2d(1,1);  glVertex3f(-1, -1, -1);
+                        glTexCoord2d(0,1);  glVertex3f(1, -1, -1);
+                        glEnd();
+
+                        glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor3f(1,1,1);
+                        glBegin(GL_POLYGON); //side
+                        glTexCoord2d(0,0);  glVertex3f(1, 1, 1);
+                        glTexCoord2d(1,0);  glVertex3f(1, 1, -1);
+                        glTexCoord2d(1,1);  glVertex3f(1, -1, -1);
+                        glTexCoord2d(0,1);  glVertex3f(1, -1, 1);
+                        glEnd();
+                        glDisable(GL_TEXTURE_2D);
+                    }
+                    if(col->food > 0)
+                    {
+                        glEnable(GL_TEXTURE_2D);
+                        glEnable(GL_BLEND);
+                        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+                        if(col->food > 90)
+                        {
+                            glBindTexture(GL_TEXTURE_2D, tex_honeycomb100);
+                        }
+                        else if(col->food >= 80)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb80);
+                        }
+                        else if(col->food >= 60)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb60);
+                        }
+                        else if(col->food >= 50)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb50);
+                        }
+                        else if(col->food >= 30)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb30);
+                        }
+                        else if(col->food >= 20)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb10);
+                        }
+                        else if(col->food > 0)
+                        {
+                             glBindTexture(GL_TEXTURE_2D, tex_honeycomb5);
+                        }
+
+
+
+    //                    glEnable(GL_TEXTURE_2D);
+    //                    glEnable(GL_BLEND);
+    //                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //                    glBindTexture(GL_TEXTURE_2D, tex_honeycomb);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                        glColor4f(1,1,1,0.5);
+
+                        glBegin(GL_POLYGON);
+                        glTexCoord2d(0,0);
+                        glVertex3f(-1, 0.001, -1);
+                        glTexCoord2d(1,0);
+                        glVertex3f(1, 0.001, -1);
+                        glTexCoord2d(1,1);
+                        glVertex3f(1, 0.001, 1);
+                        glTexCoord2d(0,1);
+                        glVertex3f(-1, 0.001, 1);
+                        glEnd();
+                    }
+                    glPopMatrix();
+
+                }//end if
+            }// end for
+
+}
+
 void LevelDrawer::drawBlocks()
 {
 
@@ -14,11 +206,14 @@ void LevelDrawer::drawBlocks()
     std::vector< std::vector<Square> >::iterator row;
     std::vector<Square>::iterator col;
 
+
     for (row = worldvector.begin(); row != worldvector.end(); row++)
         for (col = row->begin(); col != row->end(); col++)
         {
+
             if (col->block == 1 || col->block == 2 || col->antHill == 1 || col->food > 0)
             {
+
 
                 BlockTimer.stop();
                 difTime = BlockTimer.getElapsedTimeInSec();
@@ -31,11 +226,6 @@ void LevelDrawer::drawBlocks()
                 else
                 if(col->yBlockAnim < 0.5)
                 {
-                    cout<<"sound"<<endl;
-//                    sf::SoundBuffer blockSoundBuffer;
-//                    blockSoundBuffer.loadFromFile("sounds/blocksound.wav");
-//                    sf::Sound blockSound;
-//                    blockSound.setBuffer(blockSoundBuffer);
                     blockSoundBuffer.loadFromFile("sounds/blocksound.wav");
                     blockSound.setBuffer(blockSoundBuffer);
                     blockSound.setVolume(100);
@@ -60,7 +250,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_hill);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1);
+                    glColor4f(1,1,1,0.5);
 
                     glBegin(GL_POLYGON);
                     glTexCoord2d(0,0);
@@ -81,7 +271,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1); // If you do not set a color, the textured area will appear black.
+                    glColor4f(1,1,1,0.5); // If you do not set a color, the textured area will appear black.
 
                     glBegin(GL_POLYGON); //top
                     glTexCoord2d(0,0);
@@ -101,7 +291,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1);
+                    glColor4f(1,1,1,0.5);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
@@ -112,7 +302,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1);
+                    glColor4f(1,1,1,0.5);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, 1);
@@ -123,7 +313,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1);
+                    glColor4f(1,1,1,0.5);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
                     glTexCoord2d(1,0);  glVertex3f(-1, BLOCK_HEIGHT, -1);
@@ -134,7 +324,7 @@ void LevelDrawer::drawBlocks()
                     glBindTexture(GL_TEXTURE_2D, tex_wood_horizontal);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor3f(1,1,1);
+                    glColor4f(1,1,1,0.5);
                     glBegin(GL_POLYGON); //side
                     glTexCoord2d(0,0);  glVertex3f(1, BLOCK_HEIGHT, 1);
                     glTexCoord2d(1,0);  glVertex3f(1, BLOCK_HEIGHT, -1);
@@ -186,7 +376,7 @@ void LevelDrawer::drawBlocks()
 //                    glBindTexture(GL_TEXTURE_2D, tex_honeycomb);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    glColor4f(1,1,1,1);
+                    glColor4f(1,1,1,0.5);
 
                     glBegin(GL_POLYGON);
                     glTexCoord2d(0,0);
